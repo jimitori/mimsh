@@ -145,7 +145,7 @@
             position: relative;
             border-radius: 1rem;
             overflow: hidden;
-            aspect-ratio: 3/2;
+            aspect-ratio: 1/1;
             cursor: pointer;
         }
 
@@ -257,11 +257,11 @@
             <div class="logo"><img src="mimsh.svg"></div>
             <!-- <div class="logo">MITIA MOROVOV-SHEINER</div> -->
             <nav>
-                <!-- Add navigation items here if needed -->
-                 <a>instagram</a>
-                 <a>linkedin</a>
-                 <a>patreon</a>
-                 <a>contact</a>
+                <a href="/about">about</a> 
+                <a href="/students">for students</a>
+                <a href="https://www.linkedin.com/in/morovovsheiner/">linkedin</a>
+                <a href="https://www.patreon.com/c/Azoysheyn">patreon</a>
+                <a href="/contact">contact</a>
             </nav>
         </div>
     </header>
@@ -292,48 +292,35 @@
     </main>
 
     <script>
-        // Project data
-        const projects = [
-            {
-                title: "Content Writer App",
-                category: "design",
-                image: "/api/placeholder/600/400",
-                featured: true
-            },
-            {
-                title: "Glagolica",
-                category: "linguistics",
-                image: "project - 3.png"
-            },
-            {
-                title: "Constructed Language",
-                category: "linguistics",
-                image: "project - 2.png"
-            },
-            {
-                title: "Supreme Tarot",
-                category: "art",
-                image: "project - 1.png"
-            },
-            {
-                title: "World Alphabet",
-                category: "research",
-                image: "project - 4.png",
-                featured: true
-            },
-            {
-                title: "Poster Every Day",
-                category: "design",
-                image: "project - 4.png",
-                featured: true
-            },
-            {
-                title: "Art Nude Photography",
-                category: "art",
-                image: "project - 4.png",
-                featured: true
-            },
-        ];
+        // Update the projects data to include URLs
+    const projects = [
+        {
+            title: "Glagolica",
+            category: "linguistics",
+            image: "images/avant-garde-glagolica.jpg",
+            url: "glagolica.html"
+        },
+        {
+            title: "Snake Conlang",
+            category: "linguistics",
+            image: "images/sachece.png",
+            url: "ophidian.html"
+        },
+        {
+            title: "Supreme Tarot",
+            category: "art",
+            image: "images/tarot_mockup-1.jpg",
+            url: "supreme-tarot.html"
+        },
+        {
+            title: "World Alphabet",
+            category: "research",
+            image: "images/new-world_1_small.jpg",
+            featured: true,
+            url: "world-alphabet.html"
+        }
+    ];
+
 
         // Timeline data
         const timeline = {
@@ -350,7 +337,7 @@
             ]
         };
 
-        // Render projects
+       // Update the renderProjects function
         function renderProjects(category = 'all') {
             const projectsGrid = document.querySelector('.projects-grid');
             projectsGrid.innerHTML = '';
@@ -358,8 +345,9 @@
             projects
                 .filter(project => category === 'all' || project.category === category)
                 .forEach(project => {
-                    const projectElement = document.createElement('div');
+                    const projectElement = document.createElement('a');  // Changed to 'a' element
                     projectElement.className = 'project-card';
+                    projectElement.href = project.url;  // Add href
                     projectElement.innerHTML = `
                         <img src="${project.image}" alt="${project.title}">
                         <div class="project-info">
