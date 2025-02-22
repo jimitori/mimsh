@@ -105,6 +105,12 @@
                 category: ["design"],
                 image: "images/rsd.png",
                 url: "rsd.html"
+            },
+            {
+                title: "Zabzy Conlang",
+                category: ["linguistics"],
+                image: "images/zabzy.png",
+                url: "zabzy.html"
             }
         ];
 
@@ -113,7 +119,9 @@
         // Timeline data
         const timeline = {
             2024: [
-                { title: "Lecture: 'Constructed languages'", venue: "Dobarabar" },
+                { title: "Lecture: 'Constructed languages'", venue: "Dobarabar",
+               // link: "https://example.com/lecture-conlangs" // Add link if needed
+                },
                 { title: "Landing as a part of visual communication", venue: "Online" }
             ],
             2023: [
@@ -148,7 +156,7 @@
                 });
         }
 
-        // Render timeline
+        // Update the renderTimeline function to handle links
         function renderTimeline() {
             const timelineSection = document.querySelector('.timeline');
             Object.entries(timeline).reverse().forEach(([year, events]) => {
@@ -162,7 +170,10 @@
                     <div class="timeline-events">
                         ${events.map(event => `
                             <div class="timeline-event">
-                                <h3>${event.title}</h3>
+                                <h3>${event.link 
+                                    ? `<a href="${event.link}" target="_blank">${event.title}</a>`
+                                    : event.title
+                                }</h3>
                                 ${event.venue ? `<p class="venue">${event.venue}</p>` : ''}
                             </div>
                         `).join('')}
