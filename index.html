@@ -5,256 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mitia Morovov-Sheiner - Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css">
-    <style>
-        @font-face {
-            font-family: 'PP Right Grotesk';
-            src: url('fonts/PPRightGrotesk-WideBlack.otf') format('opentype');
-            font-weight: 900; /* Since it's a Black weight */
-            font-style: normal;
-        }
-
-        @font-face {
-            font-family: 'PP Right Grotesk Text';
-            src: url('fonts/PPRightGroteskText-Regular.otf') format('opentype');
-            font-weight: normal;
-            font-style: normal;
-        }
-
-        :root {
-            --color-bg: #ffffff;
-            --color-text: #000000;
-            --color-gray: #666666;
-            --color-light-gray: #f5f5f5;
-            --max-width: 1200px;
-            --header-height: 80px;
-        }
-
-        /* Dark mode colors */
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --color-bg: #000000;
-                --color-text: #ffffff;
-                --color-gray: #999999;
-                --color-light-gray: #1a1a1a;
-            }
-        }
-
-        body {
-            font-family: 'PP Right Grotesk Text', -apple-system, sans-serif;
-            background: var(--color-bg);
-            color: var(--color-text);
-            line-height: 1.4;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'PP Right Grotesk', system-ui, -apple-system, sans-serif;
-        }
-
-        /* Header styles */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: var(--header-height);
-            background: var(--color-bg);
-            backdrop-filter: blur(8px);
-            border-bottom: 1px solid var(--color-light-gray);
-            z-index: 100;
-        }
-
-        .header-content {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: 0 2rem;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo {
-            padding-top: 10px;
-            /* font-size: 1.5rem;
-            font-weight: bold;
-            letter-spacing: -0.02em; */
-        }
-
-        nav a {
-            margin-left: 1rem;
-            text-decoration: none;
-            color: var(--color-text);
-            transition: all 0.2s;
-        }
-
-        /* Main content styles */
-        main {
-            max-width: var(--max-width);
-            margin: var(--header-height) auto 0;
-            padding: 4rem 2rem;
-        }
-
-        .hero {
-            max-width: 600px;
-            margin-bottom: 4rem;
-        }
-
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-
-        .hero p {
-            color: var(--color-gray);
-            font-size: 1.25rem;
-        }
-
-        /* Category filter */
-        .categories {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .category-btn {
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 9999px;
-            background: var(--color-light-gray);
-            color: var(--color-text);
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .category-btn.active {
-            background: var(--color-text);
-            color: var(--color-bg);
-        }
-
-        /* Project grid */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        .project-card {
-            position: relative;
-            border-radius: 1rem;
-            overflow: hidden;
-            aspect-ratio: 1/1;
-            cursor: pointer;
-        }
-
-        .project-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s;
-        }
-
-        .project-card:hover img {
-            transform: scale(1.05);
-        }
-
-        .project-info {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 1.5rem;
-            background: linear-gradient(transparent, rgba(0,0,0,0.8));
-            color: white;
-            transform: translateY(20px);
-            opacity: 0;
-            transition: all 0.3s;
-        }
-
-        .project-card:hover .project-info {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .project-category {
-            font-size: 0.875rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.5rem;
-            opacity: 0.8;
-        }
-
-        .project-title {
-            font-size: 1.25rem;
-            font-weight: 500;
-        }
-
-        /* Timeline section */
-        .timeline {
-            border-top: 1px solid var(--color-light-gray);
-            padding-top: 4rem;
-        }
-
-        .timeline h2 {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .year-group {
-            margin-bottom: 3rem;
-        }
-
-        .year-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .year {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        .year-line {
-            flex: 1;
-            height: 1px;
-            background: var(--color-light-gray);
-        }
-
-        .timeline-events {
-            padding-left: 2rem;
-            border-left: 1px solid var(--color-light-gray);
-        }
-
-        .timeline-event {
-            padding: 1rem;
-            margin-bottom: 1rem;
-            border-radius: 0.5rem;
-            transition: background-color 0.2s;
-        }
-
-        .timeline-event:hover {
-            background: var(--color-light-gray);
-        }
-
-        @media (max-width: 768px) {
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <header>
         <div class="header-content">
-            <div class="logo"><img src="mimsh.svg"></div>
+            <div class="logo"><img src="images/mimsh-white.svg"></div>
             <!-- <div class="logo">MITIA MOROVOV-SHEINER</div> -->
             <nav>
                 <a href="/about">about</a> 
@@ -278,7 +34,7 @@
             <button class="category-btn" data-category="linguistics">Linguistics</button>
             <button class="category-btn" data-category="art">Art</button>
             <button class="category-btn" data-category="education">Education</button>
-            <button class="category-btn" data-category="research">Research</button>
+            <button class="category-btn" data-category="fun">Fun</button>
         </div>
 
         <div class="projects-grid">
@@ -292,34 +48,62 @@
     </main>
 
     <script>
-        // Update the projects data to include URLs
-    const projects = [
-        {
-            title: "Glagolica",
-            category: "linguistics",
-            image: "images/avant-garde-glagolica.jpg",
-            url: "glagolica.html"
-        },
-        {
-            title: "Snake Conlang",
-            category: "linguistics",
-            image: "images/sachece.png",
-            url: "ophidian.html"
-        },
-        {
-            title: "Supreme Tarot",
-            category: "art",
-            image: "images/tarot_mockup-1.jpg",
-            url: "supreme-tarot.html"
-        },
-        {
-            title: "World Alphabet",
-            category: "research",
-            image: "images/new-world_1_small.jpg",
-            featured: true,
-            url: "world-alphabet.html"
-        }
-    ];
+        
+        // Update the projects data to allow multiple categories
+        const projects = [
+            {
+                title: "Poster Every Day",
+                category: ["art", "design"],
+                image: "images/94-vee.jpg",
+                url: "poster-every-day.html"
+            },
+            {
+                title: "Glagolica",
+                category: ["linguistics", "design"],
+                image: "images/avant-garde-glagolica.jpg",
+                url: "glagolica.html"
+            },
+            {
+                title: "Snake Conlang",
+                category: ["linguistics"],
+                image: "images/sachece.png",
+                url: "ophidian.html"
+            },
+            {
+                title: "Supreme Tarot",
+                category: ["art", "design"],
+                image: "images/tarot_mockup-1.jpg",
+                url: "supreme-tarot.html"
+            },
+            {
+                title: "World Alphabet",
+                category: ["art", "linguistics"],
+                image: "images/new-world_1_small.jpg",
+                featured: true,
+                url: "world-alphabet.html"
+            },
+            {
+                title: "Art Nude Photography",
+                category: ["art"],
+                image: "images/nude.jpeg",
+                featured: true,
+                url: "photography.html"
+            },
+            {
+                title: "Spotify Playlists",
+                category: ["fun"],
+                image: "images/ale.png",
+                featured: true,
+                url: "spotify.html"
+            },
+            {
+                title: "Serbian Dinar Symbol",
+                category: ["design"],
+                image: "images/rsd.png",
+                url: "rsd.html"
+            }
+        ];
+
 
 
         // Timeline data
@@ -337,21 +121,22 @@
             ]
         };
 
-       // Update the renderProjects function
+       // Update the renderProjects function to support multiple categories
         function renderProjects(category = 'all') {
             const projectsGrid = document.querySelector('.projects-grid');
             projectsGrid.innerHTML = '';
 
             projects
-                .filter(project => category === 'all' || project.category === category)
+                .filter(project => category === 'all' || project.category.includes(category))
                 .forEach(project => {
-                    const projectElement = document.createElement('a');  // Changed to 'a' element
+                    const projectElement = document.createElement('a');
                     projectElement.className = 'project-card';
-                    projectElement.href = project.url;  // Add href
+                    projectElement.href = project.url;
+
                     projectElement.innerHTML = `
                         <img src="${project.image}" alt="${project.title}">
                         <div class="project-info">
-                            <div class="project-category">${project.category}</div>
+                            <div class="project-category">${project.category.join(', ')}</div>
                             <div class="project-title">${project.title}</div>
                         </div>
                     `;
