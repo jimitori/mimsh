@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Name - Mitia Morovov-Sheiner</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="../../css/styles.css">
+
 </head>
 <body>
+    <!--
     <header>
         <div class="header-content">
             <div class="logo"><img src="images/mimsh-white.svg"></div>
@@ -20,6 +22,10 @@
             </nav>
         </div>
     </header>
+    -->
+
+    <!-- Header content will be inserted here by JavaScript -->
+    <div id="header-placeholder"></div>
 
     <main>
         <article class="project-header">
@@ -69,6 +75,19 @@
             <a href="#" class="nav-link">Next project →</a>
         </nav>
     </main>
+
+
+    <!-- header script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch("/components/header.html")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("header-placeholder").innerHTML = data;
+                })
+                .catch(error => console.error("Error loading the header:", error));
+        });
+    </script>
 
     <script>
         // Add any necessary JavaScript here
