@@ -19,12 +19,20 @@ def format_filename(filename):
     title = parts[1].replace("-", " ").strip().title()
     
     return {
+        "number": int(number),
         "image": filename,
         "title": f"{number}: {title}"
     }
 
 # Get list of image files and process them
 file_list = [format_filename(f) for f in os.listdir(IMAGE_FOLDER) if format_filename(f)]
+
+# Sort by numerical prefix
+file_list.sort(key=lambda x: x["number"])
+
+# Remove the temporary 'number' key before saving to JSON
+for item in file_list:
+    del item["number"]
 
 # Save to JSON file
 with open(OUTPUT_FILE, "w", encoding="utf-8") as json_file:
