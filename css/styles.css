@@ -41,6 +41,7 @@ body {
 h1, h2 { 
     font-family: 'PP Right Grotesk', system-ui, -apple-system, sans-serif;
     letter-spacing: 1px;
+    margin-top: 0rem;
 }
 
 
@@ -89,13 +90,13 @@ main {
 
 /* homepage specific styles */
 .hero {
-    max-width: 600px;
+    max-width: 800px;
     margin-bottom: 4rem;
 }
 
 .hero h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+    font-size: 3rem;
+    margin-bottom: 0rem;
     line-height: 1.2;
 }
 
