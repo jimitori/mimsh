@@ -14,7 +14,7 @@
         
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 3rem;
         }
         
@@ -25,7 +25,7 @@
         }
         
         .poster .gallery-image {
-            aspect-ratio: 100/141;
+            aspect-ratio: 3/4;
             width: 100%;
             object-fit: cover;
             border-radius: 0.5rem;
@@ -74,7 +74,7 @@
     <main>
         <article class="project-header">
             <!-- This will be populated by JavaScript based on page type -->
-            <div class="project-year">2023–2024</div>
+            <div class="project-year">2024</div>
             <h1 class="project-name" id="projectTitle">Project Gallery</h1>
             <div class="gallery-intro">
                 <p class="project-intro" id="projectIntro"></p>
@@ -89,11 +89,11 @@
     <script>
         // Configuration object - edit this for each project type
         const config = {
-            type: 'posters', // or 'playlists'
-            title: 'Poster Every Day',
-            intro: "Poster Every Day began as a skills-building challenge in graphic design but evolved into a creative playground where ideas, poems, quotes, and my world alphabet project freely intertwine. Through this daily practice, I've developed my definitive style—a unique visual language that merges photography with graphic design elements and machine-generated randomness, creating a body of work where technical discipline and creative expression coexist.",
-            dataFile: '/data/posters-metadata.json',
-            imagesPath: '/images/posters/'
+            type: 'playlists',
+            title: 'Spotify Playlists',
+            intro: 'A collection of carefully curated playlists...',
+            dataFile: '/data/playlists-metadata.json',
+            imagesPath: '/images/playlists/'
         };
 
         // Load header
@@ -136,19 +136,17 @@
             div.className = `gallery-item ${config.type === 'posters' ? 'poster' : 'playlist'}`;
             
             div.innerHTML = `
-                <img src="${config.imagesPath}${item.image}" 
+                <a href="${item.link}" target="_blank"><img src="${config.imagesPath}${item.image}" 
                      alt="${item.title}" 
                      class="gallery-image"
-                     loading="lazy">
+                     loading="lazy"></a>
                 <div class="gallery-item-info">
                     <h2 class="gallery-item-title">${item.title}</h2>
-                <!--    
                     <a href="${item.link}" 
                        class="gallery-item-link" 
                        target="_blank">
                        ${config.type === 'posters' ? 'View full size →' : 'Listen on Spotify →'}
                     </a>
-                -->
                 </div>
             `;
             

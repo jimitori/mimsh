@@ -1,7 +1,178 @@
 [
     {
-        "image": "minimal-lines.jpg",
-        "title": "Minimal Lines",
-        "link": "https://open.spotify.com/playlist/..."
-    }
+        "image": "16-songs.png",
+        "title": "16 songs to know me",
+        "link": "https://open.spotify.com/playlist/4NxbrqeIyBF4Z7GqOG8Nrf?si=744016cdbe11418b"
+    },
+    {
+        "image": "june-20.jpg",
+        "title": "June'20",
+        "link": "https://open.spotify.com/playlist/2vlX0XPCqtOlSYhvQSdsAl?si=a11a75f5203c481e"
+    },
+    {
+        "image": "july-20.png",
+        "title": "July'20",
+        "link": "https://open.spotify.com/playlist/2BtggJnNIvTPwiljDXhVPc?si=c6303e5f9ba44787"
+    },
+    {
+        "image": "august-20.png",
+        "title": "August'20",
+        "link": "https://open.spotify.com/playlist/5NZKXdAaRJ8BMB8DXvPlgx?si=273acea294734520"
+        },
+        {
+        "image": "september-20.png",
+        "title": "September'20",
+        "link": "https://open.spotify.com/playlist/50fFTVDFu6dIlU7hBDrNvV?si=a7b1ed39b2c3492b"
+        },
+        {
+        "image": "october-20.png",
+        "title": "October'20",
+        "link": "https://open.spotify.com/playlist/5kjPSkG5lLFehkFIMhbrNK?si=87a27fef28184fba"
+        },
+        {
+        "image": "november-20.png",
+        "title": "November'20",
+        "link": "https://open.spotify.com/playlist/3HtFvyZoRzFbxemeGnVj3b?si=c592d5fd4d9c4514"
+        },
+        {
+        "image": "december-20.png",
+        "title": "December'20",
+        "link": "https://open.spotify.com/playlist/7tK70IFW0roRsKg9uUfIYZ?si=007533671857454a"
+        },
+        {
+        "image": "january-21.png",
+        "title": "January'21",
+        "link": "https://open.spotify.com/playlist/3enMw8phcLurkhKiSynQK6?si=e83a0641287940df"
+        },
+        {
+        "image": "february-21.png",
+        "title": "February'21",
+        "link": "https://open.spotify.com/playlist/3ZeqnKmaG4IMIenPh2Fsrw?si=df050db90e2d4925"
+        },
+        {
+        "image": "march-21.png",
+        "title": "March'21",
+        "link": "https://open.spotify.com/playlist/747N4rlLrqJhOm41f1WE3z?si=5c49e9766ad94513"
+        },
+        {
+        "image": "april-21.png",
+        "title": "April'21",
+        "link": "https://open.spotify.com/playlist/5DWNiYfOupVqMYS8kuKFzI?si=0051b5530f074954"
+        },
+        {
+        "image": "may-21.png",
+        "title": "May'21",
+        "link": "https://open.spotify.com/playlist/6M1tGszrlSrERjHb42iEdQ?si=fc71ab1135e54759"
+        },
+        {
+        "image": "june-21.png",
+        "title": "June'21",
+        "link": "https://open.spotify.com/playlist/50g20dAGMExIbtxCe3ElgF?si=5256a82a00184c27"
+        },
+        {
+        "image": "july-21.png",
+        "title": "July'21",
+        "link": "https://open.spotify.com/playlist/7u3YVVbhcwn5oSPcGog3cI?si=04d9b5d3343240b6"
+        },
+        {
+        "image": "august-21.png",
+        "title": "August'21",
+        "link": "https://open.spotify.com/playlist/23hRFZi5xiNCaqEMMYLgYS?si=230f1843709d4d33"
+        },
+        {
+        "image": "september-21.png",
+        "title": "September'21",
+        "link": "https://open.spotify.com/playlist/6qMJ5or1khxisgGor2epbs?si=a26cc3b8931b4d41"
+        },
+        {
+        "image": "october-21.png",
+        "title": "October'21",
+        "link": "https://open.spotify.com/playlist/68xPW7ev3iGoZSLHkEUf21?si=a55d3e092e274f18"
+        },
+        {
+        "image": "november-21.png",
+        "title": "November'21",
+        "link": "https://open.spotify.com/playlist/5kU5dOK4odLa68B7tqN2rb?si=24025cc806d042ce"
+        },
+        {
+        "image": "december-21.png",
+        "title": "December'21",
+        "link": "https://open.spotify.com/playlist/7kzYLrhnogTeCHeYRd0NNB?si=56b82e136ae54170"
+        },
+        {
+        "image": "empty-box.png",
+        "title": "January'22",
+        "link": "https://open.spotify.com/playlist/3j7AWclDJ3DJRKb21FA7rf?si=28fc4827353343e4"
+        },
+        {
+        "image": "empty-box.png",
+        "title": "February'22",
+        "link": "https://open.spotify.com/playlist/3Wfx1OdopmU7BtVpdfY2ef?si=a39b55d3d4674d7d"
+        },
+        {
+        "image": "april-22.png",
+        "title": "April'22",
+        "link": "https://open.spotify.com/playlist/4PCs5vK0Bf6lpyawn0M6aW?si=f415a691f99343ca"
+        },
+        {
+        "image": "may-22.png",
+        "title": "May'22",
+        "link": "https://open.spotify.com/playlist/29MdqUrkUed34phAHGURxE?si=4300ef21ac7749f7"
+        },
+        {
+        "image": "empty-box.png",
+        "title": "June'22",
+        "link": "https://open.spotify.com/playlist/5wMaHySNiOySwopvGRaKcy?si=7dd430809f914ddb"
+        },
+        {
+        "image": "empty-box.png",
+        "title": "July'22",
+        "link": "https://open.spotify.com/playlist/08w0OVO1SNIfQxPMuiQhBI?si=1a31d4d2ffc64011"
+        },
+        {
+        "image": "april-23.png",
+        "title": "April'23",
+        "link": "https://open.spotify.com/playlist/1EkpKyHKAPw5oNPw7ZVj2c?si=0340e3a7bef14cd8"
+        },
+        {
+        "image": "may-23.png",
+        "title": "May'23",
+        "link": "https://open.spotify.com/playlist/2vHK1ukEp7igEARqzoxThM?si=79962a820eb04c14"
+        },
+        {
+        "image": "june-23.png",
+        "title": "June'23",
+        "link": "https://open.spotify.com/playlist/41BvQrUXtl3fpZFlmx3rlk?si=dee8747f7bb54b46"
+        },
+        {
+        "image": "july-23.png",
+        "title": "July'23",
+        "link": "https://open.spotify.com/playlist/68hCuZX2hwxrCGcQw8zVMK?si=c3d4f0b378eb4fd9"
+        },
+        {
+        "image": "august-23.png",
+        "title": "August'23",
+        "link": "https://open.spotify.com/playlist/4ekDITJJVHcexI2KO6fmRq?si=bc5d97a066844c8b"
+        },
+        {
+        "image": "september-23.png",
+        "title": "September'23",
+        "link": "https://open.spotify.com/playlist/67ijMIEsXwVM2eMMgU6tr8?si=06a6533773fb4e5c"
+        },
+        {
+        "image": "october-23.jpg",
+        "title": "October'23",
+        "link": "https://open.spotify.com/playlist/7f3FeqSaoGMY4iA69KQBAl?si=f2304b1e80d3450d"
+        },
+        {
+        "image": "empty-box.png",
+        "title": "November'23",
+        "link": "https://open.spotify.com/playlist/4bevnFHTkwijmtQPBTWIFb?si=13a04af304774b41"
+        },
+        {
+        "image": "empty-box.png",
+        "title": "July'24",
+        "link": "https://open.spotify.com/playlist/39EScBrPqqhqFRcz97FwuD?si=ad4903cb52484f3d"
+        }
+        
 ]
