@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ophidian - A Serpent Conlang | Mitia Morovov-Sheiner</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        .language-example {
+            background-color: var(--color-light-gray);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin: 2rem 0;
+            font-family: monospace;
+        }
+        
+        .language-example .original, 
+        .language-example .transliteration, 
+        .language-example .translation {
+            padding: 0.5rem 0;
+        }
+        
+        .language-example .translation {
+            font-style: italic;
+            opacity: 0.8;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .feature-card {
+            background-color: var(--color-light-gray);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            transition: transform 0.2s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-card h3 {
+            margin-top: 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding-bottom: 0.5rem;
+        }
+        
+        .script-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+        }
+        
+        .script-table th, .script-table td {
+            padding: 0.75rem;
+            text-align: center;
+            border: 1px solid var(--color-light-gray);
+        }
+        
+        .script-table th {
+            background-color: var(--color-light-gray);
+        }
+        
+        .phoneme-section {
+            margin-bottom: 2rem;
+        }
+        
+        .phoneme-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .phoneme-card {
+            background-color: var(--color-light-gray);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            font-family: monospace;
+        }
+        
+        .phoneme-label {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-top: 0.5rem;
+        }
+        
+        .noun-classes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .noun-class {
+            background-color: var(--color-light-gray);
+            padding: 1rem;
+            border-radius: 0.5rem;
+        }
+        
+        .noun-class h4 {
+            margin-top: 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding-bottom: 0.5rem;
+        }
+        
+        .examples-section h3 {
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <main>
+        <article class="project-header">
+            <div class="project-year">2024</div>
+            <h1 class="project-name">Ophidian</h1>
+            <p class="project-intro">A conlang inspired by serpent physiology and behavior, featuring a complex noun class system, distinctive verb types, and a unique consonant-rich phonology. Ophidian represents the language of a serpent-like species with their own culture and worldview.</p>
+            
+            <div class="project-meta">
+                <div class="meta-item">
+                    <h3>Classification</h3>
+                    <p>Artistic conlang, SOV word order</p>
+                </div>
+                <div class="meta-item">
+                    <h3>Features</h3>
+                    <p>10 noun classes, consonant-rich phonology, dual verb type system</p>
+                </div>
+                <div class="meta-item">
+                    <h3>Status</h3>
+                    <p>In development (v0.4)</p>
+                </div>
+            </div>
+        </article>
+
+        <section class="project-section">
+            <h2>Language Overview</h2>
+            <p>Ophidian is a constructed language (conlang) designed to reflect the worldview and physiology of a serpent-like species. The language features hissing and sibilant sounds, a complex noun class system that categorizes objects based on their relationship to serpent life, and a dual verb type system that distinguishes between active and stative verbs.</p>
+            
+            <div class="language-example">
+                <div class="original">šisataxxa šixešassa</div>
+                <div class="transliteration">ši-sataxxa ši-xešassa</div>
+                <div class="translation">"My name is 'shedding skin'"</div>
+            </div>
+            
+            <p>The language's phonology emphasizes sounds that can be produced without lips, relying heavily on consonants articulated in the throat, palate, and with the tongue. This creates a distinctive sound profile that reflects the physical constraints and capabilities of a serpentine speaker.</p>
+        </section>
+
+        <section class="project-section">
+            <h2>Key Language Features</h2>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Noun Class System</h3>
+                    <p>Ophidian employs 10 noun classes that categorize objects based on their relationship to serpent life, such as long objects, predators, food, and shelter.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Dual Verb Types</h3>
+                    <p>Verbs are divided into two types: active (-ss-) and stative (-xx-), with different conjugation patterns and geminated stems in certain forms.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Consonant-Rich Phonology</h3>
+                    <p>The language features a wide array of consonants with an emphasis on sibilants, fricatives, and glottals, reflecting the speech capabilities of a lipless species.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>SVO Word Order</h3>
+                    <p>Ophidian uses Subject-Verb-Object word order with post-nominal adjectives and allows for pro-drop (omission of pronouns when context is clear).</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2>Phonology</h2>
+            <p>Ophidian's sound system is adapted to serpentine speech capabilities, emphasizing sounds that can be produced without lips.</p>
+            
+            <div class="phoneme-section">
+                <h3>Consonants</h3>
+                <div class="phoneme-grid">
+                    <div class="phoneme-card">
+                        <div>θ / θː</div>
+                        <div class="phoneme-label">t / tt</div>
+                    </div>
+                    <div class="phoneme-card">
+                        <div>s / sː</div>
+                        <div class="phoneme-label">s / ss</div>
+                    </div>
+                    <div class="phoneme-card">
+                        <div>sʲ / sʲː</div>
+                        <div class="phoneme-label">c / cc</div>
+                    </div>
+                    <div class="phoneme-card">
+                        <div>ʃ / ʃː</div>
+                        <div class="phoneme-label">ș / șș</div>
+                    </div>
+                    <div class="phoneme-card">
+                        <div>ʂ / ʂː</div>
+                        <div class="phoneme-label">š / šš</div>
+                    </div>
+                    <div class="phoneme-card">
+                        <div>ɕ / ɕː</div>
+                        <div class="phoneme-label">ś / śś</div>
+                    </div>
+                    <div class="phoneme-card">
+                        <div>ç / çː</div>
+                        <div class="phoneme-label">j / jj</div>
+                    </div>
+                    <div class="phoneme-card">
+                        <div>x / xː</div>
+                        <div class="phoneme-label">x / xx</div>
+                    </div>
+                    <div class="phoneme-card">
+                        <div>χ / χː</div>
+                        <div class="phoneme-label">g / gg</div>
+                    </div>
+                    <div class="phoneme-card">
+                        <div>ħ / ħː</div>
+                        <div class="phoneme-label">q / qq</div>
+                    </div>
+                    <div class="phoneme-card">
+                        <div>h / hː</div>
+                        <div class="phoneme-label">h / hh</div>
+                    </div>
+                    <div class="phoneme-card">
+                        <div>ɬ / ɬː</div>
+                        <div class="phoneme-label">l / ll</div>
+                    </div>
+                    <div class="phoneme-card">
+                        <div>𝼆 / 𝼆ː</div>
+                        <div class="phoneme-label">ļ / ļļ</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="phoneme-section">
+                <h3>Vowels</h3>
+                <div class="phoneme-grid">
+                    <div class="phoneme-card">
+                        <div>i / iː / iʔi</div>
+                        <div class="phoneme-label">i / ii / i'i</div>
+                    </div>
+                    <div class="phoneme-card">
+                        <div>e / eː / eʔe</div>
+                        <div class="phoneme-label">e / ee / e'e</div>
+                    </div>
+                    <div class="phoneme-card">
+                        <div>a / aː / aʔa</div>
+                        <div class="phoneme-label">a / aa / a'a</div>
+                    </div>
+                </div>
+            </div>
+            
+            <h3>Transliteration Systems</h3>
+            <p>Ophidian can be written using either Latin or Cyrillic scripts, with two variants available for each:</p>
+            
+            <table class="script-table">
+                <thead>
+                    <tr>
+                        <th>Phoneme</th>
+                        <th>Latin (Standard)</th>
+                        <th>Latin (Alternative)</th>
+                        <th>Cyrillic (Standard)</th>
+                        <th>Cyrillic (Alternative)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>θ</td>
+                        <td>t</td>
+                        <td>th</td>
+                        <td>т</td>
+                        <td>ф</td>
+                    </tr>
+                    <tr>
+                        <td>s</td>
+                        <td>s</td>
+                        <td>s</td>
+                        <td>с</td>
+                        <td>с</td>
+                    </tr>
+                    <tr>
+                        <td>sʲ</td>
+                        <td>c</td>
+                        <td>c</td>
+                        <td>сь</td>
+                        <td>сј</td>
+                    </tr>
+                    <tr>
+                        <td>ʃ</td>
+                        <td>ș</td>
+                        <td>sh</td>
+                        <td>ш</td>
+                        <td>ш</td>
+                    </tr>
+                    <tr>
+                        <td>ʂ</td>
+                        <td>š</td>
+                        <td>rz</td>
+                        <td>ж</td>
+                        <td>ж</td>
+                    </tr>
+                    <!-- Additional rows would continue -->
+                </tbody>
+            </table>
+        </section>
+
+        <section class="project-section">
+            <h2>Grammar Highlights</h2>
+            
+            <h3>Noun Class System</h3>
+            <p>Ophidian organizes all nouns into 10 distinct classes, each with its own prefix and semantic domain:</p>
+            
+            <div class="noun-classes">
+                <div class="noun-class">
+                    <h4>Class 1: se-</h4>
+                    <p>Serpents and long objects</p>
+                    <p><em>Example:</em> secişi (serpent)</p>
+                </div>
+                
+                <div class="noun-class">
+                    <h4>Class 2: ce'e</h4>
+                    <p>Plural for class 1</p>
+                    <p><em>Example:</em> ce'ecişi (serpents)</p>
+                </div>
+                
+                <div class="noun-class">
+                    <h4>Class 3: te-</h4>
+                    <p>Small animals, food</p>
+                    <p><em>Example:</em> tešece (bird)</p>
+                </div>
+                
+                <div class="noun-class">
+                    <h4>Class 4: teje-</h4>
+                    <p>Plural for class 3</p>
+                    <p><em>Example:</em> teješece (birds)</p>
+                </div>
+                
+                <div class="noun-class">
+                    <h4>Class 5: ga-</h4>
+                    <p>Predators, big animals, big objects</p>
+                    <p><em>Example:</em> gašece (bird of prey)</p>
+                </div>
+                
+                <div class="noun-class">
+                    <h4>Class 6: qa'a-</h4>
+                    <p>Plural for class 5</p>
+                    <p><em>Example:</em> qa'ašece (birds of prey)</p>
+                </div>
+                
+                <div class="noun-class">
+                    <h4>Class 7: (no prefix)</h4>
+                    <p>Inanimate objects, abstract concepts</p>
+                    <p><em>Example:</em> tašša (door)</p>
+                </div>
+                
+                <div class="noun-class">
+                    <h4>Class 8: ha-</h4>
+                    <p>Plural for classes 7, 9, 10</p>
+                    <p><em>Example:</em> hatašša (doors)</p>
+                </div>
+                
+                <div class="noun-class">
+                    <h4>Class 9: ļi-</h4>
+                    <p>Shelter, body parts, plants, small objects</p>
+                    <p><em>Example:</em> ļicejeśe (bird's nest)</p>
+                </div>
+                
+                <div class="noun-class">
+                    <h4>Class 10: ša-</h4>
+                    <p>Warm objects, fire, light</p>
+                    <p><em>Example:</em> šasiše (warm rock)</p>
+                </div>
+            </div>
+            
+            <h3>Verb System</h3>
+            <p>Ophidian distinguishes between two types of verbs:</p>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>Type 1: -ss- Verbs</h3>
+                    <p>Active verbs that retain their basic stem in all forms</p>
+                    <p><em>Example:</em> şagassa (to open)</p>
+                    <p>Perfective: şagassal</p>
+                    <p>Imperative: şagassaj</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Type 2: -xx- Verbs</h3>
+                    <p>Stative verbs with geminated stems in some forms</p>
+                    <p><em>Example:</em> şagaxxa (to be open)</p>
+                    <p>Perfective: şşagaal</p>
+                    <p>Jussive: heeşşagaa</p>
+                </div>
+            </div>
+            
+            <p>Verbs are marked for aspect (imperfective/perfective), mood (indicative/imperative/jussive), and voice (active/middle-reflective/causative), but do not mark tense.</p>
+        </section>
+
+        <section class="project-section examples-section">
+            <h2>Language Examples</h2>
+            
+            <h3>Basic Phrases</h3>
+            
+            <div class="language-example">
+                <div class="original">hee</div>
+                <div class="translation">"yes"</div>
+            </div>
+            
+            <div class="language-example">
+                <div class="original">ssaa</div>
+                <div class="translation">"no"</div>
+            </div>
+            
+            <div class="language-example">
+                <div class="original">šisataxxa seci</div>
+                <div class="transliteration">ši-sataxxa seci</div>
+                <div class="translation">"My name is Tongue"</div>
+            </div>
+            
+            <div class="language-example">
+                <div class="original">gesataxxa cci'i?</div>
+                <div class="transliteration">ge-sataxxa cci'i</div>
+                <div class="translation">"What is your name?"</div>
+            </div>
+            
+            <h3>Example Sentences</h3>
+            
+            <div class="language-example">
+                <div class="original">secişi ceșassa</div>
+                <div class="transliteration">secişi ceșassa</div>
+                <div class="translation">"The serpent slithers"</div>
+            </div>
+            
+            <div class="language-example">
+                <div class="original">ši tešece seșessal</div>
+                <div class="transliteration">ši tešece seșesse-l</div>
+                <div class="translation">"I ate the bird" (lit. "I bird ate-PERF")</div>
+            </div>
+            
+            <div class="language-example">
+                <div class="original">šasiše xaa secişi gaśixxi</div>
+                <div class="transliteration">šasiše xaa secişi gaśixxi</div>
+                <div class="translation">"The serpent waits on the warm rock"</div>
+            </div>
+            
+            <div class="language-example">
+                <div class="original">qeșesse śaxešassa</div>
+                <div class="transliteration">qeșesse śa-xešassa</div>
+                <div class="translation">"I want to find shelter" (lit. "want INF-find-shelter")</div>
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2>Cultural Context</h2>
+            <p>The Ophidian language reflects the culture and lifestyle of its serpentine speakers. Their worldview emphasizes:</p>
+            
+            <ul>
+                <li><strong>Classification of objects</strong> based on their relationship to serpent life (danger, food, shelter)</li>
+                <li><strong>Importance of warm places</strong> for cold-blooded creatures (note the dedicated noun class for warm objects)</li>
+                <li><strong>Distinction between states and actions</strong> (reflected in the two verb types)</li>
+                <li><strong>Significance of digestion</strong> (note special verbs like "seşegaśixxi" - to have eaten and crawl to a safe place to digest)</li>
+            </ul>
+            
+            <p>The language provides insight into what these creatures value and how they perceive their world, with specialized vocabulary for behaviors like shedding skin, finding shelter, and basking on warm rocks.</p>
+        </section>
+
+        <section class="project-section">
+            <h2>Development Status</h2>
+            <p>Ophidian is currently at version 0.4, with ongoing development. The language features:</p>
+            
+            <ul>
+                <li>A comprehensive phonological system</li>
+                <li>Established grammar rules for nouns, verbs, and adjectives</li>
+                <li>A growing lexicon of over 50 verbs and nouns</li>
+                <li>Multiple writing systems (Latin and Cyrillic)</li>
+            </ul>
+            
+            <p>Future development will focus on expanding the lexicon, refining grammar rules, and developing a more detailed cultural context for the language's speakers.</p>
+            
+            <p>The full language specification, including grammar, lexicon, and phonology, is available on <a href="https://github.com/jimitori/ophidian" style="color: white; text-decoration: underline;">GitHub</a>.</p>
+        </section>
+
+        <section class="project-section">
+            <h2>Explore Further</h2>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3><a href="grammar.html" style="color: white; text-decoration: none;">Grammar</a></h3>
+                    <p>Detailed explanation of Ophidian's grammatical structures, including verb conjugation, noun declension, and syntax rules.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3><a href="lexicon.html" style="color: white; text-decoration: none;">Lexicon</a></h3>
+                    <p>Comprehensive dictionary of Ophidian words, sortable by word class, meaning, and phonological features.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3><a href="examples.html" style="color: white; text-decoration: none;">Text Examples</a></h3>
+                    <p>Sample texts, stories, and dialogues in Ophidian, with translations and grammatical analysis.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3><a href="translator.html" style="color: white; text-decoration: none;">Translator Tool</a></h3>
+                    <p>Interactive tool to help translate between English and Ophidian, with explanation of grammatical features.</p>
+                </div>
+            </div>
+        </section>
+
+        <nav class="navigation-footer">
+            <a href="#" class="nav-link">← Previous project</a>
+            <a href="#" class="nav-link">Next project →</a>
+        </nav>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch("/components/header.html")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("header-placeholder").innerHTML = data;
+                })
+                .catch(error => console.error("Error loading the header:", error));
+        });
+    </script>
+</body>
+</html>
