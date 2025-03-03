@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Mitia Morovov-Sheiner</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo"><img src="images/mimsh-white.svg"></div>
+            <nav>
+                <a href="/about">about</a> 
+                <a href="/students">for students</a>
+                <a href="https://www.linkedin.com/in/morovovsheiner/">linkedin</a>
+                <a href="https://www.patreon.com/c/Azoysheyn">patreon</a>
+                <a href="/contact">contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Header content will be inserted here by JavaScript -->
+    <div id="header-placeholder"></div>
+
+    <main>
+        <article class="project-header">
+            <h1 class="project-name">About</h1>
+            <p class="project-intro">Designer | Linguist | Educator<br>
+            Bridging the worlds of design, linguistics, and accessibility, Mitia Morovov-Sheiner crafts not just visuals, but systems of meaning—whether in digital interfaces, experimental typography, or constructed languages. His work is driven by a fascination with how we communicate, shaping experiences that are both functional and thought-provoking.
+            <p class="project-intro">Designer | Linguist | Educator<br />
+        </article>
+
+        <section class="project-section">
+            <h2>Design & Education</h2>
+            <ul>
+                <li> Product Designer at SEOmonitor – Enhancing SEO workflows with user-centered design. </li>
+                <li> Lecturer at Netology – Teaching graphic design and content creation since 2016. </li>
+                <li> Launching design courses & mentorship programs to help others master their craft. </li>
+                <li> Former Senior Designer at FUN BOX and Brainbox. </li>
+            </ul>
+        </section>
+
+        <section class="project-section">
+            <h2>Linguistics & Constructed Languages</h2>
+            <p>As a PhD linguist, Mitia explores writing systems, sign languages, and language evolution. He is the creator of Ophidian, a language inspired by serpent-like phonetics and rhythm. His passion for language extends to his reels about linguistics, where he shares insights into rare scripts, phonetics, and the structure of human communication.</p>
+        </section>
+        
+        <section class="project-section">
+            <h2>Art & Photography</h2>
+            <ul>
+                <li>Photography & Visual Storytelling – Showcased on YouPic and social media.</li>
+                <li>Experimental Typography & Poster Design – Featured in projects like One Day, One Poster.</li>
+                <li>Theater & Performance Art – Blending storytelling with personal memory.</li>
+            </ul>
+        </section>
+
+        <section class="project-section">
+            <h2>Music & Curation</h2>
+            <p>Mitia's musical selections are deeply influenced by his linguistic curiosity. His Spotify playlists feature a diverse mix of languages—from Dutch and Japanese to African languages like Mandinka—creating an auditory journey through global soundscapes.</p>
+        </section>
+
+        <section class="project-section">
+            <h2>Philosophy & Personal Insights</h2>
+            <p>As an autistic individual with ADHD and color blindness, Mitia approaches creativity through a distinct cognitive lens. He sees these traits not as limitations but as powerful tools that shape his work in unexpected ways. A cosmopolitan and future optimist, he values ideas over ideologies and constantly seeks to push boundaries in design, linguistics, and accessibility.</p>
+        </section>
+
+        <section class="project-section">
+            <h2>Follow Mitia’s Work:</h2>
+            <p>🌍 Website: morovovsheiner.pro</p>
+            <p>📷 Instagram: @jimitori</p>
+            <p>🎵 Spotify: Curated Playlists</p>
+            <p>📸 Photography: YouPic</p>
+            <hr>
+            <p>Whether through language, visuals, or sound, my work explores how we communicate meaning in a changing world. Let’s connect.</p>
+        </section>
+    </main>
+
+
+    <!-- header script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch("/components/header.html")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("header-placeholder").innerHTML = data;
+                })
+                .catch(error => console.error("Error loading the header:", error));
+        });
+    </script>
+
+    <script>
+        // Add any necessary JavaScript here
+    </script>
+</body>
+</html>
