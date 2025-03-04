@@ -3,26 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mitia Morovov-Sheiner - Portfolio</title>
+    <title>Mitia Morovov-Sheiner - Personal Website</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <!--
-    <header>
-        <div class="header-content">
-            <div class="logo"><a href="/"><img src="images/mimsh-white.svg"></a></div>
-            <nav>
-                <a href="/about">about</a> 
-                <a href="/students">for students</a>
-                <a href="https://www.linkedin.com/in/morovovsheiner/">linkedin</a>
-                <a href="https://www.patreon.com/c/Azoysheyn">patreon</a>
-                <a href="/contact">contact</a>
-            </nav>
-        </div>
-    </header>
-    -->
-
     <!-- Header content will be inserted here by JavaScript -->
     <div id="header-placeholder"></div>
 
@@ -52,91 +37,29 @@
     </main>
 
     <script>
-        
-        // Update the projects data to allow multiple categories
-        const projects = [
-            {
-                title: "Poster Every Day",
-                category: ["art", "design"],
-                image: "images/94-vee.jpg",
-                url: "projects/posters"
-            },
-            {
-                title: "Snake Conlang",
-                category: ["linguistics"],
-                image: "images/sachece.png",
-                url: "projects/conlangs/ophidian"
-            },
-            {
-                title: "Art Nude Photography",
-                category: ["art"],
-                image: "images/nude.jpeg",
-                featured: true,
-                url: "/projects/photography"
-            },
-            {
-                title: "Spotify Playlists",
-                category: ["fun"],
-                image: "images/ale.png",
-                featured: true,
-                url: "projects/playlists"
-            },
-            {
-                title: "Serbian Dinar Symbol",
-                category: ["design"],
-                image: "images/rsd.png",
-                url: "rsd.html"
-            },
-            {
-                title: "Zabzy Conlang",
-                category: ["linguistics"],
-                image: "images/zabzy.png",
-                url: "projects/conlangs/zabzy"
-            },
-            {
-                title: "Glagolica",
-                category: ["linguistics", "design"],
-                image: "images/avant-garde-glagolica.jpg",
-                url: "glagolica.html"
-            },
-            {
-                title: "Supreme Tarot",
-                category: ["art", "design"],
-                image: "images/tarot_mockup-1.jpg",
-                url: "supreme-tarot.html"
-            },
-            {
-                title: "World Alphabet",
-                category: ["art", "linguistics"],
-                image: "images/new-world_1_small.jpg",
-                featured: true,
-                url: "world-alphabet.html"
-            },
-        ];
+        let projects = [];  // Initialize as empty arrays
+        let timeline = {};
 
+        // Function to fetch JSON data
+        async function fetchData(url) {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return await response.json();
+            } catch (error) {
+                console.error(`Failed to fetch ${url}: `, error);
+                return null; // Or an appropriate default value
+            }
+        }
 
-
-        // Timeline data
-        const timeline = {
-            2024: [
-                { title: "Lecture: 'Constructed languages'", venue: "Dobarabar",
-               // link: "https://example.com/lecture-conlangs" // Add link if needed
-                },
-                { title: "Landing as a part of visual communication", venue: "Online" }
-            ],
-            2023: [
-                { title: "That's ok for now", venue: "Netology" },
-                { title: "Sign languages", venue: "Kulturni Centar" }
-            ],
-            2022: [
-                { title: "Started working at Brainbox VC", venue: "" }
-            ]
-        };
-
-       // Update the renderProjects function to support multiple categories
+        // Update the renderProjects function to support multiple categories
         function renderProjects(category = 'all') {
             const projectsGrid = document.querySelector('.projects-grid');
             projectsGrid.innerHTML = '';
+
+            if (!projects) return; // Exit if projects data is not loaded
 
             projects
                 .filter(project => category === 'all' || project.category.includes(category))
@@ -159,6 +82,10 @@
         // Update the renderTimeline function to handle links
         function renderTimeline() {
             const timelineSection = document.querySelector('.timeline');
+            timelineSection.innerHTML = "<h2>Timeline</h2>"; //Clear existing content.
+
+            if (!timeline) return;  //Exit if timeline data is not loaded.
+
             Object.entries(timeline).reverse().forEach(([year, events]) => {
                 const yearGroup = document.createElement('div');
                 yearGroup.className = 'year-group';
@@ -183,8 +110,12 @@
             });
         }
 
+
         // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', async () => {
+            projects = await fetchData('data/projects.json');
+            timeline = await fetchData('data/timeline.json');
+
             renderProjects();
             renderTimeline();
 
