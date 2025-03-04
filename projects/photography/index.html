@@ -12,6 +12,17 @@
             margin-bottom: 4rem;
         }
         
+        .gallery-section {
+            margin-bottom: 4rem;
+        }
+        
+        .gallery-section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--color-light-gray);
+            padding-bottom: 1rem;
+        }
+        
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -110,16 +121,33 @@
 
     <main>
         <article class="project-header">
-            <div class="project-year">2023–2024</div>
+            <div class="project-year">2018–2024</div>
             <h1 class="project-name" id="projectTitle">Art Nude Photography</h1>
             <div class="gallery-intro">
                 <p class="project-intro" id="projectIntro"></p>
             </div>
         </article>
 
-        <div class="gallery-grid" id="galleryGrid">
-            <!-- Items will be populated by JavaScript -->
-        </div>
+        <section class="gallery-section" id="colorSection">
+            <h2 class="gallery-section-title">Color</h2>
+            <div class="gallery-grid" id="colorGalleryGrid">
+                <!-- Color items will be populated by JavaScript -->
+            </div>
+        </section>
+
+        <section class="gallery-section" id="bwSection">
+            <h2 class="gallery-section-title">Black & White</h2>
+            <div class="gallery-grid" id="bwGalleryGrid">
+                <!-- Black & White items will be populated by JavaScript -->
+            </div>
+        </section>
+
+        <section class="gallery-section" id="neonSection">
+            <h2 class="gallery-section-title">Neon</h2>
+            <div class="gallery-grid" id="neonGalleryGrid">
+                <!-- Neon items will be populated by JavaScript -->
+            </div>
+        </section>
     </main>
 
     <!-- Image Overlay -->
@@ -136,7 +164,7 @@
         const config = {
             type: 'photos',
             title: 'Art Nude Photography',
-            intro: "A curated collection of moments captured through my lens, exploring light, emotion, and the subtle narratives that unfold in everyday scenes.",
+            intro: "Here you can enjoy an intimate exploration of human vulnerability and strength, where the absence of clothing becomes a canvas for revealing deeper emotional landscapes. Each portrait is a collaborative narrative that transcends physical form, focusing on the raw, unfiltered expressions of inner beauty, personal resilience, and unspoken emotional depths. Through careful composition and a sensitive approach, these images seek to challenge traditional perceptions of the nude form, transforming it from a purely visual experience into a profound psychological dialogue that celebrates individual humanity in its most elemental state.",
             dataFile: '/data/photos-metadata.json',
             imagesPath: '/images/photos/'
         };
@@ -167,16 +195,54 @@
                 const response = await fetch(config.dataFile);
                 const metadata = await response.json();
                 
-                // Create gallery items
-                const galleryGrid = document.getElementById('galleryGrid');
-                
-                metadata.forEach(item => {
+                // Get gallery grid containers
+                const colorGrid = document.getElementById('colorGalleryGrid');
+                const bwGrid = document.getElementById('bwGalleryGrid');
+                const neonGrid = document.getElementById('neonGalleryGrid');
+
+                // Color section
+                const colorItems = metadata.filter(item => item.category === 'color');
+                colorItems.forEach(item => {
                     const galleryItem = createGalleryItem(item);
-                    galleryGrid.appendChild(galleryItem);
+                    colorGrid.appendChild(galleryItem);
                 });
+
+                // Black & White section
+                const bwItems = metadata.filter(item => item.category === 'bw');
+                bwItems.forEach(item => {
+                    const galleryItem = createGalleryItem(item);
+                    bwGrid.appendChild(galleryItem);
+                });
+
+                // Neon section
+                const neonItems = metadata.filter(item => item.category === 'neon');
+                neonItems.forEach(item => {
+                    const galleryItem = createGalleryItem(item);
+                    neonGrid.appendChild(galleryItem);
+                });
+
+                // Hide sections with no items
+                toggleSectionVisibility();
             } catch (error) {
                 console.error('Error loading gallery:', error);
             }
+        }
+
+        function toggleSectionVisibility() {
+            const sections = [
+                { gridId: 'colorGalleryGrid', sectionId: 'colorSection' },
+                { gridId: 'bwGalleryGrid', sectionId: 'bwSection' },
+                { gridId: 'neonGalleryGrid', sectionId: 'neonSection' }
+            ];
+
+            sections.forEach(section => {
+                const grid = document.getElementById(section.gridId);
+                const sectionEl = document.getElementById(section.sectionId);
+                
+                if (grid.children.length === 0) {
+                    sectionEl.style.display = 'none';
+                }
+            });
         }
 
         function createGalleryItem(item) {
@@ -202,19 +268,21 @@
             const overlayImage = document.getElementById('overlayImage');
             const overlayTitle = document.getElementById('overlayTitle');
             const closeOverlay = document.getElementById('closeOverlay');
-            const galleryGrid = document.getElementById('galleryGrid');
+            const galleryGrids = document.querySelectorAll('.gallery-grid');
 
-            // Delegate click event to gallery grid
-            galleryGrid.addEventListener('click', function(e) {
-                const galleryItem = e.target.closest('.gallery-item');
-                if (galleryItem) {
-                    const image = galleryItem.querySelector('.gallery-image');
-                    const title = galleryItem.querySelector('.gallery-item-title').textContent;
-                    
-                    overlayImage.src = image.dataset.fullImage;
-                    overlayTitle.textContent = title;
-                    imageOverlay.style.display = 'flex';
-                }
+            // Delegate click event to all gallery grids
+            galleryGrids.forEach(grid => {
+                grid.addEventListener('click', function(e) {
+                    const galleryItem = e.target.closest('.gallery-item');
+                    if (galleryItem) {
+                        const image = galleryItem.querySelector('.gallery-image');
+                        const title = galleryItem.querySelector('.gallery-item-title').textContent;
+                        
+                        overlayImage.src = image.dataset.fullImage;
+                        overlayTitle.textContent = title;
+                        imageOverlay.style.display = 'flex';
+                    }
+                });
             });
 
             // Close overlay when close button is clicked
