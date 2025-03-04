@@ -22,8 +22,21 @@
 
 /* variables.css */
 :root {
-    --color-bg: #222222;
-    --color-text: #ffffff;
+    /* brand colors */
+    --color-yellow: #FFCD1B;
+    --color-black: #1E1E1E;
+    --color-white: #FFFFFF;
+    --color-red: #FF8C69;
+    --color-orange: #FF9A02;
+    --color-salad: #4BF6AD;
+    --color-cerulean: #00F1FF;
+    --color-violet: #F687E2;
+
+
+    /* site variables */
+    --color-bg: var(--color-black);
+    --color-text: var(--color-white);
+    --color-link: var(--color-yellow);
     --color-gray: #e6e6e6;
     --color-light-gray: #444;
     --max-width: 1200px;
@@ -44,6 +57,10 @@ h1, h2 {
     margin-top: 0rem;
 }
 
+a:hover {
+    /* text-decoration: underline; */
+    color: var(--color-link);
+}
 
 /* header.css */
 header {
@@ -373,3 +390,82 @@ main {
                 font-size: 2rem;
             }
         }
+
+/* About Page Specific Styles */
+
+.about-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    text-align: left;
+    margin-bottom: 3rem;
+}
+
+.about-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+}
+
+.about-hero .about-tagline {
+    font-size: 1.2rem;
+    color: var(--color-gray);
+    margin-bottom: 2rem;
+}
+
+.about-profile-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 2rem;
+}
+
+.about-section {
+    margin-bottom: 4rem;
+}
+
+.about-section h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.about-section p {
+    max-width: 800px;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+    color: var(--color-gray);
+}
+
+.about-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.about-section li {
+    margin-bottom: 0.5rem;
+}
+
+.about-section a {
+    color: var(--color-text);
+    text-decoration: none;
+}
+
+.about-section a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .about-hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .about-tagline {
+        font-size: 1rem;
+    }
+
+    .about-profile-image {
+        width: 150px;
+        height: 150px;
+    }
+}
