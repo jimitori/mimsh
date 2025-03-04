@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art Nude Photography - Mitia Morovov-Sheiner</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css">
+    <link rel="stylesheet" href="../../css/styles.css">
+    <style>
+        .gallery-intro {
+            max-width: 800px;
+            margin-bottom: 4rem;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+        
+        .gallery-item {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            cursor: pointer;
+        }
+        
+        .gallery-image {
+            aspect-ratio: 9/13;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-image:hover {
+            transform: scale(1.05);
+        }
+        
+        .gallery-item-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .gallery-item-title {
+            font-family: 'PP Right Grotesk Compact', system-ui, -apple-system, sans-serif;
+            font-size: 1.25rem;
+            margin: 0;
+        }
+        
+        /* Image Overlay Styles */
+        .image-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 2rem;
+            box-sizing: border-box;
+        }
+        
+        .image-overlay-content {
+            max-width: 90%;
+            max-height: 90%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .image-overlay-img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+        
+        .image-overlay-title {
+            color: white;
+            margin-top: 1rem;
+            font-family: 'PP Right Grotesk Compact', system-ui, -apple-system, sans-serif;
+            font-size: 1.5rem;
+        }
+        
+        .close-overlay {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+        
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <main>
+        <article class="project-header">
+            <div class="project-year">2023–2024</div>
+            <h1 class="project-name" id="projectTitle">Art Nude Photography</h1>
+            <div class="gallery-intro">
+                <p class="project-intro" id="projectIntro"></p>
+            </div>
+        </article>
+
+        <div class="gallery-grid" id="galleryGrid">
+            <!-- Items will be populated by JavaScript -->
+        </div>
+    </main>
+
+    <!-- Image Overlay -->
+    <div class="image-overlay" id="imageOverlay">
+        <button class="close-overlay" id="closeOverlay">&times;</button>
+        <div class="image-overlay-content">
+            <img class="image-overlay-img" id="overlayImage" src="" alt="">
+            <div class="image-overlay-title" id="overlayTitle"></div>
+        </div>
+    </div>
+
+    <script>
+        // Configuration object
+        const config = {
+            type: 'photos',
+            title: 'Art Nude Photography',
+            intro: "A curated collection of moments captured through my lens, exploring light, emotion, and the subtle narratives that unfold in everyday scenes.",
+            dataFile: '/data/photos-metadata.json',
+            imagesPath: '/images/photos/'
+        };
+
+        // Load header
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch("/components/header.html")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("header-placeholder").innerHTML = data;
+                })
+                .catch(error => console.error("Error loading the header:", error));
+            
+            // Initialize the gallery
+            initializeGallery();
+            
+            // Setup overlay functionality
+            setupImageOverlay();
+        });
+
+        async function initializeGallery() {
+            // Set page title and intro
+            document.getElementById('projectTitle').textContent = config.title;
+            document.getElementById('projectIntro').textContent = config.intro;
+            
+            try {
+                // Load metadata from JSON file
+                const response = await fetch(config.dataFile);
+                const metadata = await response.json();
+                
+                // Create gallery items
+                const galleryGrid = document.getElementById('galleryGrid');
+                
+                metadata.forEach(item => {
+                    const galleryItem = createGalleryItem(item);
+                    galleryGrid.appendChild(galleryItem);
+                });
+            } catch (error) {
+                console.error('Error loading gallery:', error);
+            }
+        }
+
+        function createGalleryItem(item) {
+            const div = document.createElement('div');
+            div.className = 'gallery-item';
+            
+            div.innerHTML = `
+                <img src="${config.imagesPath}${item.image}" 
+                     alt="${item.title}" 
+                     class="gallery-image"
+                     data-full-image="${config.imagesPath}${item.image}"
+                     loading="lazy">
+                <div class="gallery-item-info">
+                    <h2 class="gallery-item-title">${item.title}</h2>
+                </div>
+            `;
+            
+            return div;
+        }
+
+        function setupImageOverlay() {
+            const imageOverlay = document.getElementById('imageOverlay');
+            const overlayImage = document.getElementById('overlayImage');
+            const overlayTitle = document.getElementById('overlayTitle');
+            const closeOverlay = document.getElementById('closeOverlay');
+            const galleryGrid = document.getElementById('galleryGrid');
+
+            // Delegate click event to gallery grid
+            galleryGrid.addEventListener('click', function(e) {
+                const galleryItem = e.target.closest('.gallery-item');
+                if (galleryItem) {
+                    const image = galleryItem.querySelector('.gallery-image');
+                    const title = galleryItem.querySelector('.gallery-item-title').textContent;
+                    
+                    overlayImage.src = image.dataset.fullImage;
+                    overlayTitle.textContent = title;
+                    imageOverlay.style.display = 'flex';
+                }
+            });
+
+            // Close overlay when close button is clicked
+            closeOverlay.addEventListener('click', function() {
+                imageOverlay.style.display = 'none';
+            });
+
+            // Close overlay when clicking outside the image
+            imageOverlay.addEventListener('click', function(e) {
+                if (e.target === imageOverlay) {
+                    imageOverlay.style.display = 'none';
+                }
+            });
+
+            // Close overlay with ESC key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && imageOverlay.style.display === 'flex') {
+                    imageOverlay.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
