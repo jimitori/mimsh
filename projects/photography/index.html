@@ -48,18 +48,6 @@
             transform: scale(1.05);
         }
         
-        .gallery-item-info {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-        
-        .gallery-item-title {
-            font-family: 'PP Right Grotesk Compact', system-ui, -apple-system, sans-serif;
-            font-size: 1.25rem;
-            margin: 0;
-        }
-        
         /* Image Overlay Styles */
         .image-overlay {
             position: fixed;
@@ -255,9 +243,6 @@
                      class="gallery-image"
                      data-full-image="${config.imagesPath}${item.image}"
                      loading="lazy">
-                <div class="gallery-item-info">
-                    <h2 class="gallery-item-title">${item.title}</h2>
-                </div>
             `;
             
             return div;
@@ -276,7 +261,7 @@
                     const galleryItem = e.target.closest('.gallery-item');
                     if (galleryItem) {
                         const image = galleryItem.querySelector('.gallery-image');
-                        const title = galleryItem.querySelector('.gallery-item-title').textContent;
+                        const title = image.getAttribute('alt');
                         
                         overlayImage.src = image.dataset.fullImage;
                         overlayTitle.textContent = title;
