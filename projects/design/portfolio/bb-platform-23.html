@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brainbox Platform - Mitia Morovov-Sheiner</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css">
+    <link rel="stylesheet" href="../../../css/styles.css">
+
+</head>
+<body>
+    <!-- Header content will be inserted here by JavaScript -->
+    <div id="header-placeholder"></div>
+
+    <main>
+        <article class="project-header">
+            <div class="project-year">2024</div>
+            <h1 class="project-name">Brainbox.VC platform</h1>
+            <p class="project-intro">Brainbox.VC is a crowd-investing platform that allows startups to receive funding from individual users registered as investors.</p>
+            
+            <div class="project-meta">
+                <div class="meta-item">
+                    <h3>Goals</h3>
+                    <p>Develop a crowd-investing platform, ensuring it to be user-friendly and visually coherent. Design a scalable and simple branding guidelines and materials. Create pitch presentations that would bring investments into the project.</p>
+                </div>
+                <div class="meta-item">
+                    <h3>My Role</h3>
+                    <p>I created the platform design & logic from scratch in close collaboration with the stakeholders. I also developed marketing materials and pitch decks.</p>
+                </div>
+                <div class="meta-item">
+                    <h3>Duration</h3>
+                    <p>12 months</p>
+                </div>
+            </div>
+        </article>
+
+        <section class="project-section">
+            <h2>Process</h2>
+            <p>Detailed explanation of your approach and methodology.</p>
+            <img src="process-image.jpg" alt="Process visualization" class="full-width-image">
+
+            <h3>Brand Identity Creation</h3>
+            <p>Starting from an existing logo, I developed a simple yet scalable branding for Brainbox, using basic illustrations, colors, and recognizable styles to create a cohesive brand identity.</p>
+            <img src="process-image.jpg" alt="Process visualization" class="full-width-image">
+            
+            <h3>Platform Design</h3>
+            <p>I designed the main landing page, the project listing page, and individual project pages with investment functionality.</p>
+            <img src="process-image.jpg" alt="Process visualization" class="full-width-image">
+            
+            <h3>User Personal Dashboard</h3>
+            <p>I created a user dashboard where investors could manage their funds, view their investments, and access documents and calculations.</p>
+            <img src="process-image.jpg" alt="Process visualization" class="full-width-image">
+            
+            <h3>Design System Development</h3>
+            <p>I built the initial version of the design system in close collaboration with frontend and backend developers.</p>
+            <img src="process-image.jpg" alt="Process visualization" class="full-width-image">
+
+            <h3>Stakeholder Collaboration</h3>
+            <p>Throughout the project, I worked directly with stakeholders, presenting designs, gathering feedback, and translating ideas into technical tasks. I also collaborated closely with frontend developers, discussing implementation and incorporating their suggestions for improvements.</p>
+            <img src="process-image.jpg" alt="Process visualization" class="full-width-image">
+            
+            <h3>Presentations for investors</h3>
+            <p>I created several versions of the pitch deck of the platform which helped gain 20% of planned round of investments from big investors and other 80% via crowd-investing.</p>
+            <img src="process-image.jpg" alt="Process visualization" class="full-width-image">
+        </section>
+
+        <section class="project-section">
+            <h2>Key Features</h2>
+            <div class="image-grid">
+                <img src="feature1.jpg" alt="Feature 1">
+                <img src="feature2.jpg" alt="Feature 2">
+                <img src="feature3.jpg" alt="Feature 3">
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2>Results</h2>
+            <p>Outcomes, impact, and lessons learned from the project.</p>
+            <img src="results.jpg" alt="Project results" class="full-width-image">
+        </section>
+
+        <nav class="navigation-footer">
+            <a href="#" class="nav-link">← Previous project</a>
+            <a href="#" class="nav-link">Next project →</a>
+        </nav>
+    </main>
+
+
+    <!-- header script for design portfolio-->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch("/components/header-designer.html")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("header-placeholder").innerHTML = data;
+                })
+                .catch(error => console.error("Error loading the header:", error));
+        });
+    </script>
+
+    <script>
+        // Add any necessary JavaScript here
+    </script>
+</body>
+</html>

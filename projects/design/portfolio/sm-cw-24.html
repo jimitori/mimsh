@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content Writer for SEOmonitor - Mitia Morovov-Sheiner</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css">
+    <link rel="stylesheet" href="../../../css/styles.css">
+
+</head>
+<body>
+    <!--
+    <header>
+        <div class="header-content">
+            <div class="logo"><img src="images/mimsh-white.svg"></div>
+            <nav>
+                <a href="/about">about</a> 
+                <a href="/students">for students</a>
+                <a href="https://www.linkedin.com/in/morovovsheiner/">linkedin</a>
+                <a href="https://www.patreon.com/c/Azoysheyn">patreon</a>
+                <a href="/contact">contact</a>
+            </nav>
+        </div>
+    </header>
+    -->
+
+    <!-- Header content will be inserted here by JavaScript -->
+    <div id="header-placeholder"></div>
+
+    <main>
+        <article class="project-header">
+            <div class="project-year">2024</div>
+            <h1 class="project-name">Content Writer App</h1>
+            <p class="project-intro">Content Writer is a product designed to help SEO specialists generate SEO articles that rank in SERP for their clients' websites using artificial intelligence.</p>
+            
+            <div class="project-meta">
+                <div class="meta-item">
+                    <h3>Goals</h3>
+                    <p>Design the product during its MVP stage and further integrate it into our existing SEO platform. </p>
+                </div>
+                <div class="meta-item">
+                    <h3>My Role</h3>
+                    <p>I was responsible for creating the entire product design and logic, ensuring that all stakeholder-requested features were well-placed, visually appealing, and user-friendly.</p>
+                </div>
+                <div class="meta-item">
+                    <h3>Duration</h3>
+                    <p>9 months</p>
+                </div>
+            </div>
+        </article>
+
+        <section class="project-section">
+            <h2>Process</h2>
+            <p>Detailed explanation of your approach and methodology.</p>
+            <img src="process-image.jpg" alt="Process visualization" class="full-width-image">
+
+            <h3>MVP Design Enhancement</h3>
+            <p>Initially, I received the MVP and organized its structure. My role involved refining its design and logic, incorporating all necessary functions.</p>
+            <img src="process-image.jpg" alt="Process visualization" class="full-width-image">
+            
+            <h3>System Integration</h3>
+            <p>I adapted our design system to integrate Content Writer with other products in our SEO platform. This required developing new design system components and ensuring coherence with existing elements.</p>
+            <img src="process-image.jpg" alt="Process visualization" class="full-width-image">
+            
+            <h3>User Flow Redesign</h3>
+            <p>I revised the original user flow from the MVP, creating a new logic that better met the stakeholders' evolving ideas and requirements.</p>
+            <img src="process-image.jpg" alt="Process visualization" class="full-width-image">
+            
+            <h3>Documentation and Collaboration</h3>
+            <p>I mapped all the produt functionality in Figjam to fully understand it and not to miss any states in the design process. I also used a git-like approach for page oraganization for the developers to always have the latest versions of the designs to base their work upon and not be distracted by ongoing iterations.</p>
+            <img src="process-image.jpg" alt="Process visualization" class="full-width-image">
+        </section>
+
+        <section class="project-section">
+            <h2>Key Features</h2>
+            <div class="image-grid">
+                <img src="feature1.jpg" alt="Feature 1">
+                <img src="feature2.jpg" alt="Feature 2">
+                <img src="feature3.jpg" alt="Feature 3">
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2>Results</h2>
+            <p>Outcomes, impact, and lessons learned from the project.</p>
+            <img src="results.jpg" alt="Project results" class="full-width-image">
+        </section>
+
+        <nav class="navigation-footer">
+            <a href="#" class="nav-link">← Previous project</a>
+            <a href="#" class="nav-link">Next project →</a>
+        </nav>
+    </main>
+
+
+    <!-- header script for design portfolio -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch("/components/header-designer.html")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("header-placeholder").innerHTML = data;
+                })
+                .catch(error => console.error("Error loading the header:", error));
+        });
+    </script>
+
+    <script>
+        // Add any necessary JavaScript here
+    </script>
+</body>
+</html>

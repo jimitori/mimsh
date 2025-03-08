@@ -5,13 +5,13 @@
         "category": "color"
     },
     {
-        "image": "DSC_2653.jpg",
-        "title": "Tanya",
+        "image": "DSC_9445.jpg",
+        "title": "Sasha",
         "category": "color"
     },
     {
-        "image": "DSC_9445.jpg",
-        "title": "Sasha",
+        "image": "DSC_2566.jpeg",
+        "title": "Tanya",
         "category": "color"
     },
     {
@@ -42,16 +42,11 @@
     {
         "image": "DSC_6507.jpg",
         "title": "Fenek&Manul",
-        "category": "color"
+        "category": "nn"
     },
     {
         "image": "DSC_8742.jpeg",
         "title": "Ksyusha",
-        "category": "color"
-    },
-    {
-        "image": "DSC_1431.jpg",
-        "title": "Nastya",
         "category": "color"
     },
     {
@@ -73,5 +68,20 @@
         "image": "DSC_5918.jpeg",
         "title": "L.",
         "category": "neon"
+    },
+    {
+        "image": "DSC_1431.jpg",
+        "title": "Nastya",
+        "category": "nn"
+    },
+    {
+        "image": "DSC_5059_2.jpg",
+        "title": "Dasha",
+        "category": "nn"
+    },
+    {
+        "image": "DSC_5095.jpg",
+        "title": "Dasha",
+        "category": "bw"
     }
 ]

@@ -1,28 +1,54 @@
 {
+    "2025": [
+        {
+            "title": "Lecture ‘How to Stop Feeling Like an Idiot When Looking Contemporary Art?’",
+            "venue": "Auditoria Belgrade"
+        }
+    ],
     "2024": [
         {
-            "title": "Lecture: 'Constructed languages'",
-            "venue": "Dobarabar"
+            "title": "Lecture ‘Constructed languages in literature and film’",
+            "venue": "Auditoria Belgrade"
         },
         {
-            "title": "Landing as a part of visual communication",
+            "title": "Lecture ‘Sign languages’",
+            "venue": "Dobarabar Belgrade"
+        },
+        {
+            "title": "Lecture ‘Constructed languages’",
+            "venue": "Dobarabar Belgrade"
+        },
+        {
+            "title": "Private lecture ‘Landing as a part of visual communication’",
             "venue": "Online"
+        },
+        {
+            "title": "Lecture ‘How I learned the sign languages’",
+            "venue": "Kućna conferecija Belgrade"
         }
     ],
     "2023": [
         {
-            "title": "That's ok for now",
+            "title": "Public talk ‘That's ok for now’",
             "venue": "Netology"
         },
         {
-            "title": "Sign languages",
-            "venue": "Kulturni Centar"
+            "title": "Lecture ‘Sign languages’",
+            "venue": "Kulturni Centar, Herceg Novi, MN"
         }
     ],
-    "2022": [
+    "2021": [
         {
-            "title": "Started working at Brainbox VC",
-            "venue": ""
+            "title": "Public talk for Youth Focus TED by RADA",
+            "venue": "Tbilisi, Georgia"
+        },
+        {
+            "title": "Personal Exhibition ‘A — Apple’",
+            "venue": "Terminal Gallery, Nizhnij Novgorod"
+        },
+        {
+            "title": "Master-class on Sing language",
+            "venue": "Human Library"
         }
     ]
 }

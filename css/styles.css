@@ -37,6 +37,7 @@
     --color-bg: var(--color-black);
     --color-text: var(--color-white);
     --color-link: var(--color-yellow);
+    --color-link-visited: #E5B818;
     --color-gray: #e6e6e6;
     --color-light-gray: #444;
     --max-width: 1200px;
@@ -61,6 +62,8 @@ a:hover {
     /* text-decoration: underline; */
     color: var(--color-link);
 }
+
+
 
 /* header.css */
 header {

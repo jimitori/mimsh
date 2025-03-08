@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Art Nude Photography - Mitia Morovov-Sheiner</title>
-    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="../../images/favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css">
     <link rel="stylesheet" href="../../css/styles.css">
     <style>
@@ -137,6 +137,13 @@
                 <!-- Neon items will be populated by JavaScript -->
             </div>
         </section>
+
+        <section class="gallery-section" id="nnSection">
+            <h2 class="gallery-section-title">Non-nude</h2>
+            <div class="gallery-grid" id="nnGalleryGrid">
+                <!-- Non-nude items will be populated by JavaScript -->
+            </div>
+        </section>
     </main>
 
     <!-- Image Overlay -->
@@ -188,6 +195,7 @@
                 const colorGrid = document.getElementById('colorGalleryGrid');
                 const bwGrid = document.getElementById('bwGalleryGrid');
                 const neonGrid = document.getElementById('neonGalleryGrid');
+                const nnGrid = document.getElementById('nnGalleryGrid');
 
                 // Color section
                 const colorItems = metadata.filter(item => item.category === 'color');
@@ -210,6 +218,13 @@
                     neonGrid.appendChild(galleryItem);
                 });
 
+                // Non-nude section
+                const nnItems = metadata.filter(item => item.category === 'nn');
+                nnItems.forEach(item => {
+                    const galleryItem = createGalleryItem(item);
+                    nnGrid.appendChild(galleryItem);
+                });
+
                 // Hide sections with no items
                 toggleSectionVisibility();
             } catch (error) {
@@ -221,7 +236,8 @@
             const sections = [
                 { gridId: 'colorGalleryGrid', sectionId: 'colorSection' },
                 { gridId: 'bwGalleryGrid', sectionId: 'bwSection' },
-                { gridId: 'neonGalleryGrid', sectionId: 'neonSection' }
+                { gridId: 'neonGalleryGrid', sectionId: 'neonSection' },
+                { gridId: 'nnGalleryGrid', sectionId: 'nnSection' }
             ];
 
             sections.forEach(section => {
