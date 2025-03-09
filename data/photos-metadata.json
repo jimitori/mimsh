@@ -15,36 +15,6 @@
         "category": "color"
     },
     {
-        "image": "DSC_0374.jpeg",
-        "title": "L.",
-        "category": "bw"
-    },
-    {
-        "image": "DSC_7768_bw.jpg",
-        "title": "Dasha",
-        "category": "bw"
-    },
-    {
-        "image": "DSC_9411.jpg",
-        "title": "Ksyusha",
-        "category": "bw"
-    },
-    {
-        "image": "DSC_1228.jpg",
-        "title": "Lera",
-        "category": "bw"
-    },
-    {
-        "image": "DSC_0370.jpeg",
-        "title": "L.",
-        "category": "bw"
-    },
-    {
-        "image": "DSC_6507.jpg",
-        "title": "Fenek&Manul",
-        "category": "nn"
-    },
-    {
         "image": "DSC_1109.jpg",
         "title": "P.",
         "category": "color"
@@ -59,11 +29,43 @@
         "title": "P.",
         "category": "color"
     },
+
+    {
+        "image": "DSC_0374.jpeg",
+        "title": "L.",
+        "category": "bw"
+    },
+        {
+        "image": "DSC_1228.jpg",
+        "title": "Lera",
+        "category": "bw"
+    },
+    {
+        "image": "DSC_0370.jpeg",
+        "title": "L.",
+        "category": "bw"
+    },
+    {
+        "image": "DSC_5095.jpg",
+        "title": "Dasha",
+        "category": "bw"
+    },
+    {
+        "image": "DSC_7768_bw.jpg",
+        "title": "Dasha",
+        "category": "bw"
+    },
+    {
+        "image": "DSC_9411.jpg",
+        "title": "Ksyusha",
+        "category": "bw"
+    },
     {
         "image": "DSC_4592_BW.jpg",
         "title": "Maria",
         "category": "bw"
     },
+
     {
         "image": "DSC_4763.jpeg",
         "title": "M.",
@@ -79,6 +81,12 @@
         "title": "L.",
         "category": "neon"
     },
+    
+    {
+        "image": "DSC_6507.jpg",
+        "title": "Fenek&Manul",
+        "category": "nn"
+    },
     {
         "image": "DSC_1431.jpg",
         "title": "Nastya",
@@ -88,10 +96,5 @@
         "image": "DSC_5059_2.jpg",
         "title": "Dasha",
         "category": "nn"
-    },
-    {
-        "image": "DSC_5095.jpg",
-        "title": "Dasha",
-        "category": "bw"
     }
 ]
