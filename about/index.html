@@ -7,11 +7,112 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css">
     <link rel="stylesheet" href="/css/styles.css">
     <style>
-        /* Add the CSS styles defined below here directly or into your styles.css */
+        /* Media & Press Photos Section */
+        .media-photos-section {
+            margin-bottom: 4rem;
+        }
+
+        .media-photos-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--color-light-gray);
+            padding-bottom: 1rem;
+            font-family: 'PP Right Grotesk', system-ui, -apple-system, sans-serif;
+        }
+
+        .media-photos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .media-photo-item {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            cursor: pointer;
+        }
+
+        .media-photo-image {
+            aspect-ratio: 1/1; /* Square ratio for consistency, adjust if needed */
+            width: 100%;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .media-photo-image:hover {
+            transform: scale(1.05);
+        }
+
+        .media-photo-caption {
+            font-size: 0.875rem;
+            color: var(--color-gray);
+            text-align: center;
+        }
+
+        /* Overlay styles (optional, reused from photography page) */
+        .photo-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 2rem;
+            box-sizing: border-box;
+        }
+
+        .photo-overlay-content {
+            max-width: 90%;
+            max-height: 90%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .photo-overlay-img {
+            max-width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 0.5rem;
+        }
+
+        .photo-overlay-caption {
+            color: var(--color-white);
+            margin-top: 1rem;
+            font-family: 'PP Right Grotesk Compact', system-ui, -apple-system, sans-serif;
+            font-size: 1.25rem;
+        }
+
+        .close-photo-overlay {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            color: var(--color-white);
+            font-size: 2rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        @media (max-width: 768px) {
+            .media-photos-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .media-photos-title {
+                font-size: 1.5rem;
+            }
+        }
     </style>
 </head>
 <body>
-
     <div id="header-placeholder"></div>
 
     <main>
@@ -28,11 +129,11 @@
         <section class="about-section">
             <h2>Follow Mitia’s Work</h2>
             <ul>
-                <li>🌍 <a href="https://morovovsheiner.pro">Website</a></li>
-                <li>🗃️ <a href="https://www.patreon.com/c/Azoysheyn">Patreon: Azoysheyn</a></li>
-                <li>🧡 <a href="https://boosty.to/azoysheyn">Boosty: Azoysheyn</a></li>
-                <li>📷 <a href="https://instagram.com/jimitori">Instagram: @jimitori</a></li>
-                <li>🎵 <a href="https://open.spotify.com/user/21iwtdlp764pkv3ji5kpkr4ty?si=eb8fc19d6696415d">Spotify: Curated Playlists</a></li>
+                <li>🌍 <a href="https://morovovsheiner.pro" target="_blank" rel="noopener noreferrer">Website</a></li>
+                <li>🗃️ <a href="https://www.patreon.com/c/Azoysheyn" target="_blank" rel="noopener noreferrer">Patreon: Azoysheyn</a></li>
+                <li>🧡 <a href="https://boosty.to/azoysheyn" target="_blank" rel="noopener noreferrer">Boosty: Azoysheyn</a></li>
+                <li>📷 <a href="https://instagram.com/jimitori" target="_blank" rel="noopener noreferrer">Instagram: @jimitori</a></li>
+                <li>🎵 <a href="https://open.spotify.com/user/21iwtdlp764pkv3ji5kpkr4ty?si=eb8fc19d6696415d" target="_blank" rel="noopener noreferrer">Spotify: Curated Playlists</a></li>
             </ul>
         </section>
 
@@ -40,9 +141,53 @@
             <p>Whether through language, visuals, or sound, my work explores how we communicate meaning in a changing world. Let’s connect.</p>
         </section>
 
+        <!-- New Media & Press Photos Section -->
+        <section class="media-photos-section">
+            <h2 class="media-photos-title">Media & Press Photos</h2>
+            <p style="color: var(--color-gray); margin-bottom: 2rem;">Feel free to use these images for media coverage, lecture announcements, or any promotional materials. High-resolution versions are available upon request—reach out via my <!-- a href="mailto:your.email@example.com" -->email.</p>
+            <div class="media-photos-grid" id="mediaPhotosGrid">
+                <div class="media-photo-item">
+                    <img src="/images/media/mitia-arsenal-1.jpg" alt="Mitia speaking sign language" class="media-photo-image" data-full-image="/images/media/mitia-arsenal-1.jpg">
+                    <div class="media-photo-caption">Museum tour for the deaf community, 2019</div>
+                </div>
+                <div class="media-photo-item">
+                    <img src="/images/media/mitia-mc-2.jpg" alt="Mitia giving a master-class" class="media-photo-image" data-full-image="/images/media/mitia-mc-1.jpg">
+                    <div class="media-photo-caption">Portfolio workshop, 2020</div>
+                </div>
+                <div class="media-photo-item">
+                    <img src="/images/media/mitia-sl-1.jpg" alt="Mitia teaching sign language" class="media-photo-image" data-full-image="/images/media/mitia-sl-1.jpg">
+                    <div class="media-photo-caption">Sign language master-class, 2021</div>
+                </div>
+                <div class="media-photo-item">
+                    <img src="/images/media/mitia-tedx-1.jpg" alt="Mitia giving a TED talk" class="media-photo-image" data-full-image="/images/media/mitia-tedx-1.jpg">
+                    <div class="media-photo-caption">TEDx talk, 2017</div>
+                </div>
+                <div>
+                    <img src="/images/media/mitia-photo-1.jpg" alt="Mitia face" class="media-photo-image" data-full-image="/images/media/mitia-photo-1.jpg">
+                    <div class="media-photo-caption">Personal photo, 2020</div>
+                </div>
+                <div>
+                    <img src="/images/media/mitia-photo-2.jpg" alt="Mitia face" class="media-photo-image" data-full-image="/images/media/mitia-photo-2.jpg">
+                    <div class="media-photo-caption">Personal photo, 2021</div>
+                </div>
+                <!-- Add more photos as needed -->
+            </div>
+        </section>
+
+       
+
+        <!-- Photo Overlay -->
+        <div class="photo-overlay" id="photoOverlay">
+            <button class="close-photo-overlay" id="closePhotoOverlay">&times;</button>
+            <div class="photo-overlay-content">
+                <img class="photo-overlay-img" id="overlayPhotoImage" src="" alt="">
+                <div class="photo-overlay-caption" id="overlayPhotoCaption"></div>
+            </div>
+        </div>
     </main>
-      <!-- header script -->
-      <script>
+
+    <!-- Header Script -->
+    <script>
         document.addEventListener("DOMContentLoaded", function () {
             fetch("/components/header.html")
                 .then(response => response.text())
@@ -50,7 +195,51 @@
                     document.getElementById("header-placeholder").innerHTML = data;
                 })
                 .catch(error => console.error("Error loading the header:", error));
+
+            // Setup photo overlay functionality
+            setupPhotoOverlay();
         });
+
+        function setupPhotoOverlay() {
+            const photoOverlay = document.getElementById('photoOverlay');
+            const overlayPhotoImage = document.getElementById('overlayPhotoImage');
+            const overlayPhotoCaption = document.getElementById('overlayPhotoCaption');
+            const closePhotoOverlay = document.getElementById('closePhotoOverlay');
+            const mediaPhotosGrid = document.getElementById('mediaPhotosGrid');
+
+            // Delegate click event to media photos grid
+            mediaPhotosGrid.addEventListener('click', function(e) {
+                const mediaPhotoItem = e.target.closest('.media-photo-item');
+                if (mediaPhotoItem) {
+                    const image = mediaPhotoItem.querySelector('.media-photo-image');
+                    const caption = mediaPhotoItem.querySelector('.media-photo-caption').textContent;
+
+                    overlayPhotoImage.src = image.dataset.fullImage;
+                    overlayPhotoCaption.textContent = caption;
+                    photoOverlay.style.display = 'flex';
+                }
+            });
+
+            // Close overlay when close button is clicked
+            closePhotoOverlay.addEventListener('click', function() {
+                photoOverlay.style.display = 'none';
+            });
+
+            // Close overlay when clicking outside the image
+            photoOverlay.addEventListener('click', function(e) {
+                if (e.target === photoOverlay) {
+                    photoOverlay.style.display = 'none';
+                }
+            });
+
+            // Close overlay with ESC key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && photoOverlay.style.display === 'flex') {
+                    photoOverlay.style.display = 'none';
+                }
+            });
+        }
     </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'91dd8c0faa04bd3e',t:'MTc0MTU1NDUwMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
 </body>
 </html>
