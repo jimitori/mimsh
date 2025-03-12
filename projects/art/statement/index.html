@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist Statement - Mitia Morovov-Sheiner</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        .statement-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .statement-container p {
+            margin-bottom: 1.5rem;
+            color: var(--color-gray);
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 3rem;
+            color: var(--color-link);
+            text-decoration: none;
+        }
+        
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header content will be inserted here by JavaScript -->
+    <div id="header-placeholder"></div>
+
+    <main>
+        <article class="project-header">
+            <h1 class="project-name">Artist Statement</h1>
+        </article>
+
+        <div class="statement-container">
+            <p>I create art that transforms language into visual experience, inviting viewers to question systems of meaning they take for granted. Working across multiple media—from acrylic paintings and physical objects to digital creations and installations—I create vibrant yet intellectually rigorous work that invites viewers to question familiar systems of meaning.</p>
+
+            <p>With a professional background in design, I approach art as a liberated counterpoint to my structured design practice. Where design pursues functionality, my art embraces ambiguity and experimentation while maintaining visual simplicity that belies conceptual complexity.</p>
+
+            <p>At the core of my work lies a fascination with communication and its boundaries. My "World Alphabet" project, featured in my 2021 exhibition "A — Apple," exemplifies this approach. Beginning with observations of shared visual elements between Armenian and Hebrew scripts, I developed a unified writing system that transcends cultural boundaries. The project evolved into a series of paintings styled after alphabetical books and botanical illustrations, depicting various apple varieties with their names rendered in this constructed script. True to my inclusive practice, I incorporated audio descriptions and sign language explanations, acknowledging multiple modes of access to meaning.</p>
+
+            <p>Influenced by American Abstract Expressionism's creative freedom, Surrealism's self-contained meaning, and Moscow Conceptualism's intellectual rigor, I position myself primarily as a conceptualist whose work contains multiple layers of significance. My methodology is both intuitive and systematic—beginning with "it would be nice if..." thoughts that evolve through rigorous development.</p>
+
+            <p>My work responds directly to our contemporary moment, where ideological entrenchment often prevents genuine understanding. By creating encounters with unfamiliar yet strangely resonant systems of meaning, I aim to disrupt automatic categorization and foster a state of genuine curiosity. I want viewers to experience that moment of recognition that "there IS something" beyond their immediate understanding—a necessary precursor to genuine engagement with otherness.</p>
+
+            <p>As someone with unique perceptual experiences—being both autistic and colorblind with hyperfocus on language—I create work that encourages openness to alternative perspectives. Through my practice, I position language creation as a form of high art while inviting viewers to reconsider familiar symbols, objects, and concepts from unexpected angles.</p>
+
+            <p>Through my art, I invite viewers to reimagine communication itself—not as a battlefield of competing ideologies, but as a space of genuine curiosity and shared exploration.</p>
+
+            <a href="/projects/art" class="back-link">← Back to Art Projects</a>
+        </div>
+    </main>
+
+    <!-- header script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch("/components/header.html")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("header-placeholder").innerHTML = data;
+                })
+                .catch(error => console.error("Error loading the header:", error));
+        });
+    </script>
+</body>
+</html>

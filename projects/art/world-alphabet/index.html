@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Alphabet - Mitia Morovov-Sheiner</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <!-- Header content will be inserted here by JavaScript -->
+    <div id="header-placeholder"></div>
+
+    <main>
+        <article class="project-header">
+            <div class="project-year">2020 - Present</div>
+            <h1 class="project-name">World Alphabet</h1>
+            <p class="project-intro">A unified writing system that transcends cultural boundaries, exploring the visual connections between different writing systems while creating new possibilities for cross-cultural communication.</p>
+            
+            <div class="project-meta">
+                <div class="meta-item">
+                    <h3>Concept</h3>
+                    <p>Language unification through visual commonality</p>
+                </div>
+                <div class="meta-item">
+                    <h3>Medium</h3>
+                    <p>Mixed media, paintings, digital works</p>
+                </div>
+                <div class="meta-item">
+                    <h3>Exhibitions</h3>
+                    <p>A — Apple (2021), Language Festival (2022)</p>
+                </div>
+            </div>
+        </article>
+
+        <section class="project-section">
+            <h2>Origins</h2>
+            <p>The World Alphabet project emerged from my research into different writing systems and my polyglot experience. While studying Armenian and Hebrew scripts, I noticed that certain symbols shared visual features when written in specific ways. This observation sparked my interest in the possibility of a universally accessible writing system based on visual commonalities across diverse scripts.</p>
+            <img src="/images/projects/world-alphabet-origins.jpg" alt="Early sketches of the World Alphabet" class="full-width-image">
+        </section>
+
+        <section class="project-section">
+            <h2>Development Process</h2>
+            <p>The development of the World Alphabet began with extensive comparative analysis of existing writing systems from various language families. I analyzed structural patterns, stroke techniques, and visual characteristics that transcended cultural boundaries. Rather than creating an entirely new system, I sought to identify and amplify the visual connections already present across different scripts.</p>
+            <p>The system evolved through multiple iterations, with each version tested for legibility, aesthetic cohesion, and cross-cultural resonance. As the alphabet took shape, I began exploring its application in artistic contexts, treating the letterforms not just as functional units but as expressive visual elements in their own right.</p>
+            <div class="image-grid">
+                <img src="/images/projects/world-alphabet-process1.jpg" alt="Development process - Research phase">
+                <img src="/images/projects/world-alphabet-process2.jpg" alt="Development process - Character refinement">
+                <img src="/images/projects/world-alphabet-process3.jpg" alt="Development process - Application testing">
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2>The Apple Connection</h2>
+            <p>My research into cultural universals led me to the apple as a fascinating case study. The word "apple" appears as a default fruit in many languages and cultures (e.g., "sinaasappel" in Dutch, "pomme de terre" for potato in French), making it an ideal linguistic touchstone for the World Alphabet project.</p>
+            <p>This connection became the foundation for my first personal exhibition "A — Apple" in 2021, where I created a series of paintings styled after alphabetical books and botanical illustrations. Each work depicted different apple varieties with their names rendered in the World Alphabet script.</p>
+            <img src="/images/projects/world-alphabet-apple-connection.jpg" alt="Examples from the A — Apple exhibition" class="full-width-image">
+        </section>
+
+        <section class="project-section">
+            <h2>Accessibility and Inclusion</h2>
+            <p>An essential aspect of the World Alphabet project is its commitment to accessibility. Drawing from my experience as an inclusion specialist, I integrated audio descriptions and sign language explainers into the exhibition. This approach reflects my belief that language systems should be designed with multiple modes of access in mind.</p>
+            <p>The project challenges conventional notions of linguistic accessibility by asking: What would a writing system look like if it were designed to be maximally inclusive from its inception?</p>
+            <div class="image-grid">
+                <img src="/images/projects/world-alphabet-accessibility1.jpg" alt="Audio description components">
+                <img src="/images/projects/world-alphabet-accessibility2.jpg" alt="Sign language integration">
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2>Ongoing Research</h2>
+            <p>The World Alphabet continues to evolve as an artistic and linguistic research project. Current developments include digital applications, expanded character sets, and collaborations with linguists and typographers to explore further possibilities for cross-cultural visual communication.</p>
+            <p>Future directions for this project include interactive installations that allow viewers to engage directly with the alphabet, creating their own meanings and connections across language barriers.</p>
+            <img src="/images/projects/world-alphabet-future.jpg" alt="Future directions for the World Alphabet project" class="full-width-image">
+        </section>
+
+        <nav class="navigation-footer">
+            <a href="/projects/art/medicine" class="nav-link">← Medicine</a>
+            <a href="/projects/art/a-apple" class="nav-link">A — Apple →</a>
+        </nav>
+    </main>
+
+
+    <!-- header script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch("/components/header.html")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("header-placeholder").innerHTML = data;
+                })
+                .catch(error => console.error("Error loading the header:", error));
+        });
+    </script>
+</body>
+</html>

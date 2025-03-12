@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Name - Mitia Morovov-Sheiner</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css">
+    <link rel="stylesheet" href="../../css/styles.css">
+
+</head>
+<body>
+    <!--
+    <header>
+        <div class="header-content">
+            <div class="logo"><img src="images/mimsh-white.svg"></div>
+            <nav>
+                <a href="/about">about</a> 
+                <a href="/students">for students</a>
+                <a href="https://www.linkedin.com/in/morovovsheiner/">linkedin</a>
+                <a href="https://www.patreon.com/c/Azoysheyn">patreon</a>
+                <a href="/contact">contact</a>
+            </nav>
+        </div>
+    </header>
+    -->
+
+    <!-- Header content will be inserted here by JavaScript -->
+    <div id="header-placeholder"></div>
+
+    <main>
+        <article class="project-header">
+            <div class="project-year">2024</div>
+            <h1 class="project-name">Project Name</h1>
+            <p class="project-intro">Brief introduction to the project, explaining its purpose and key features. This should be a compelling overview that draws the reader in.</p>
+            
+            <div class="project-meta">
+                <div class="meta-item">
+                    <h3>Goals</h3>
+                    <p>Main objectives and desired outcomes of the project</p>
+                </div>
+                <div class="meta-item">
+                    <h3>My Role</h3>
+                    <p>Your responsibilities and contributions to the project</p>
+                </div>
+                <div class="meta-item">
+                    <h3>Duration</h3>
+                    <p>Timeline or project length</p>
+                </div>
+            </div>
+        </article>
+
+        <section class="project-section">
+            <h2>Process</h2>
+            <p>Detailed explanation of your approach and methodology.</p>
+            <img src="process-image.jpg" alt="Process visualization" class="full-width-image">
+        </section>
+
+        <section class="project-section">
+            <h2>Key Features</h2>
+            <div class="image-grid">
+                <img src="feature1.jpg" alt="Feature 1">
+                <img src="feature2.jpg" alt="Feature 2">
+                <img src="feature3.jpg" alt="Feature 3">
+            </div>
+        </section>
+
+        <section class="project-section">
+            <h2>Results</h2>
+            <p>Outcomes, impact, and lessons learned from the project.</p>
+            <img src="results.jpg" alt="Project results" class="full-width-image">
+        </section>
+
+        <nav class="navigation-footer">
+            <a href="#" class="nav-link">← Previous project</a>
+            <a href="#" class="nav-link">Next project →</a>
+        </nav>
+    </main>
+
+
+    <!-- header script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch("/components/header.html")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("header-placeholder").innerHTML = data;
+                })
+                .catch(error => console.error("Error loading the header:", error));
+        });
+    </script>
+
+    <script>
+        // Add any necessary JavaScript here
+    </script>
+</body>
+</html>
