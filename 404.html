@@ -86,7 +86,7 @@
 
         .native-script {
             max-height: 18px;
-            padding-right: 2px;
+            margin-right: 2px;
         }
     </style>
 </head>
@@ -100,7 +100,7 @@
 
         <!-- Helpful Ophidian Phrase -->
         <div class="language-example">
-            <div class="original" data-text="ȘESATASSAŠI CCII"></div>
+            <div class="original native-script" data-text="ȘESATASSAŠI CCII"></div>
             <div class="transliteration">șesatassaši cci'i?</div>
             <div class="translation">"What is your name?"</div>
         </div>
@@ -135,6 +135,7 @@
                 .catch(error => console.error("Error loading the header:", error));
         });
 
+        // A script to replace text with images of the Ophidian script
         document.addEventListener('DOMContentLoaded', function() {
             const scriptContainers = document.querySelectorAll('.original');
 

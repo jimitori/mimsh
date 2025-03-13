@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Mitia Morovov-Sheiner</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        .contact-hero {
+            margin-bottom: 4rem;
+        }
+
+        .contact-hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            font-family: 'PP Right Grotesk', system-ui, -apple-system, sans-serif;
+        }
+
+        .contact-hero p {
+            font-size: 1.5rem;
+            color: var(--color-gray);
+            max-width: 800px;
+        }
+
+        .contact-section {
+            margin-bottom: 6rem;
+        }
+
+        .contact-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            font-family: 'PP Right Grotesk', system-ui, -apple-system, sans-serif;
+        }
+
+        .contact-section p {
+            max-width: 800px;
+            margin-bottom: 1.5rem;
+            font-size: 1.25rem;
+        }
+
+        .contact-links {
+            list-style: none;
+            padding: 0;
+            margin: 2rem 0;
+        }
+
+        .contact-links li {
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .contact-links a {
+            color: var(--color-yellow);
+            text-decoration: underline;
+            transition: color 0.2s;
+        }
+
+        .contact-links a:hover {
+            color: var(--color-link-visited);
+        }
+
+        .language-example {
+            background-color: var(--color-light-gray);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin: 3rem 0;
+            font-family: monospace;
+            max-width: 600px;
+        }
+
+        .language-example .original,
+        .language-example .transliteration,
+        .language-example .translation {
+            padding: 0.5rem 0;
+        }
+
+        .language-example .translation {
+            font-style: italic;
+            opacity: 0.8;
+        }
+
+        .native-script {
+            max-height: 18px;
+            margin-right: 2px;
+        }
+
+        @media (max-width: 768px) {
+            .contact-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .contact-hero p {
+                font-size: 1.25rem;
+            }
+
+            .contact-section h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <main>
+        <section class="contact-hero">
+            <h1>Contact Me</h1>
+            <p>Hiss me a message or slither over to my socials—I’d love to connect!</p>
+        </section>
+
+        <section class="contact-section">
+            <h2>Get in Touch</h2>
+            <p>Whether you’ve got a question about linguistics, design, or just want to chat about serpentine conlangs, I’m here. Reach out via email or find me on social media.</p>
+            <ul class="contact-links">
+                <li>✉️ <a href="mailto:morovovsheiner@gmail.com">morovovsheiner@gmail.com</a></li>
+                <li>📷 <a href="https://instagram.com/jimitori" target="_blank" rel="noopener noreferrer">Instagram: @jimitori</a></li>
+                <li>🐦 <a href="https://twitter.com/morovovsheiner" target="_blank" rel="noopener noreferrer">Twitter: @morovovsheiner</a></li>
+                <li>🎥 <a href="https://youtube.com/@azoysheyn" target="_blank" rel="noopener noreferrer">YouTube: @azoysheyn</a></li>
+            </ul>
+        </section>
+
+        <section class="contact-section">
+            <h2>A Little Ophidian</h2>
+            <p>Since you’re here, enjoy this Ophidian phrase about communication:</p>
+            <div class="language-example">
+                <div class="original native-script" data-text="QEȘESSE ŚAXEŠASSA"></div>
+                <div class="transliteration">qeșesse śaxešassa</div>
+                <div class="translation">"I want to find shelter" (lit. "want INF-find-shelter")</div>
+            </div>
+            <p>Check out more about Ophidian on <a href="/projects/conlangs/ophidian/" style="color: var(--color-yellow); text-decoration: underline;">its project page</a>.</p>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch("/components/header.html")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("header-placeholder").innerHTML = data;
+                })
+                .catch(error => console.error("Error loading the header:", error));
+        });
+
+         // A script to replace text with images of the Ophidian script
+         document.addEventListener('DOMContentLoaded', function() {
+            const scriptContainers = document.querySelectorAll('.original');
+
+            scriptContainers.forEach(container => {
+                const text = container.dataset.text;
+                let svgHtml = '';
+
+                for (let i = 0; i < text.length; i++) {
+                const letter = text[i];
+
+                if (letter === ' ') {
+                    svgHtml += ' '; // Add a non-breaking space
+                } else {
+                    const svgUrl = `/images/ophidian/script/Letter=${letter}.svg`;
+                    svgHtml += `<img class="native-script" src="${svgUrl}" alt="${letter}">`;
+                }
+                }
+
+                container.innerHTML = svgHtml;
+            });
+            });
+    </script>
+</body>
+</html>
