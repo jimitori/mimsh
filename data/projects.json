@@ -3,13 +3,13 @@
         "title": "Poster Every Day",
         "category": ["art", "design"],
         "image": "images/94-vee.jpg",
-        "url": "projects/posters"
+        "url": "/projects/posters"
     },
     {
         "title": "Snake Conlang",
         "category": ["linguistics"],
         "image": "images/snake-conlang.png",
-        "url": "projects/conlangs/ophidian"
+        "url": "/projects/conlangs/ophidian"
     },
     {
         "title": "Art Nude Photography",
@@ -30,6 +30,12 @@
         "category": ["fun"],
         "image": "images/ale.png",
         "featured": true,
-        "url": "projects/playlists"
+        "url": "/projects/playlists"
+    },
+    {
+        "title": "Video Lectures",
+        "category": ["education"],
+        "image": "images/media/mitia-tedx-1.jpg",
+        "url": "/projects/education/videos"
     }
 ]
