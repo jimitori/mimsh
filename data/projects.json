@@ -19,41 +19,17 @@
         "url": "/projects/photography"
     },
     {
+        "title": "World Alphabet",
+        "category": ["art", "linguistics"],
+        "image": "images/new-world_1_small.jpg",
+        "featured": true,
+        "url": "/projects/art/world-alphabet"
+    },
+    {
         "title": "Spotify Playlists",
         "category": ["fun"],
         "image": "images/ale.png",
         "featured": true,
         "url": "projects/playlists"
-    },
-    {
-        "title": "Serbian Dinar Symbol",
-        "category": ["design"],
-        "image": "images/rsd.png",
-        "url": "rsd.html"
-    },
-    {
-        "title": "Zabzy Conlang",
-        "category": ["linguistics"],
-        "image": "images/zabzy.png",
-        "url": "projects/conlangs/zabzy"
-    },
-    {
-        "title": "Glagolica",
-        "category": ["linguistics", "design"],
-        "image": "images/avant-garde-glagolica.jpg",
-        "url": "glagolica.html"
-    },
-    {
-        "title": "Supreme Tarot",
-        "category": ["art", "design"],
-        "image": "images/tarot_mockup-1.jpg",
-        "url": "supreme-tarot.html"
-    },
-    {
-        "title": "World Alphabet",
-        "category": ["art", "linguistics"],
-        "image": "images/new-world_1_small.jpg",
-        "featured": true,
-        "url": "world-alphabet.html"
     }
 ]

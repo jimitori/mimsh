@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | Mitia Morovov-Sheiner</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        .error-container {
+            max-width: var(--max-width);
+            margin: var(--header-height) auto 0;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .error-title {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            font-family: 'PP Right Grotesk', system-ui, -apple-system, sans-serif;
+        }
+
+        .error-subtitle {
+            font-size: 1.5rem;
+            color: var(--color-gray);
+            margin-bottom: 2rem;
+        }
+
+        .error-message {
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            font-size: 1.25rem;
+        }
+
+        .navigation-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .navigation-card {
+            background-color: var(--color-light-gray);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            transition: transform 0.2s;
+        }
+
+        .navigation-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .navigation-card h3 {
+            margin-top: 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding-bottom: 0.5rem;
+            font-family: 'PP Right Grotesk', system-ui, -apple-system, sans-serif;
+        }
+
+        .navigation-card a {
+            color: var(--color-yellow);
+            text-decoration: underline;
+        }
+
+        .language-example {
+            background-color: var(--color-light-gray);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin: 3rem auto;
+            font-family: monospace;
+            max-width: 600px;
+        }
+
+        .language-example .original,
+        .language-example .transliteration,
+        .language-example .translation {
+            padding: 0.5rem 0;
+        }
+
+        .language-example .translation {
+            font-style: italic;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <div class="error-container">
+        <h1 class="error-title">404 - Path Not Found</h1>
+        <p class="error-subtitle">It seems you've slithered off the trail...</p>
+        <p class="error-message">The page you're looking for doesn’t exist or has shed its skin and moved elsewhere. Don’t worry—here’s a little Ophidian to brighten your day, plus some ways to get back on track.</p>
+
+        <!-- Helpful Ophidian Phrase -->
+        <div class="language-example">
+            <div class="original">šisataxxa šixešassa</div>
+            <div class="transliteration">ši-sataxxa ši-xešassa</div>
+            <div class="translation">"My name is 'shedding skin'"</div>
+        </div>
+
+        <!-- Navigation Options -->
+        <div class="navigation-options">
+            <div class="navigation-card">
+                <h3>Return Home</h3>
+                <p>Slither back to the main page.</p>
+                <p><a href="/">Go to Homepage</a></p>
+            </div>
+            <div class="navigation-card">
+                <h3>Explore Ophidian</h3>
+                <p>Learn more about the serpent conlang.</p>
+                <p><a href="/projects/ophidian.html">Visit Ophidian</a></p>
+            </div>
+            <div class="navigation-card">
+                <h3>Contact Me</h3>
+                <p>Hiss me a message if you’re lost.</p>
+                <p><a href="/contact.html">Get in Touch</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch("/components/header.html")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("header-placeholder").innerHTML = data;
+                })
+                .catch(error => console.error("Error loading the header:", error));
+        });
+    </script>
+</body>
+</html>
