@@ -103,6 +103,11 @@
             background-color: var(--color-light-gray);
             padding: 1rem;
             border-radius: 0.5rem;
+            transition: transform 0.2s;
+        }
+
+        .noun-class:hover {
+            transform: translateY(-5px);
         }
         
         .noun-class h4 {
@@ -117,7 +122,7 @@
 
         .native-script {
             max-height: 18px;
-            
+            margin-right: 2px;
         }
     </style>
 </head>
@@ -151,9 +156,9 @@
             <p>Ophidian is a constructed language (conlang) designed to reflect the worldview and physiology of a serpent-like species. The language features hissing and sibilant sounds, a complex noun class system that categorizes objects based on their relationship to serpent life, and a dual verb type system that distinguishes between active and stative verbs.</p>
             
             <div class="language-example">
-                <div class="original">šisataxxa šixešassa</div>
-                <div class="transliteration">ši-sataxxa ši-xešassa</div>
-                <div class="translation">"My name is 'shedding skin'"</div>
+                <div class="original" data-text="ŠISATAXXA HALEX">šisataxxa halex</div>
+                <div class="transliteration">šisataxxa halex</div>
+                <div class="translation">"My name is Alex"</div>
             </div>
             
             <p>The language's phonology emphasizes sounds that can be produced without lips, relying heavily on consonants articulated in the throat, palate, and with the tongue. This creates a distinctive sound profile that reflects the physical constraints and capabilities of a serpentine speaker.</p>
@@ -521,13 +526,13 @@
             </div>
             
             <div class="language-example">
-                <div class="original">šisataxxa seci</div>
-                <div class="transliteration">ši-sataxxa seci</div>
-                <div class="translation">"My name is Tongue"</div>
+                
+                <div class="transliteration">śi geceșassa?</div>
+                <div class="translation">"How are you?"</div>
             </div>
             
             <div class="language-example">
-                <div class="original">gesataxxa cci'i?</div>
+                
                 <div class="transliteration">ge-sataxxa cci'i</div>
                 <div class="translation">"What is your name?"</div>
             </div>
@@ -535,25 +540,25 @@
             <h3>Example Sentences</h3>
             
             <div class="language-example">
-                <div class="original">secişi ceșassa</div>
+                
                 <div class="transliteration">secişi ceșassa</div>
                 <div class="translation">"The serpent slithers"</div>
             </div>
             
             <div class="language-example">
-                <div class="original">ši tešece seșessal</div>
-                <div class="transliteration">ši tešece seșesse-l</div>
+                
+                <div class="transliteration">ši tešece seșessel</div>
                 <div class="translation">"I ate the bird" (lit. "I bird ate-PERF")</div>
             </div>
             
             <div class="language-example">
-                <div class="original">šasiše xaa secişi gaśixxi</div>
+                
                 <div class="transliteration">šasiše xaa secişi gaśixxi</div>
                 <div class="translation">"The serpent waits on the warm rock"</div>
             </div>
             
             <div class="language-example">
-                <div class="original">qeșesse śaxešassa</div>
+                
                 <div class="transliteration">qeșesse śa-xešassa</div>
                 <div class="translation">"I want to find shelter" (lit. "want INF-find-shelter")</div>
             </div>
@@ -567,7 +572,7 @@
                 <li><strong>Classification of objects</strong> based on their relationship to serpent life (danger, food, shelter)</li>
                 <li><strong>Importance of warm places</strong> for cold-blooded creatures (note the dedicated noun class for warm objects)</li>
                 <li><strong>Distinction between states and actions</strong> (reflected in the two verb types)</li>
-                <li><strong>Significance of digestion</strong> (note special verbs like "seşegaśixxi" - to have eaten and crawl to a safe place to digest)</li>
+                
             </ul>
             
             <p>The language provides insight into what these creatures value and how they perceive their world, with specialized vocabulary for behaviors like shedding skin, finding shelter, and basking on warm rocks.</p>
@@ -672,6 +677,29 @@
                 })
                 .catch(error => console.error("Error loading the header:", error));
         });
+        
+        // A script to replace text with images of the Ophidian script
+ document.addEventListener('DOMContentLoaded', function() {
+            const scriptContainers = document.querySelectorAll('.original');
+
+            scriptContainers.forEach(container => {
+                const text = container.dataset.text;
+                let svgHtml = '';
+
+                for (let i = 0; i < text.length; i++) {
+                const letter = text[i];
+
+                if (letter === ' ') {
+                    svgHtml += ' '; // Add a non-breaking space
+                } else {
+                    const svgUrl = `/images/ophidian/script/Letter=${letter}.svg`;
+                    svgHtml += `<img class="native-script" src="${svgUrl}" alt="${letter}">`;
+                }
+                }
+
+                container.innerHTML = svgHtml;
+            });
+            });
     </script>
 </body>
 </html>
