@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avant Garde Glagolitic - Mitia Morovov-Sheiner</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css">
+    <link rel="stylesheet" href="../../css/styles.css">
+    <style>
+        /* Custom styles for two-column layout */
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+            margin: 3rem 0;
+        }
+        .two-column img {
+            width: 600px;
+            height: 600px;
+            object-fit: cover;
+            border-radius: 0.5rem;
+        }
+        @media (max-width: 768px) {
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+            .two-column img {
+                width: 100%;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <main>
+        <article class="project-header">
+            <div class="project-year">2020—</div>
+            <h1 class="project-name">Avant Garde Glagolitic</h1>
+            <p class="project-intro">A fusion of the ancient Glagolitic script with the revolutionary aesthetics of Russian avant-garde movements—Suprematism, Constructivism, Rayism, and abstractionism—uniting two Slavic-born traditions of bold human invention.</p>
+            
+            <div class="project-meta">
+                <div class="meta-item">
+                    <h3>Goals</h3>
+                    <p>To explore and synthesize the graphic originality of Glagolitic script with the radical visual language of early 20th-century Slavic avant-garde art, creating a new typographic expression.</p>
+                </div>
+                <div class="meta-item">
+                    <h3>My Role</h3>
+                    <p>Conceptualization, research, design, and creation of a unique alphabet blending historical and modernist influences.</p>
+                </div>
+                <div class="meta-item">
+                    <h3>Duration</h3>
+                    <p>Ongoing</p>
+                </div>
+            </div>
+        </article>
+
+        <section class="project-section">
+            <h2>Concept & Process</h2>
+            <p>The Avant Garde Glagolitic project marries the ancient Glagolitic script—a Slavic creation from the 9th century—with the dynamic, abstract forms of early 20th-century avant-garde movements like Suprematism and Constructivism. Both emerged from Slavic cultural contexts, making them natural companions in this exploration. My process involved studying the geometric purity of Glagolitic letterforms and reinterpreting them through the lens of abstractionism, prioritizing bold shapes and deliberate invention.</p>
+            <img src="/images/glagolitic-draft.png" alt="Sketches of Glagolitic and avant-garde fusion" class="full-width-image">
+        </section>
+
+        <section class="project-section">
+            <h2>Key Examples</h2>
+            <p>Below are examples of how I transformed traditional Glagolitic letters into avant-garde inspired designs, juxtaposed with iconic works from the period that influenced my approach.</p>
+            <div class="two-column">
+                <div>
+                    <p>The Glagolitic letter "Az", "Izhe" and "On" reimagined with Suprematist geometry.</p>
+                </div>
+                <img src="/images/example-font-1.png" alt="Avant Garde Glagolitic A, I, O">
+            </div>
+            <div class="two-column">
+                <img src="/images/example-font-2.png" alt="Avant-garde inspiration">
+                <div>
+                    <p>The Glagolitic letter 'Izhe' reinterpreted through the sharp, dynamic angles of El Lissitzky’s 'Beat the Whites with the Red Wedge,' where the red triangle’s forceful intrusion into white space mirrors the letter’s bold, wedge-like structure</p>
+                </div>
+            </div>
+            <div class="two-column">
+                <div>
+                    <p>The Glagolitic "Yest" letter, with the sources of the form inspiration.</p>
+                </div>
+                <img src="/images/example-font-3.png" alt="Avant Garde Glagolitic E">
+            </div>
+            
+        </section>
+
+        <section class="project-section">
+            <h2>Results</h2>
+            <p>This ongoing project has so far produced over 12 characters, each a distinctive fusion of Glagolitic heritage and avant-garde innovation. It celebrates the enduring spirit of Slavic creativity while pushing the boundaries of traditional typography. Though still in progress, I’m considering compiling the results into a functional font.</p>
+            <img src="/images/example-font-4.png" alt="Avant Garde Glagolitic alphabet" class="full-width-image">
+        </section>
+
+        <nav class="navigation-footer">
+            <a href="#" class="nav-link">← Previous project</a>
+            <a href="#" class="nav-link">Next project →</a>
+        </nav>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch("/components/header.html")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("header-placeholder").innerHTML = data;
+                })
+                .catch(error => console.error("Error loading the header:", error));
+        });
+    </script>
+</body>
+</html>

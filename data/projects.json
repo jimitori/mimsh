@@ -2,40 +2,46 @@
     {
         "title": "Poster Every Day",
         "category": ["art", "design"],
-        "image": "images/94-vee.jpg",
+        "image": "/images/94-vee.jpg",
         "url": "/projects/posters"
     },
     {
         "title": "Snake Conlang",
         "category": ["linguistics"],
-        "image": "images/snake-conlang.png",
+        "image": "/images/snake-conlang.png",
         "url": "/projects/conlangs/ophidian"
     },
     {
         "title": "Art Nude Photography",
         "category": ["art"],
-        "image": "images/nude.jpeg",
+        "image": "/images/nude.jpeg",
         "featured": true,
         "url": "/projects/photography"
     },
     {
         "title": "World Alphabet",
         "category": ["art", "linguistics"],
-        "image": "images/new-world_1_small.jpg",
+        "image": "/images/new-world_1_small.jpg",
         "featured": true,
         "url": "/projects/art/world-alphabet"
     },
     {
         "title": "Spotify Playlists",
         "category": ["fun"],
-        "image": "images/ale.png",
+        "image": "/images/ale.png",
         "featured": true,
         "url": "/projects/playlists"
     },
     {
         "title": "Video Lectures",
         "category": ["education"],
-        "image": "images/media/mitia-tedx-1.jpg",
+        "image": "/images/media/mitia-tedx-1.jpg",
         "url": "/education/videos"
+    },
+    {
+        "title": "Glagolitic",
+        "category": ["design", "linguistics"],
+        "image": "/images/avant-garde-glagolica.jpg",
+        "url": "/projects/glagolica"
     }
 ]
