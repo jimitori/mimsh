@@ -8,6 +8,35 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css">
     <link rel="stylesheet" href="../../../css/styles.css">
 
+    <style>
+        h3 {
+            font-size: 2rem;
+        }
+        /* Custom styles for two-column layout */
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+            margin: 3rem 0;
+        }
+        .two-column img {
+            width: 600px;
+            
+            object-fit: cover;
+            border-radius: 0.5rem;
+        }
+        @media (max-width: 768px) {
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+            .two-column img {
+                width: 100%;
+                height: auto;
+            }
+        }
+    </style>
+
 </head>
 <body>
     <!-- Header content will be inserted here by JavaScript -->
@@ -36,33 +65,63 @@
         </article>
 
         <section class="project-section">
+            
+                    
             <h2>Process</h2>
-            <p>Detailed explanation of your approach and methodology.</p>
-            <img src="process-image.jpg" alt="Process visualization" class="full-width-image">
+            <img src="/images/portfolio/cover - bb.png" alt="Process visualization" class="full-width-image">
+                
+                
+            </div>
 
-            <h3>Brand Identity Creation</h3>
-            <p>Starting from an existing logo, I developed a simple yet scalable branding for Brainbox, using basic illustrations, colors, and recognizable styles to create a cohesive brand identity.</p>
-            <img src="process-image.jpg" alt="Process visualization" class="full-width-image">
+            <div class="two-column">
+                <div>
+                    <h3>Brand Identity Creation</h3>
+                    <p>Starting from an existing logo, I developed a simple yet scalable branding for Brainbox, using basic illustrations, colors, and recognizable styles to create a cohesive brand identity.</p>
+                </div>
+                <img src="/images/portfolio/ill-bb-1.png" alt="Process visualization">
+            </div>
             
-            <h3>Platform Design</h3>
-            <p>I designed the main landing page, the project listing page, and individual project pages with investment functionality.</p>
-            <img src="process-image.jpg" alt="Process visualization" class="full-width-image">
+            <div class="two-column">
+                <img src="/images/portfolio/bb_team - main_page.png" alt="Process visualization" class="full-width-image">
+                <div>
+                    <h3>Platform Design</h3>
+                    <p>I designed the main landing page, the project listing page, and individual project pages with investment functionality.</p>
+                </div>
+            </div>
             
-            <h3>User Personal Dashboard</h3>
-            <p>I created a user dashboard where investors could manage their funds, view their investments, and access documents and calculations.</p>
-            <img src="process-image.jpg" alt="Process visualization" class="full-width-image">
+            <div class="two-column">
+                <div>
+                    <h3>User Personal Dashboard</h3>
+                    <p>I created a user dashboard where investors could manage their funds, view their investments, and access documents and calculations.</p>
+                </div>
+                <img src="/images/portfolio/personal - investments - desktop - all_elements.png" alt="Process visualization" class="full-width-image">
+            </div>
             
-            <h3>Design System Development</h3>
-            <p>I built the initial version of the design system in close collaboration with frontend and backend developers.</p>
-            <img src="process-image.jpg" alt="Process visualization" class="full-width-image">
+            <div class="two-column">
+                <img src="/images/portfolio/img-bb-guidelines.png" alt="Process visualization" class="full-width-image">
+                <div>
+                    <h3>Design System Development</h3>
+                    <p>I built the initial version of the design system in close collaboration with frontend and backend developers.</p>
+                </div>
+                
+            </div>
 
-            <h3>Stakeholder Collaboration</h3>
-            <p>Throughout the project, I worked directly with stakeholders, presenting designs, gathering feedback, and translating ideas into technical tasks. I also collaborated closely with frontend developers, discussing implementation and incorporating their suggestions for improvements.</p>
-            <img src="process-image.jpg" alt="Process visualization" class="full-width-image">
+            <div class="two-column">
+                <div>
+                    <h3>Stakeholder Collaboration</h3>
+                    <p>Throughout the project, I worked directly with stakeholders, presenting designs, gathering feedback, and translating ideas into technical tasks. I also collaborated closely with frontend developers, discussing implementation and incorporating their suggestions for improvements.</p>
+                </div>
+                <img src="/images/portfolio/project-card - desktop.png" alt="Process visualization" class="full-width-image">
+            </div>
             
-            <h3>Presentations for investors</h3>
-            <p>I created several versions of the pitch deck of the platform which helped gain 20% of planned round of investments from big investors and other 80% via crowd-investing.</p>
-            <img src="process-image.jpg" alt="Process visualization" class="full-width-image">
+            <div class="two-column">
+                <img src="/images/portfolio/img-bb-slides.png" alt="Process visualization" class="full-width-image">
+                <div>
+                    <h3>Presentations for investors</h3>
+                    <p>I created several versions of the pitch deck of the platform which helped gain 20% of planned round of investments from big investors and other 80% via crowd-investing.</p>
+                </div>
+                
+            </div>
         </section>
 
         <section class="project-section">
