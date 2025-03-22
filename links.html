@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Links - Mitia Morovov-Sheiner</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <main class="links-page">
+        <section class="links-hero">
+            <!-- img src="images/profile.jpg" alt="Profile" class="about-profile-image" -->
+            <h1>Mitia Morovov-Sheiner</h1>
+            <p class="links-tagline">Designer, Artist, and Educator</p>
+        </section>
+
+        <section class="links-section">
+            <div class="links-container" id="links-container">
+                <!-- Links will be inserted here by JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Header script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch("/components/header.html")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("header-placeholder").innerHTML = data;
+                })
+                .catch(error => console.error("Error loading header:", error));
+
+            // Fetch and render links
+            fetchData('data/links.json')
+                .then(links => renderLinks(links))
+                .catch(error => console.error("Error loading links:", error));
+        });
+
+        // Fetch JSON data
+        async function fetchData(url) {
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return await response.json();
+        }
+
+        // Render links
+        function renderLinks(links) {
+            const container = document.getElementById('links-container');
+            container.innerHTML = '';
+
+            links.forEach(link => {
+                const linkElement = document.createElement('a');
+                linkElement.className = 'link-button';
+                linkElement.href = link.url;
+                linkElement.target = '_blank';
+                linkElement.rel = 'noopener noreferrer';
+
+                linkElement.innerHTML = `
+                    ${link.icon ? `<img src="${link.icon}" alt="${link.title} icon" class="link-icon">` : ''}
+                    <span class="link-title">${link.title}</span>
+                    ${link.subtitle ? `<span class="link-subtitle">${link.subtitle}</span>` : ''}
+                `;
+
+                container.appendChild(linkElement);
+            });
+        }
+    </script>
+</body>
+</html>

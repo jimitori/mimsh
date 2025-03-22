@@ -477,3 +477,86 @@ main {
         height: 150px;
     }
 }
+
+
+/* Links Page Specific Styles */
+.links-page {
+    max-width: var(--max-width);
+    margin: var(--header-height) auto 0;
+    padding: 2rem;
+}
+
+.links-hero {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.links-hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.links-tagline {
+    font-size: 1.2rem;
+    color: var(--color-gray);
+}
+
+.links-section {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.links-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.link-button {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    background: var(--color-light-gray);
+    color: var(--color-text);
+    text-decoration: none;
+    border-radius: 0.5rem;
+    transition: all 0.2s;
+}
+
+.link-button:hover {
+    background: var(--color-gray);
+    color: var(--color-bg);
+}
+
+.link-icon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.link-title {
+    font-size: 1.1rem;
+    font-family: 'PP Right Grotesk', system-ui, -apple-system, sans-serif;
+}
+
+.link-subtitle {
+    font-size: 0.9rem;
+    opacity: 0.4;
+    margin-left: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .links-hero h1 {
+        font-size: 2rem;
+    }
+
+    .links-tagline {
+        font-size: 1rem;
+    }
+
+    .link-button {
+        padding: 0.8rem 1rem;
+    }
+}
