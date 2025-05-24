@@ -40,7 +40,9 @@
 }
 
 /* Cyrillic support */
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap&subset=latin,cyrillic');
 
+/*
 @font-face {
     font-family: "EB Garamond", serif;
     src: url("eb-garamond/EBGaramond-Regular.eot") format("embedded-opentype"), url("eb-garamond/EBGaramond-Regular.ttf") format("truetype");
@@ -67,6 +69,7 @@
     font-style: italic;
     font-display: swap;
 }
+*/
 
 /* Tufte CSS styles */
 html {
