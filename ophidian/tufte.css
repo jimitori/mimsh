@@ -39,6 +39,35 @@
     font-display: swap;
 }
 
+/* Cyrillic support */
+
+@font-face {
+    font-family: "EB Garamond", serif;
+    src: url("eb-garamond/EBGaramond-Regular.eot") format("embedded-opentype"), url("eb-garamond/EBGaramond-Regular.ttf") format("truetype");
+    font-optical-sizing: auto;
+    font-weight: 400, normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "EB Garamond", serif;
+    src: url("eb-garamond/EBGaramond-SemiBold.eot") format("embedded-opentype"), url("eb-garamond/EBGaramond-SemiBold.ttf") format("truetype");
+    font-optical-sizing: auto;
+    font-weight: 600, bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "EB Garamond", serif;
+    src:  url("eb-garamond/EBGaramond-Italic.eot") format("embedded-opentype"), url("eb-garamond/EBGaramond-Italic.ttf") format("truetype");
+    font-optical-sizing: auto;
+    font-weight: 400, normal;
+    font-style: italic;
+    font-display: swap;
+}
+
 /* Tufte CSS styles */
 html {
     font-size: 15px;
@@ -49,7 +78,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     padding-left: 12.5%;
-    font-family: et-book, Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
+    font-family: et-book, "EB Garamond", Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
     background-color: #fffff8;
     color: #111;
     max-width: 1400px;
