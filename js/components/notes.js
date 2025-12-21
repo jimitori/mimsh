@@ -24,6 +24,12 @@ export function initNotes(root) {
           `<sup><a href="#${noteId}" id="${anchorId}" class="note-ref">${noteCounter}</a></sup>`
         );
 
+        // Prepend note number to each element inside the note block (for language switching)
+        const noteItems = noteBlock.children;
+        for (let item of noteItems) {
+          item.innerHTML = `<sup>${noteCounter}</sup> ` + item.innerHTML;
+        }
+
         // 2. Create list item for sidebar
         const li = document.createElement('li');
         li.id = noteId;
