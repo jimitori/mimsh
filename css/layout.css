@@ -52,6 +52,11 @@ html[lang="ru"] [lang]:not([lang="ru"]) {
 
 
 
+body {
+  background-color: #fafafa;
+  margin: 0;
+}
+
 /* --- Typography & Elements --- */
 a {
   color: inherit;
