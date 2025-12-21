@@ -1,0 +1,417 @@
+{
+  "languages": [
+    {
+      "code": "en",
+      "label": "En"
+    },
+    {
+      "code": "ru",
+      "label": "Ru"
+    }
+  ],
+  "groups": [
+    {
+      "id": "design",
+      "title": {
+        "en": "Design",
+        "ru": "Дизайн"
+      },
+      "order": 10
+    },
+    {
+      "id": "lectures",
+      "title": {
+        "en": "Lectures",
+        "ru": "Лекции"
+      },
+      "order": 20
+    },
+    {
+      "id": "languages",
+      "title": {
+        "en": "Languages",
+        "ru": "Языки"
+      },
+      "order": 30
+    },
+    {
+      "id": "photography",
+      "title": {
+        "en": "Photography",
+        "ru": "Фотография"
+      },
+      "order": 40
+    },
+    {
+      "id": "art",
+      "title": {
+        "en": "Art",
+        "ru": "Искусство"
+      },
+      "order": 50
+    },
+    {
+      "id": "music",
+      "title": {
+        "en": "Music",
+        "ru": "Музыка"
+      },
+      "order": 60
+    },
+    {
+      "id": "about",
+      "title": {
+        "en": "About",
+        "ru": "Обо мне"
+      },
+      "order": 70
+    },
+    {
+      "id": "other",
+      "title": {
+        "en": "Other",
+        "ru": "Разное"
+      },
+      "order": 80
+    }
+  ],
+  "pages": [
+    {
+      "id": "slavic-layout",
+      "title": {
+        "en": "Slavic Layout",
+        "ru": "Славянская раскладка"
+      },
+      "url": "/design/slavic-layout/",
+      "groups": [
+        "design"
+      ],
+      "order": 20
+    },
+    {
+      "id": "old-church-slavonic",
+      "title": {
+        "en": "Old Church Slavonic",
+        "ru": "Старокириллическая"
+      },
+      "url": "/design/old-church-slavonic/",
+      "groups": [
+        "design"
+      ],
+      "order": 30
+    },
+    {
+      "id": "poster-every-day",
+      "title": {
+        "en": "Poster Every Day",
+        "ru": "Постер каждый день"
+      },
+      "url": "/design/poster-every-day/",
+      "groups": [
+        "design"
+      ],
+      "order": 40
+    },
+    {
+      "id": "avant-garde-glagolitic",
+      "title": {
+        "en": "Avant-Garde Glagolitic",
+        "ru": "Авангардная глаголица"
+      },
+      "url": "/design/avant-garde-glagolitic/",
+      "groups": [
+        "design"
+      ],
+      "order": 50
+    },
+    {
+      "id": "portfolio",
+      "title": {
+        "en": "Portfolio",
+        "ru": "Портфолио"
+      },
+      "url": "/design/portfolio/",
+      "groups": [
+        "design"
+      ],
+      "order": 10
+    },
+    {
+      "id": "tg-design",
+      "title": {
+        "en": "Mitia Design",
+        "ru": "Mitia Design"
+      },
+      "url": "https://t.me/mitiadesign",
+      "groups": [
+        "design"
+      ],
+      "order": 1000
+    },
+    {
+      "id": "schedule",
+      "title": {
+        "en": "Schedule",
+        "ru": "Расписание"
+      },
+      "url": "/lectures/schedule/",
+      "groups": [
+        "lectures"
+      ],
+      "order": 20
+    },
+    {
+      "id": "tedx",
+      "title": {
+        "en": "TEDx",
+        "ru": "TEDx"
+      },
+      "url": "https://www.ted.com/talks/mitya_morovov_3_things_you_need_to_hear_about_sign_language",
+      "groups": [
+        "lectures"
+      ],
+      "order": 20
+    },
+    {
+      "id": "lectures-video",
+      "title": {
+        "en": "Video",
+        "ru": "Видео"
+      },
+      "url": "/lectures/video/",
+      "groups": [
+        "lectures"
+      ],
+      "order": 40
+    },
+    {
+      "id": "conlangs-overview",
+      "title": {
+        "en": "Conlangs Overview",
+        "ru": "Обзор конлангов"
+      },
+      "url": "/languages/",
+      "groups": [
+        "languages"
+      ],
+      "order": 5
+    },
+    {
+      "id": "ophidian",
+      "title": {
+        "en": "Ophidian",
+        "ru": "Змеиный / Ophidian"
+      },
+      "url": "/languages/ophidian/",
+      "groups": [
+        "languages"
+      ],
+      "order": 30
+    },
+    {
+      "id": "zabzy",
+      "title": {
+        "en": "Zabzy",
+        "ru": "Zabzy"
+      },
+      "url": "/languages/zabzy/",
+      "groups": [
+        "languages"
+      ],
+      "order": 50
+    },
+    {
+      "id": "tg-azoy",
+      "title": {
+        "en": "Azoysheyn",
+        "ru": "Azoysheyn"
+      },
+      "url": "https://t.me/azoysheynch",
+      "groups": [
+        "languages"
+      ],
+      "order": 70
+    },
+    {
+      "id": "tg-inyamo",
+      "title": {
+        "en": "Language Construction Institute",
+        "ru": "Институт языкового моделирования"
+      },
+      "url": "https://t.me/inyamo",
+      "groups": [
+        "languages"
+      ],
+      "order": 80
+    },
+    {
+      "id": "ipenn",
+      "title": {
+        "en": "iPenn",
+        "ru": "iPenn"
+      },
+      "url": "/languages/ipenn/",
+      "groups": [
+        "languages"
+      ],
+      "order": 60
+    },
+    {
+      "id": "neon",
+      "title": {
+        "en": "Neon",
+        "ru": "Неон"
+      },
+      "url": "/photography/neon/",
+      "groups": [
+        "photography"
+      ],
+      "order": 10
+    },
+    {
+      "id": "black-and-white",
+      "title": {
+        "en": "Black & White",
+        "ru": "Ч/Б"
+      },
+      "url": "/photography/black-and-white/",
+      "groups": [
+        "photography"
+      ],
+      "order": 20
+    },
+    {
+      "id": "colour",
+      "title": {
+        "en": "Colour",
+        "ru": "Цвет"
+      },
+      "url": "/photography/colour/",
+      "groups": [
+        "photography"
+      ],
+      "order": 30
+    },
+    {
+      "id": "tg-photo",
+      "title": {
+        "en": "mitia photo",
+        "ru": "mitia photo"
+      },
+      "url": "https://t.me/mitiaphoto",
+      "groups": [
+        "photography"
+      ],
+      "order": 40
+    },
+    {
+      "id": "world-alphabet",
+      "title": {
+        "en": "World Alphabet",
+        "ru": "Мировой алфавит"
+      },
+      "url": "/art/world-alphabet/",
+      "groups": [
+        "art"
+      ],
+      "order": 10
+    },
+    {
+      "id": "artist-statement",
+      "title": {
+        "en": "Artist Statement",
+        "ru": "Artist Statement"
+      },
+      "url": "/art/artist-statement/",
+      "groups": [
+        "art"
+      ],
+      "order": 20
+    },
+    {
+      "id": "exhibitions",
+      "title": {
+        "en": "Exhibitions",
+        "ru": "Выставки"
+      },
+      "url": "/art/exhibitions/",
+      "groups": [
+        "art"
+      ],
+      "order": 30
+    },
+    {
+      "id": "soundcloud",
+      "title": {
+        "en": "Soundcloud",
+        "ru": "Soundcloud"
+      },
+      "url": "/music/soundcloud/",
+      "groups": [
+        "music"
+      ],
+      "order": 10
+    },
+    {
+      "id": "spotify-playlists",
+      "title": {
+        "en": "Spotify Playlists",
+        "ru": "Spotify плейлисты"
+      },
+      "url": "/music/spotify-playlists/",
+      "groups": [
+        "music"
+      ],
+      "order": 20
+    },
+    {
+      "id": "tg-music-monthly",
+      "title": {
+        "en": "Music Monthly",
+        "ru": "Music Monthly"
+      },
+      "url": "https://t.me/musicmonthly/",
+      "groups": [
+        "music"
+      ],
+      "order": 30
+    },
+    {
+      "id": "about-me",
+      "title": {
+        "en": "Who I Am",
+        "ru": "Кто я"
+      },
+      "url": "/about/",
+      "groups": [
+        "about"
+      ],
+      "order": 10
+    },
+    {
+      "id": "press-photos",
+      "title": {
+        "en": "Press Photos",
+        "ru": "Пресс-фото"
+      },
+      "url": "/press-photos/",
+      "groups": [
+        "about"
+      ],
+      "order": 20
+    },
+    {
+      "id": "cv",
+      "title": {
+        "en": "CV",
+        "ru": "CV"
+      },
+      "url": "/about/cv/",
+      "groups": [
+        "about",
+        "design"
+      ],
+      "order": 100
+    }
+  ]
+}

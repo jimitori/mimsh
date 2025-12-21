@@ -1,0 +1,412 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Noto+Sans+Mono:wght@400;700&family=Noto+Serif:wght@400;700&display=swap');
+
+:root {
+  --sidebar: 240px;
+  --gutter: 40px;
+  --content: 620px;
+  --notes: 220px;
+  --max-width: 1440px;
+
+  --font-main: 'Noto Sans Mono', monospace;
+  --font-heading: 'Noto Sans Mono', monospace;
+  /* --font-heading: 'Montserrat', sans-serif; */
+  --font-serif: 'Noto Serif', serif;
+  --font-serif: 'Noto Serif', serif;
+}
+
+/* --- Language Switching Logic --- */
+/* Hide content with a specific lang attribute if it doesn't match the document lang */
+html[lang="en"] [lang]:not([lang="en"]),
+html[lang="ru"] [lang]:not([lang="ru"]) {
+  display: none !important;
+}
+
+/* Language Switcher Styles */
+.lang-switcher {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.lang-btn {
+  background: none;
+  border: none;
+  font-family: var(--font-main);
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 0;
+  opacity: 0.5;
+  text-decoration: none;
+}
+
+.lang-btn.is-active {
+  opacity: 1;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.lang-btn:hover {
+  opacity: 1;
+}
+
+
+
+/* --- Typography & Elements --- */
+a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+h3 {
+  margin-bottom: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+p {
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+/* Utilities */
+.hidden {
+  display: none;
+}
+
+/* --- General Styles --- */
+.page {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  font-family: var(--font-main);
+  display: grid;
+  grid-template-columns: var(--sidebar) var(--gutter) var(--content) var(--gutter) var(--notes) 1fr;
+  grid-template-areas: "sidebar . content . notes extra";
+  padding-top: 40px;
+}
+
+.nav-icon {
+  display: block;
+  margin-bottom: 2rem;
+  height: 124px;
+}
+
+.nav-icon img {
+  height: 100%;
+  object-fit: contain;
+}
+
+.sidebar {
+  grid-area: sidebar;
+}
+
+.content {
+  grid-area: content;
+}
+
+.notes {
+  grid-area: notes;
+}
+
+.extra {
+  grid-area: extra;
+}
+
+img {
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+.nav-group-toggle {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: #111;
+}
+
+h1 {
+  margin-top: 0;
+}
+
+.serif {
+  font-family: var(--font-serif);
+}
+
+figcaption {
+  font-size: 0.8rem;
+  margin-bottom: 2rem;
+}
+
+/* --- Navigation --- */
+.nav-group-toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0.6rem 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+.nav-group-toggle:hover {
+  text-decoration: underline;
+  text-decoration-color: rgba(0, 0, 0, 0.5);
+}
+
+
+
+.nav-item a {
+  color: #000;
+  text-decoration: none;
+  padding: 0.2rem 0;
+  display: inline-block;
+}
+
+.nav-item a:hover {
+  text-decoration: underline;
+  text-decoration-color: rgba(0, 0, 0, 0.5);
+}
+
+.nav-item a.is-active {
+  font-style: italic;
+  /* font-weight: 700; */
+}
+
+.nav-group-list {
+  display: none;
+  list-style: none;
+  padding-left: 0;
+}
+
+.nav-item {
+  padding-left: 10px;
+}
+
+.nav-group.is-open .nav-group-list {
+  display: block;
+}
+
+.telegram-icon {
+  display: inline-block;
+  width: 0.85em;
+  height: 0.85em;
+  vertical-align: baseline;
+  opacity: 0.7;
+}
+
+/* Icon List - displays favicons instead of bullets */
+.icon-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.icon-list li {
+  padding-left: 1.5em;
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+
+.icon-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.2em;
+  width: 1em;
+  height: 1em;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Favicon for each domain */
+.icon-list li:has(a[href*="patreon.com"])::before {
+  background-image: url('https://www.patreon.com/favicon.ico');
+}
+
+.icon-list li:has(a[href*="boosty.to"])::before {
+  background-image: url('https://boosty.to/favicon.ico');
+}
+
+.icon-list li:has(a[href*="instagram.com"])::before {
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/9/95/Instagram_logo_2022.svg');
+}
+
+.icon-list li:has(a[href*="spotify.com"])::before {
+  background-image: url('https://open.spotify.com/favicon.ico');
+}
+
+/* Platform Specific Icons */
+.icon-list li.icon-apple::before {
+  content: '';
+  top: 0.1em;
+  /* Slight adjustment for character alignment */
+}
+
+.icon-list li.icon-windows::before {
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/7/7e/Font_Awesome_5_brands_windows.svg');
+}
+
+
+/* --- Notes (Tufte Style) --- */
+.notes-list {
+  position: relative;
+  list-style: none;
+  padding: 0;
+}
+
+.notes-list li {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #666;
+  border-top: 1px solid #eee;
+  padding-top: 0.8rem;
+  width: 100%;
+}
+
+.notes-list li img {
+  max-width: 100%;
+  height: auto;
+  margin: 0.5rem 0;
+  filter: grayscale(100%);
+  /* Optional for Tufte Style */
+}
+
+.note-ref {
+  text-decoration: none;
+  color: #666;
+  font-weight: bold;
+  font-size: 0.8em;
+  vertical-align: super;
+}
+
+.note-back {
+  text-decoration: none;
+  opacity: 0.2;
+}
+
+.note-back:hover {
+  opacity: 1;
+}
+
+.note {
+  display: none;
+}
+
+/* Hide in text */
+
+/* --- Mobile Version --- */
+/* --- Mobile Version --- */
+@media (max-width: 1200px) {
+  :root {
+    --notes: 180px;
+    --gutter: 20px;
+  }
+}
+
+/* Mobile Toggle Button */
+.mobile-nav-toggle {
+  display: none;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10001;
+  background: none;
+  border: none;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 0;
+}
+
+.mobile-nav-toggle .bar {
+  width: 100%;
+  height: 3px;
+  background-color: #000;
+  transition: all 0.3s;
+  transform-origin: 1px;
+}
+
+/* Hamburger to X animation */
+.mobile-nav-toggle.is-active .bar:nth-child(1) {
+  transform: rotate(45deg);
+}
+
+.mobile-nav-toggle.is-active .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-nav-toggle.is-active .bar:nth-child(3) {
+  transform: rotate(-45deg);
+}
+
+@media (max-width: 900px) {
+  .page {
+    display: block;
+    padding: 20px;
+  }
+
+  .mobile-nav-toggle {
+    display: flex;
+    /* Show only on mobile */
+  }
+
+  /* Sidebar gets repurposed as the overlay */
+  .sidebar {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100dvh;
+    box-sizing: border-box;
+    background: #fff;
+    z-index: 10000;
+    overflow-y: auto;
+    padding: 80px 40px 150px;
+    /* Space for X button and bottom safe area */
+  }
+
+  /* When open */
+  body.is-mobile-nav-open {
+    overflow: hidden;
+    /* Prevent background scroll */
+  }
+
+  body.is-mobile-nav-open .sidebar {
+    display: block;
+  }
+
+  /* Force groups open in mobile menu */
+  body.is-mobile-nav-open .nav-group-list {
+    display: block !important;
+  }
+
+  /* Disable clicking headers */
+  body.is-mobile-nav-open .nav-group-toggle {
+    pointer-events: none;
+    text-decoration: none;
+  }
+
+  body.is-mobile-nav-open .nav-group-toggle:hover {
+    text-decoration: none;
+    cursor: default;
+  }
+
+  .notes {
+    margin-top: 4rem;
+    padding: 20px;
+  }
+
+  .notes-list li {
+    margin-bottom: 2rem;
+  }
+}

@@ -1,0 +1,5 @@
+# Exclude archive folder
+archive/
+
+# macOS system files
+.DS_Store

@@ -1,146 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="ru">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mitia Morovov-Sheiner - Personal Website</title>
-    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css">
-    <link rel="stylesheet" href="css/styles.css">
+  <meta charset="utf-8">
+  <title>Mitia Morovov-Sheiner</title>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="stylesheet" href="css/layout.css">
+
 </head>
+
 <body>
-    <!-- Header content will be inserted here by JavaScript -->
-    <div id="header-placeholder"></div>
+  <div class="page">
+    <aside class="sidebar" data-component="sidebar">
+      <nav id="main-nav" class="main-nav"></nav>
+    </aside>
 
-    <main>
-        <section class="hero">
-            <h1>Designer, Artist, and Educator</h1>
-            <p>Exploring the intersections of design, linguistics, and art through research and creative projects. PhD in linguistics with a focus on visual communication.</p>
-        </section>
+    <main class="content" data-component="content">
+      <article class="content-article">
+        <h1 lang="en">Mitia Morovov-Sheiner</h1>
+        <h1 lang="ru">Митя Моровов-Шейнер</h1>
+        <p lang="en">I am a multidisciplinary designer, linguist, educator, and artist with a lifelong curiosity for how
+          people communicate, create meaning, and shape culture. Since 2014 I have worked professionally as a designer,
+          developing digital products, visual systems, educational projects, and creative concepts.</p>
+        <p lang="en">I hold a PhD in linguistics and my interests range from writing systems and constructed languages
+          to accessibility, visual storytelling, and contemporary culture. I value clarity, honesty, and thoughtful
+          design, and I enjoy building projects that connect creativity, knowledge, and human experience.</p>
+        <p lang="ru">Я — мультидисциплинарный дизайнер, лингвист и преподаватель. Создаю цифровые продукты и визуальные
+          системы, занимаюсь языками и письменностями, разрабатываю конланги, делюсь знаниями и строю проекты на стыке
+          творчества, исследований и образования.</p>
+        <p lang="ru">Мне важно, чтобы дизайн был человечным, а язык — живым и доступным. Я верю, что и дизайн, и
+          лингвистика — это про заботу: про то, как сделать мир понятнее, разнообразнее и чуть более красивым.</p>
 
-        <div class="categories">
-            <button class="category-btn active" data-category="all">All</button>
-            <button class="category-btn" data-category="design">Design</button>
-            <button class="category-btn" data-category="linguistics">Linguistics</button>
-            <button class="category-btn" data-category="art">Art</button>
-            <button class="category-btn" data-category="education">Education</button>
-            <button class="category-btn" data-category="fun">Fun</button>
-        </div>
-
-        <div class="projects-grid">
-            <!-- Projects will be inserted here by JavaScript -->
-        </div>
-
-        <section class="timeline">
-            <h2>Timeline</h2>
-            <!-- Timeline content will be inserted here by JavaScript -->
-        </section>
+      </article>
     </main>
+  </div>
 
-    <script>
-        let projects = [];  // Initialize as empty arrays
-        let timeline = {};
-
-        // Function to fetch JSON data
-        async function fetchData(url) {
-            try {
-                const response = await fetch(url);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return await response.json();
-            } catch (error) {
-                console.error(`Failed to fetch ${url}: `, error);
-                return null; // Or an appropriate default value
-            }
-        }
-
-        // Update the renderProjects function to support multiple categories
-        function renderProjects(category = 'all') {
-            const projectsGrid = document.querySelector('.projects-grid');
-            projectsGrid.innerHTML = '';
-
-            if (!projects) return; // Exit if projects data is not loaded
-
-            projects
-                .filter(project => category === 'all' || project.category.includes(category))
-                .forEach(project => {
-                    const projectElement = document.createElement('a');
-                    projectElement.className = 'project-card';
-                    projectElement.href = project.url;
-
-                    projectElement.innerHTML = `
-                        <img src="${project.image}" alt="${project.title}">
-                        <div class="project-info">
-                            <div class="project-category">${project.category.join(', ')}</div>
-                            <div class="project-title">${project.title}</div>
-                        </div>
-                    `;
-                    projectsGrid.appendChild(projectElement);
-                });
-        }
-
-        // Update the renderTimeline function to handle links
-        function renderTimeline() {
-            const timelineSection = document.querySelector('.timeline');
-            timelineSection.innerHTML = "<h2>Timeline</h2>"; //Clear existing content.
-
-            if (!timeline) return;  //Exit if timeline data is not loaded.
-
-            Object.entries(timeline).reverse().forEach(([year, events]) => {
-                const yearGroup = document.createElement('div');
-                yearGroup.className = 'year-group';
-                yearGroup.innerHTML = `
-                    <div class="year-header">
-                        <div class="year">${year}</div>
-                        <div class="year-line"></div>
-                    </div>
-                    <div class="timeline-events">
-                        ${events.map(event => `
-                            <div class="timeline-event">
-                                <h3>${event.link 
-                                    ? `<a href="${event.link}" target="_blank">${event.title}</a>`
-                                    : event.title
-                                }</h3>
-                                ${event.venue ? `<p class="venue">${event.venue}</p>` : ''}
-                            </div>
-                        `).join('')}
-                    </div>
-                `;
-                timelineSection.appendChild(yearGroup);
-            });
-        }
-
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', async () => {
-            projects = await fetchData('data/projects.json');
-            timeline = await fetchData('data/timeline.json');
-
-            renderProjects();
-            renderTimeline();
-
-            // Category filter functionality
-            const categoryButtons = document.querySelectorAll('.category-btn');
-            categoryButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    categoryButtons.forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-                    renderProjects(button.dataset.category);
-                });
-            });
-        });
-    </script>
-    <!-- header script -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            fetch("/components/header.html")
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById("header-placeholder").innerHTML = data;
-                })
-                .catch(error => console.error("Error loading the header:", error));
-        });
-    </script>
+  <script type="module" src="js/main.js"></script>
 </body>
+
 </html>

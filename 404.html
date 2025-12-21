@@ -1,162 +1,76 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="ru">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - Page Not Found | Mitia Morovov-Sheiner</title>
-    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css">
-    <link rel="stylesheet" href="/css/styles.css">
-    <style>
-        .error-container {
-            max-width: var(--max-width);
-            margin: var(--header-height) auto 0;
-            padding: 4rem 2rem;
-            text-align: center;
-        }
+    <meta charset="utf-8">
+    <title>404 - Path Not Found</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-        .error-title {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            line-height: 1.1;
-            font-family: 'PP Right Grotesk', system-ui, -apple-system, sans-serif;
-        }
+    <link rel="stylesheet" href="css/layout.css">
 
-        .error-subtitle {
-            font-size: 1.5rem;
-            color: var(--color-gray);
-            margin-bottom: 2rem;
-        }
 
-        .error-message {
-            max-width: 800px;
-            margin: 0 auto 3rem;
-            font-size: 1.25rem;
-        }
 
-        .navigation-options {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin: 3rem 0;
-        }
-
-        .navigation-card {
-            background-color: var(--color-light-gray);
-            padding: 1.5rem;
-            border-radius: 0.5rem;
-            transition: transform 0.2s;
-        }
-
-        .navigation-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .navigation-card h3 {
-            margin-top: 0;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
-            padding-bottom: 0.5rem;
-            font-family: 'PP Right Grotesk', system-ui, -apple-system, sans-serif;
-        }
-
-        .navigation-card a {
-            color: var(--color-yellow);
-            text-decoration: underline;
-        }
-
-        .language-example {
-            background-color: var(--color-light-gray);
-            padding: 1.5rem;
-            border-radius: 0.5rem;
-            margin: 3rem auto;
-            font-family: monospace;
-            max-width: 600px;
-        }
-
-        .language-example .original,
-        .language-example .transliteration,
-        .language-example .translation {
-            padding: 0.5rem 0;
-        }
-
-        .language-example .translation {
-            font-style: italic;
-            opacity: 0.8;
-        }
-
-        .native-script {
-            max-height: 18px;
-            margin-right: 2px;
-        }
-    </style>
 </head>
+
 <body>
-    <div id="header-placeholder"></div>
+    <div class="page">
+        <aside class="sidebar" data-component="sidebar">
+            <nav id="main-nav" class="main-nav"></nav>
+        </aside>
 
-    <div class="error-container">
-        <h1 class="error-title">404 - Path Not Found</h1>
-        <p class="error-subtitle">It seems you've slithered off the trail...</p>
-        <p class="error-message">The page you're looking for doesn’t exist or has shed its skin and moved elsewhere. Don’t worry—here’s a little Ophidian to brighten your day, plus some ways to get back on track.</p>
+        <main class="content" data-component="content">
+            <article class="content-article">
 
-        <!-- Helpful Ophidian Phrase -->
-        <div class="language-example">
-            <div class="original native-script" data-text="BWESATASSAGE SSIIF"></div>
-            <div class="transliteration">șesatassage ssi'i?</div>
-            <div class="translation">"What is your name?"</div>
-        </div>
+                <!-- English Content -->
+                <div lang="en">
+                    <h1>404 - Path Not Found</h1>
+                    <p>It seems you've slithered off the trail...</p>
+                    <p>The page you're looking for doesn’t exist or has shed its skin and moved elsewhere. Don’t
+                        worry—here’s a little Ophidian to brighten your day, plus some ways to get back on track.</p>
 
-        <!-- Navigation Options -->
-        <div class="navigation-options">
-            <div class="navigation-card">
-                <h3>Return Home</h3>
-                <p>Slither back to the main page.</p>
-                <p><a href="/">Go to Homepage</a></p>
-            </div>
-            <div class="navigation-card">
-                <h3>Explore Ophidian</h3>
-                <p>Learn more about the serpent conlang.</p>
-                <p><a href="/projects/conlangs/ophidian/">Visit Ophidian</a></p>
-            </div>
-            <div class="navigation-card">
-                <h3>Contact Me</h3>
-                <p>Hiss me a message if you’re lost.</p>
-                <p><a href="/contact/">Get in Touch</a></p>
-            </div>
-        </div>
+                    <div>
+                        <h3>Return Home</h3>
+                        <p>Slither back to the main page.</p>
+                        <p><a href="/">Go to Homepage</a></p>
+
+                        <h3>Explore Ophidian</h3>
+                        <p>Learn more about the serpent conlang.</p>
+                        <p><a href="/languages/ophidian/">Visit Ophidian</a></p>
+
+                        <h3>Contact Me</h3>
+                        <p>Hiss me a message if you’re lost.</p>
+                        <p><a href="mailto:mitiamorovov@gmail.com">Get in Touch</a></p>
+                    </div>
+                </div>
+
+                <!-- Russian Content (Translated) -->
+                <div lang="ru">
+                    <h1>404 - Путь не найден</h1>
+                    <p>Кажется, вы соскользнули с тропы...</p>
+                    <p>Страница, которую вы ищете, не существует или сбросила кожу и переместилась в другое место. Не
+                        волнуйтесь — вот немного Змеиного языка, чтобы скрасить ваш день, и несколько способов вернуться
+                        на правильный путь.</p>
+
+                    <div>
+                        <h3>Вернуться домой</h3>
+                        <p>Ползите обратно на главную страницу.</p>
+                        <p><a href="/">На главную</a></p>
+
+                        <h3>Изучить Змеиный</h3>
+                        <p>Узнайте больше о змеином конланге.</p>
+                        <p><a href="/languages/ophidian/">Посетить Змеиный</a></p>
+
+                        <h3>Связаться со мной</h3>
+                        <p>Прошипите мне сообщение, если вы потерялись.</p>
+                        <p><a href="mailto:mitiamorovov@gmail.com">Написать мне</a></p>
+                    </div>
+                </div>
+
+            </article>
+        </main>
     </div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            fetch("/components/header.html")
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById("header-placeholder").innerHTML = data;
-                })
-                .catch(error => console.error("Error loading the header:", error));
-        });
-
-        // A script to replace text with images of the Ophidian script
-        document.addEventListener('DOMContentLoaded', function() {
-            const scriptContainers = document.querySelectorAll('.original');
-
-            scriptContainers.forEach(container => {
-                const text = container.dataset.text;
-                let svgHtml = '';
-
-                for (let i = 0; i < text.length; i++) {
-                const letter = text[i];
-
-                if (letter === ' ') {
-                    svgHtml += ' '; // Add a non-breaking space
-                } else {
-                    const svgUrl = `/images/ophidian/script/Letter=${letter}.svg`;
-                    svgHtml += `<img class="native-script" src="${svgUrl}" alt="${letter}">`;
-                }
-                }
-
-                container.innerHTML = svgHtml;
-            });
-            });
-    </script>
+    <script type="module" src="js/main.js"></script>
 </body>
+
 </html>

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <title>Press Photos</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/gallery.css">
+</head>
+
+<body>
+    <div class="page">
+        <aside class="sidebar" data-component="sidebar">
+            <nav id="main-nav" class="main-nav"></nav>
+        </aside>
+
+        <main class="content" data-component="content">
+            <article class="content-article">
+                <h1 lang="en">Press Photos</h1>
+                <h1 lang="ru">Пресс-фото</h1>
+
+                <p lang="en">High-resolution photos for press and media use.</p>
+                <p lang="ru">Фотографии в высоком разрешении для прессы и медиа.</p>
+
+                <!-- Gallery will auto-detect /data/galleries/press-photos.json based on parent folder name -->
+                <div data-component="gallery"></div>
+            </article>
+        </main>
+    </div>
+
+    <script type="module" src="../js/main.js"></script>
+</body>
+
+</html>

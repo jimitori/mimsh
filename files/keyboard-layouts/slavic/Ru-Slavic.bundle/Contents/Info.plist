@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleIdentifier</key>
+	<string>org.sil.ukelele.keyboardlayout.ru-srb</string>
+	<key>CFBundleName</key>
+	<string>Ru-Slavic</string>
+	<key>CFBundleVersion</key>
+	<string>0.4</string>
+	<key>KLInfo_Ru-Slav</key>
+	<dict>
+		<key>TICapsLockLanguageSwitchCapable</key>
+		<false/>
+		<key>TISIconIsTemplate</key>
+		<false/>
+		<key>TISInputSourceID</key>
+		<string>org.sil.ukelele.keyboardlayout.ru-srb.ru-slav</string>
+		<key>TISIntendedLanguage</key>
+		<string>ru</string>
+	</dict>
+	<key>UkeleleInfo_Ru-Slav</key>
+	<dict>
+		<key>Font</key>
+		<string>PTSans-Regular</string>
+		<key>FontSize</key>
+		<real>22.5</real>
+	</dict>
+</dict>
+</plist>
