@@ -49,32 +49,10 @@ export function initNotes(root) {
 
   const updateLayout = () => layoutNotes(notesContainer);
 
-  // Debounce resize events to avoid excessive recalculations
-  let resizeTimeout;
-  const debouncedUpdate = () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(updateLayout, 100);
-  };
-
-  // Wait for all images to load before initial positioning
-  const images = Array.from(article.querySelectorAll('img'));
-  if (images.length > 0) {
-    Promise.all(
-      images.map(img => {
-        if (img.complete) return Promise.resolve();
-        return new Promise(resolve => {
-          img.addEventListener('load', resolve);
-          img.addEventListener('error', resolve); // Handle broken images
-        });
-      })
-    ).then(updateLayout);
-  } else {
-    updateLayout();
-  }
-
-  // Recalculate positions on window load and resize
+  // Recalculate positions on image load and resize
   window.addEventListener('load', updateLayout);
-  window.addEventListener('resize', debouncedUpdate);
+  window.addEventListener('resize', updateLayout);
+  updateLayout();
 }
 
 function layoutNotes(list) {

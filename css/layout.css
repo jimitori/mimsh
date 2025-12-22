@@ -303,11 +303,6 @@ figcaption {
   display: none;
 }
 
-/* Remove top margin from first child in note content to align with anchor */
-.notes-list li .note-content>*:first-child {
-  margin-top: 0;
-}
-
 /* Hide in text */
 
 /* --- Mobile Version --- */
