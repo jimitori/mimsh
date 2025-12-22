@@ -259,8 +259,8 @@
     {
       "id": "neon",
       "title": {
-        "en": "Neon",
-        "ru": "Неон"
+        "en": "Neon (Nude)",
+        "ru": "Неон (Ню)"
       },
       "url": "/photography/neon/",
       "groups": [
@@ -271,8 +271,8 @@
     {
       "id": "black-and-white",
       "title": {
-        "en": "Black & White",
-        "ru": "Ч/Б"
+        "en": "Black & White (Nude)",
+        "ru": "Ч/Б (Ню)"
       },
       "url": "/photography/black-and-white/",
       "groups": [
@@ -283,8 +283,8 @@
     {
       "id": "colour",
       "title": {
-        "en": "Colour",
-        "ru": "Цвет"
+        "en": "Colour (Nude)",
+        "ru": "Цвет (Ню)"
       },
       "url": "/photography/colour/",
       "groups": [
