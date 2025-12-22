@@ -146,6 +146,11 @@ figcaption {
   margin-bottom: 2rem;
 }
 
+figure blockquote {
+  margin-left: 0;
+  margin-right: 0;
+}
+
 /* --- Navigation --- */
 .nav-group-toggle {
   display: flex;
@@ -304,6 +309,28 @@ figcaption {
 }
 
 /* Hide in text */
+
+/* --- Blog --- */
+.blog-posts {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e6e6e6;
+}
+
+.post-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.post-list li {
+  margin-bottom: 0.5rem;
+}
+
+.post-list a.is-active {
+  font-weight: 700;
+  text-decoration: none;
+}
 
 /* --- Mobile Version --- */
 /* --- Mobile Version --- */

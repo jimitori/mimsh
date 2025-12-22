@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Blog</title>
+    <link rel="icon" type="image/x-icon" href="../img/favicon.ico">
+    <link rel="stylesheet" href="../css/layout.css">
+</head>
+
+<body>
+    <div class="page">
+        <aside class="sidebar" data-component="sidebar">
+            <nav id="main-nav" class="main-nav"></nav>
+        </aside>
+
+        <main class="content" data-component="content">
+            <article class="content-article blog-article" id="blog-article"></article>
+            <section class="blog-posts">
+                <h2 lang="en">All posts</h2>
+                <h2 lang="ru">Все посты</h2>
+                <ul class="post-list" id="post-list"></ul>
+            </section>
+        </main>
+    </div>
+
+    <script type="module" src="../js/main.js"></script>
+    <script type="module" src="../js/blog.js"></script>
+</body>
+
+</html>

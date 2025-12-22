@@ -75,12 +75,20 @@
       "order": 70
     },
     {
+      "id": "blog",
+      "title": {
+        "en": "Blog",
+        "ru": "Блог"
+      },
+      "order": 80
+    },
+    {
       "id": "other",
       "title": {
         "en": "Other",
         "ru": "Разное"
       },
-      "order": 80
+      "order": 1000
     }
   ],
   "pages": [
@@ -420,6 +428,18 @@
         "design"
       ],
       "order": 100
+    },
+    {
+      "id": "blog-notes",
+      "title": {
+        "en": "Notes",
+        "ru": "Заметки"
+      },
+      "url": "/blog/",
+      "groups": [
+        "blog"
+      ],
+      "order": 10
     }
   ]
 }
