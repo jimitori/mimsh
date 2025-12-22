@@ -317,6 +317,13 @@ figure blockquote {
   border-top: 1px solid #e6e6e6;
 }
 
+.post-date {
+  margin-top: 0.4rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
 .post-list {
   list-style: none;
   padding-left: 0;

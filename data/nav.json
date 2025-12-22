@@ -440,6 +440,18 @@
         "blog"
       ],
       "order": 10
+    },
+    {
+      "id": "tg-fake-man",
+      "title": {
+        "en": "Blog of the fake man (18+ | RU)",
+        "ru": "Блог ненастоящего мужчины (18+)"
+      },
+      "url": "https://t.me/sexprosvetplus",
+      "groups": [
+        "blog"
+      ],
+      "order": 20
     }
   ]
 }

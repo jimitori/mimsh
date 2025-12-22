@@ -45,7 +45,7 @@ async function initBlog() {
       return;
     }
 
-    await loadPostContent(activePost);
+    await loadPostContent(activePost, currentLang);
     updateTitle(activePost, currentLang);
   };
 
@@ -106,7 +106,7 @@ function getTitle(post, lang) {
   return post.title[lang] || post.title.en || post.title.ru || post.slug || '';
 }
 
-async function loadPostContent(post) {
+async function loadPostContent(post, lang) {
   try {
     const response = await fetch(`${POSTS_DIR}${post.slug}.html`);
     if (!response.ok) {
@@ -121,6 +121,18 @@ async function loadPostContent(post) {
       articleEl.setAttribute('lang', postLang);
     } else {
       articleEl.removeAttribute('lang');
+    }
+
+    const dateEl = document.createElement('p');
+    dateEl.className = 'post-date';
+    dateEl.textContent = formatDate(post.date, lang);
+    dateEl.setAttribute('lang', lang);
+
+    const heading = articleEl.querySelector('h1, h2, h3');
+    if (heading) {
+      heading.insertAdjacentElement('afterend', dateEl);
+    } else {
+      articleEl.prepend(dateEl);
     }
   } catch (error) {
     console.error('Failed to load post', error);
@@ -147,6 +159,16 @@ function updateTitle(post, lang) {
   const label = BLOG_LABELS[lang] || BLOG_LABELS.en;
   const title = getTitle(post, lang);
   document.title = title ? `${title} — ${label}` : label;
+}
+
+function formatDate(value, lang) {
+  const parsed = Date.parse(value);
+  if (Number.isNaN(parsed)) return value || '';
+  return new Date(parsed).toLocaleDateString(lang || 'en', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
 }
 
 function renderNotFound() {
