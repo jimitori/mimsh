@@ -5,7 +5,7 @@ usage() {
   cat <<'EOF'
 Usage: scripts/make-previews.sh <input_dir> <output_dir>
 
-Creates 200x200px square previews for images in <input_dir>.
+Creates previews for images in <input_dir> with the longest side set to 200px.
 Uses ImageMagick (magick/convert) if available, otherwise macOS sips.
 When using sips, outputs JPEG files with .jpg extension.
 Mirrors subfolders from <input_dir> into <output_dir>.
@@ -56,33 +56,19 @@ find "$input_dir" -type f \( \
       continue
     fi
     if command -v magick >/dev/null 2>&1; then
-      magick "$src" -auto-orient -resize 200x200^ -gravity center -crop 200x200+0+0 +repage "$dst"
+      magick "$src" -auto-orient -resize 200x200 "$dst"
     else
-      convert "$src" -auto-orient -resize 200x200^ -gravity center -crop 200x200+0+0 +repage "$dst"
+      convert "$src" -auto-orient -resize 200x200 "$dst"
     fi
   else
     dst="$out_dir/${filename%.*}.jpg"
     if [[ -f "$dst" ]]; then
       continue
     fi
-    # Scale so the shortest side is 200px, then center-crop.
+    # Scale so the longest side is 200px, keep aspect ratio.
     tmp="$out_dir/.tmp_$filename"
-    width=$(sips -g pixelWidth "$src" | awk '{print $2}')
-    height=$(sips -g pixelHeight "$src" | awk '{print $2}')
-    if [[ -z "$width" || -z "$height" ]]; then
-      echo "Skipping (could not read dimensions): $src" >&2
-      rm -f "$tmp"
-      continue
-    fi
-    if (( width <= height )); then
-      target_w=200
-      target_h=$(( height * 200 / width ))
-    else
-      target_h=200
-      target_w=$(( width * 200 / height ))
-    fi
-    sips -s format "jpeg" -s formatOptions 85 -z "$target_h" "$target_w" "$src" --out "$tmp" >/dev/null
-    sips -c 200 200 "$tmp" --out "$dst" >/dev/null
+    sips -s format "jpeg" -s formatOptions 85 -Z 200 "$src" --out "$tmp" >/dev/null
+    mv -f "$tmp" "$dst"
     rm -f "$tmp"
   fi
 done
