@@ -19,6 +19,14 @@
       "order": 10
     },
     {
+      "id": "projects",
+      "title": {
+        "en": "Projects",
+        "ru": "Проекты"
+      },
+      "order": 15
+    },
+    {
       "id": "lectures",
       "title": {
         "en": "Lectures",
@@ -84,7 +92,7 @@
       },
       "url": "/design/slavic-layout/",
       "groups": [
-        "design"
+        "projects"
       ],
       "order": 20
     },
@@ -96,7 +104,7 @@
       },
       "url": "/design/old-church-slavonic/",
       "groups": [
-        "design"
+        "projects"
       ],
       "order": 30
     },
