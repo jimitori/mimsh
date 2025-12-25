@@ -117,6 +117,18 @@
       "order": 30
     },
     {
+      "id": "central-market",
+      "title": {
+        "en": "Central Market",
+        "ru": "Центральный рынок"
+      },
+      "url": "/projects/central-market/",
+      "groups": [
+        "projects"
+      ],
+      "order": 40
+    },
+    {
       "id": "poster-every-day",
       "title": {
         "en": "Poster Every Day",
