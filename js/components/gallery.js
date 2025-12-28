@@ -127,3 +127,42 @@ function closeLightbox() {
     lightboxEl.ariaHidden = 'true';
     document.body.style.overflow = '';
 }
+
+/**
+ * Initialize standalone zoomable images
+ * Any image with the class 'img-zoom' will open in the lightbox when clicked
+ */
+export function initZoomableImages() {
+    const zoomableImages = document.querySelectorAll('img.img-zoom');
+
+    zoomableImages.forEach(img => {
+        // Skip if already initialized
+        if (img.dataset.zoomInitialized) return;
+        img.dataset.zoomInitialized = 'true';
+
+        // Make the image clickable
+        img.style.cursor = 'pointer';
+        img.tabIndex = 0;
+        img.setAttribute('role', 'button');
+        img.setAttribute('aria-label', `View full size: ${img.alt || 'image'}`);
+
+        // Click handler
+        const openImage = () => {
+            openLightbox({
+                full: img.src,
+                alt: img.alt || '',
+                caption: img.title || img.getAttribute('data-caption') || ''
+            });
+        };
+
+        img.addEventListener('click', openImage);
+
+        // Keyboard accessibility
+        img.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openImage();
+            }
+        });
+    });
+}

@@ -1,7 +1,7 @@
 import { initSidebar } from './components/sidebar.js';
 import { initNotes } from './components/notes.js';
 import { initContent } from './components/content.js';
-import { initGallery } from './components/gallery.js';
+import { initGallery, initZoomableImages } from './components/gallery.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const sidebarEl = document.querySelector('[data-component="sidebar"]');
@@ -14,4 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const galleryEl = document.querySelector('[data-component="gallery"]');
   if (galleryEl) initGallery(galleryEl);
+
+  // Initialize standalone zoomable images (images with 'img-zoom' class)
+  initZoomableImages();
 });

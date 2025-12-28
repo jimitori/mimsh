@@ -457,3 +457,19 @@ figure blockquote {
 .pad-up {
   margin-top: 1rem;
 }
+
+/* --- Zoomable Images --- */
+img.img-zoom {
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+img.img-zoom:hover {
+  opacity: 0.85;
+  transform: scale(1.01);
+}
+
+img.img-zoom:focus {
+  outline: 2px solid #666;
+  outline-offset: 2px;
+}
