@@ -335,8 +335,8 @@
     {
       "id": "art",
       "title": {
-        "en": "Art",
-        "ru": "Искусство"
+        "en": "Art Practice",
+        "ru": "Художественная практика"
       },
       "url": "/art/",
       "groups": [
