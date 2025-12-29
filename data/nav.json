@@ -333,6 +333,18 @@
       "order": 40
     },
     {
+      "id": "art",
+      "title": {
+        "en": "Art",
+        "ru": "Искусство"
+      },
+      "url": "/art/",
+      "groups": [
+        "art"
+      ],
+      "order": 10
+    },
+    {
       "id": "world-alphabet",
       "title": {
         "en": "World Alphabet",
@@ -342,7 +354,7 @@
       "groups": [
         "art"
       ],
-      "order": 10
+      "order": 20
     },
     {
       "id": "artist-statement",
@@ -354,7 +366,7 @@
       "groups": [
         "art"
       ],
-      "order": 20
+      "order": 30
     },
     {
       "id": "exhibitions",
@@ -366,7 +378,7 @@
       "groups": [
         "art"
       ],
-      "order": 30
+      "order": 40
     },
     {
       "id": "soundcloud",
