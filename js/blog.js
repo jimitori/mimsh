@@ -1,3 +1,6 @@
+import { initNotes } from './components/notes.js';
+import { initGallery, initZoomableImages } from './components/gallery.js';
+
 const POSTS_URL = '/data/posts.json';
 const POSTS_DIR = '/blog/posts/';
 
@@ -106,6 +109,8 @@ function getTitle(post, lang) {
   return post.title[lang] || post.title.en || post.title.ru || post.slug || '';
 }
 
+
+
 async function loadPostContent(post, lang) {
   try {
     const response = await fetch(`${POSTS_DIR}${post.slug}.html`);
@@ -134,6 +139,19 @@ async function loadPostContent(post, lang) {
     } else {
       articleEl.prepend(dateEl);
     }
+
+    // Re-initialize components for the new content
+    // We pass document.body or the specific container depending on what the init functions expect
+    // initNotes expects .content-article to exist (which articleEl is)
+    initNotes(document.body);
+
+    // Check for gallery elements in the loaded content
+    const galleryEl = articleEl.querySelector('[data-component="gallery"]');
+    if (galleryEl) initGallery(galleryEl);
+
+    // Initialize zoomable images
+    initZoomableImages();
+
   } catch (error) {
     console.error('Failed to load post', error);
     renderNotFound();

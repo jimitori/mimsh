@@ -266,50 +266,64 @@ figure blockquote {
 
 /* --- Notes (Tufte Style) --- */
 .notes-list {
+  /* Kept for backward compatibility if needed, but mostly empty now */
   position: relative;
   list-style: none;
   padding: 0;
 }
 
-.notes-list li {
-  font-size: 0.85rem;
-  line-height: 1.5;
-  color: #666;
-  /* border-top: 1px solid #eee; */
-  /* padding-top: 0.8rem; */
-  width: 100%;
-}
-
-.notes-list li img {
-  max-width: 100%;
-  height: auto;
-  margin: 0.5rem 0;
-  filter: grayscale(100%);
-  /* Optional for Tufte Style */
+.note-wrapper {
+  position: relative;
 }
 
 .note-ref {
-  text-decoration: none;
-  color: #666;
-  font-weight: bold;
-  font-size: 0.8em;
   vertical-align: super;
-}
-
-.note-back {
-  text-decoration: none;
-  opacity: 0.2;
-}
-
-.note-back:hover {
-  opacity: 1;
+  font-size: 0.7em;
+  font-weight: bold;
+  color: #666;
+  margin-left: 0.1em;
 }
 
 .note {
+  /* Hidden by default until JS places it */
   display: none;
 }
 
-/* Hide in text */
+.note.is-placed {
+  /* Mobile First styles */
+  display: block;
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+  padding-left: 2rem;
+  position: relative;
+
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #666;
+}
+
+.note.is-placed p {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+/* Desktop positioning */
+@media (min-width: 900px) {
+  .note.is-placed {
+    position: absolute;
+    top: 0;
+    /* 
+       Left position: 100% of the content width + gutter.
+       The wrapper is inside .content, so 100% = width of paragraph.
+    */
+    left: calc(100% + var(--gutter));
+    width: var(--notes);
+
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+  }
+}
 
 /* --- Blog --- */
 .blog-posts {
