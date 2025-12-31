@@ -26,6 +26,33 @@ export async function initSidebar(root) {
     return item.title;
   };
 
+  // Helper to update page title
+  const updatePageTitle = () => {
+    // 1. Try DOM (for pages with explicit lang titles like index.html)
+    const titleEl = document.head.querySelector(`title[lang="${currentLang}"]`);
+    if (titleEl && titleEl.innerText) {
+      document.title = titleEl.innerText;
+      return;
+    }
+
+    // 2. Try Nav Data (for pages found in nav.json)
+    const currentPath = normalisePath(window.location.pathname);
+    const page = navData.pages.find(p => {
+      // Handle external URLs vs internal paths
+      try {
+        const pageUrl = new URL(p.url, window.location.origin);
+        if (pageUrl.origin !== window.location.origin) return false;
+        return normalisePath(pageUrl.pathname) === currentPath;
+      } catch (e) {
+        return false;
+      }
+    });
+
+    if (page) {
+      document.title = getLocalized(page);
+    }
+  };
+
   // Render Function
   const renderNav = () => {
     // Look for existing container or create one
@@ -69,6 +96,9 @@ export async function initSidebar(root) {
         // Update Switcher UI
         langSwitcher.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('is-active'));
         btn.classList.add('is-active');
+
+        // Update Title
+        updatePageTitle();
 
         // Re-render Nav
         renderNav();
@@ -124,6 +154,7 @@ export async function initSidebar(root) {
 
   // Initial Render
   renderNav();
+  updatePageTitle();
 
   // Mobile Menu Logic
   if (!document.querySelector('.mobile-nav-toggle')) {
