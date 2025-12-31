@@ -383,10 +383,10 @@
     {
       "id": "soundcloud",
       "title": {
-        "en": "Soundcloud",
-        "ru": "Soundcloud"
+        "en": "Soundcloud ↗︎",
+        "ru": "Soundcloud ↗︎"
       },
-      "url": "/music/soundcloud/",
+      "url": "https://soundcloud.com/mitya-morovov/tracks",
       "groups": [
         "music"
       ],
