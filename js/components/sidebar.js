@@ -127,7 +127,9 @@ export async function initSidebar(root) {
       '/img/icon-random/img - 3.svg',
       '/img/icon-random/img - 4.svg',
       '/img/icon-random/img - 5.png',
-      '/img/icon-random/img - 6.png'
+      '/img/icon-random/img - 6.png',
+      '/img/icon-random/img - 7.png',
+      '/img/icon-random/img - 8.png'
     ];
 
     const iconImg = navEl.querySelector('.nav-icon img');
