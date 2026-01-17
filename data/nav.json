@@ -153,6 +153,18 @@
       "order": 50
     },
     {
+      "id": "krokodeilaki",
+      "title": {
+        "en": "Krokodeilaki",
+        "ru": "Крокодиляки"
+      },
+      "url": "/design/krokodeilaki/",
+      "groups": [
+        "design"
+      ],
+      "order": 35
+    },
+    {
       "id": "portfolio",
       "title": {
         "en": "Portfolio",

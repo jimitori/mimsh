@@ -1,5 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Noto+Sans+Mono:wght@400;700&family=Noto+Serif:wght@400;700&family=Noto+Sans:wght@400;700&display=swap');
 
+/* Krokodeilaki Font */
+@font-face {
+  font-family: 'Krokodeilaki';
+  src: url('/files/fonts/krokodeilaki/Krokodeilaki.woff2') format('woff2'),
+    url('/files/fonts/krokodeilaki/Krokodeilaki.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --sidebar: 240px;
   --gutter: 40px;
@@ -86,6 +96,7 @@ p {
   grid-template-columns: var(--sidebar) var(--gutter) var(--content) var(--gutter) var(--notes) 1fr;
   grid-template-areas: "sidebar . content . notes extra";
   padding-top: 40px;
+  padding-bottom: 60px;
 }
 
 .nav-icon {
@@ -425,7 +436,7 @@ figure blockquote {
 @media (max-width: 900px) {
   .page {
     display: block;
-    padding: 20px;
+    padding: 20px 20px 60px;
   }
 
   .mobile-nav-toggle {
@@ -518,4 +529,9 @@ img.img-zoom:focus {
   /* Optically align with text baseline */
   margin-right: 0.25em;
   /* Spacing between icon and text */
+}
+
+/* --- Krokodeilaki Font Class --- */
+.kroko {
+  font-family: 'Krokodeilaki', sans-serif;
 }
