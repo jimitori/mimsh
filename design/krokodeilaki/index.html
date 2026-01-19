@@ -34,6 +34,29 @@
                     composition — where the message may remain readable, but does not have to be immediately recognized
                     as text.</p>
 
+                <h2 lang="en">Try it</h2>
+                <h2 lang="ru">Попробовать</h2>
+
+                <p lang="en">Type your text below to see it in Krokodeilaki font:</p>
+                <p lang="ru">Введите текст ниже, чтобы увидеть его шрифтом Krokodeilaki:</p>
+
+                <textarea id="fontTest"
+                    style="width: 100%; min-height: 100px; padding: 0.5rem; font-size: 1rem; margin-bottom: 1rem; box-sizing: border-box;"
+                    placeholder="Type your text here..."></textarea>
+
+                <div id="fontPreview" class="kroko"
+                    style="font-size: 2rem; line-height: 1.5; min-height: 60px; padding: 1rem; background: #f5f5f5; border-radius: 4px;">
+                </div>
+
+                <script>
+                    const input = document.getElementById('fontTest');
+                    const preview = document.getElementById('fontPreview');
+                    input.addEventListener('input', () => preview.textContent = input.value);
+                </script>
+
+                <h2 lang="en">About the font</h2>
+                <h2 lang="ru">О шрифте</h2>
+
                 <p lang="en">The name <strong>Krokodeilaki</strong> comes from the Greek children's song <em>‘
                         Το Κροκοδειλάκι’</em> by Ζουζούνια band. I was drawn to the sound of the word itself, as well as
                     to its association
@@ -98,25 +121,7 @@
                     <small><em>Только для личного использования</em></small>
                 </p>
 
-                <h2 lang="en">Try it</h2>
-                <h2 lang="ru">Попробовать</h2>
 
-                <p lang="en">Type your text below to see it in Krokodeilaki font:</p>
-                <p lang="ru">Введите текст ниже, чтобы увидеть его шрифтом Krokodeilaki:</p>
-
-                <textarea id="fontTest"
-                    style="width: 100%; min-height: 100px; padding: 0.5rem; font-size: 1rem; margin-bottom: 1rem; box-sizing: border-box;"
-                    placeholder="Type your text here..."></textarea>
-
-                <div id="fontPreview" class="kroko"
-                    style="font-size: 2rem; line-height: 1.5; min-height: 60px; padding: 1rem; background: #f5f5f5; border-radius: 4px;">
-                </div>
-
-                <script>
-                    const input = document.getElementById('fontTest');
-                    const preview = document.getElementById('fontPreview');
-                    input.addEventListener('input', () => preview.textContent = input.value);
-                </script>
             </article>
         </main>
     </div>
