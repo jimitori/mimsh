@@ -38,7 +38,7 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.9);
+    background: var(--color-lightbox-bg);
     z-index: 11000;
     display: flex;
     justify-content: center;
@@ -64,11 +64,11 @@
     max-width: 100%;
     max-height: 85vh;
     object-fit: contain;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 20px var(--color-overlay);
 }
 
 .gallery-caption {
-    color: #fff;
+    color: var(--color-text);
     margin-top: 1rem;
     font-family: var(--font-main);
     font-size: 0.9rem;
@@ -80,7 +80,7 @@
     right: 30px;
     background: none;
     border: none;
-    color: #fff;
+    color: var(--color-text);
     font-size: 3rem;
     cursor: pointer;
     line-height: 1;
