@@ -37,8 +37,20 @@
   --color-lightbox-bg: rgba(250, 250, 250, 0.95);
 }
 
+/* Manual Dark Theme Override */
+[data-theme="dark"] {
+  --color-text: var(--white);
+  --color-text-muted: #999;
+  --color-bg: var(--black);
+  --color-bg-alt: #2a2a2a;
+  --color-border: #444;
+  --color-overlay: rgba(250, 250, 250, 0.2);
+  --color-lightbox-bg: rgba(0, 0, 0, 0.95);
+}
+
+/* Respect System Preference if no manual choice is made */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --color-text: var(--white);
     --color-text-muted: #999;
     --color-bg: var(--black);
@@ -67,6 +79,7 @@ html[lang="ru"] [lang]:not([lang="ru"]) {
 .lang-btn {
   background: none;
   border: none;
+  color: inherit;
   font-family: var(--font-main);
   font-size: 0.9rem;
   cursor: pointer;
@@ -89,6 +102,7 @@ html[lang="ru"] [lang]:not([lang="ru"]) {
 
 body {
   background-color: var(--color-bg);
+  color: var(--color-text);
   margin: 0;
 }
 
@@ -554,6 +568,74 @@ img.img-zoom:focus {
   /* Optically align with text baseline */
   margin-right: 0.25em;
   /* Spacing between icon and text */
+}
+
+/* --- Theme Switcher --- */
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10002;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text);
+  opacity: 0.6;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.theme-toggle:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.theme-toggle svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Hide moon in dark theme, hide sun in light theme */
+.theme-toggle .moon {
+  display: block;
+}
+
+.theme-toggle .sun {
+  display: none;
+}
+
+[data-theme="dark"] .theme-toggle .moon {
+  display: none;
+}
+
+[data-theme="dark"] .theme-toggle .sun {
+  display: block;
+}
+
+/* Handle system preference visibility */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-toggle .moon {
+    display: none;
+  }
+
+  :root:not([data-theme="light"]) .theme-toggle .sun {
+    display: block;
+  }
+}
+
+@media (max-width: 900px) {
+  .theme-toggle {
+    right: 70px;
+    /* Leave space for hamburger menu */
+  }
 }
 
 /* --- Krokodeilaki Font Class --- */

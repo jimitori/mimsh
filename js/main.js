@@ -2,6 +2,7 @@ import { initSidebar } from './components/sidebar.js';
 import { initNotes } from './components/notes.js';
 import { initContent } from './components/content.js';
 import { initGallery, initZoomableImages } from './components/gallery.js';
+import { initThemeSwitcher } from './components/theme.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const sidebarEl = document.querySelector('[data-component="sidebar"]');
@@ -17,4 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize standalone zoomable images (images with 'img-zoom' class)
   initZoomableImages();
+
+  // Initialize Theme Switcher
+  initThemeSwitcher();
 });
