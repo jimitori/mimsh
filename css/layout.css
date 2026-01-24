@@ -13,8 +13,8 @@
 /* Avant-Garde Glagolitic Font */
 @font-face {
   font-family: 'Avant-Glagolitic';
-  src: url('/files/fonts/avant-garde glagolitic/Avant-Glagolitic.woff2') format('woff2'),
-    url('/files/fonts/avant-garde glagolitic/Avant-Glagolitic-v1.0.otf') format('opentype');
+  src: url('/files/fonts/avant-garde%20glagolitic/Avant-Glagolitic.woff2') format('woff2'),
+    url('/files/fonts/avant-garde%20glagolitic/Avant-Glagolitic-v1.0.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
