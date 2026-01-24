@@ -18,12 +18,32 @@
             <article class="content-article">
                 <h1 lang="en">Avant-Garde Glagolitic</h1>
                 <h1 lang="ru">Авангардная глаголица</h1>
-                <p>2020—</p>
+                <p>v.1.0</p>
                 <p lang="en">A fusion of the ancient Glagolitic script with the revolutionary aesthetics of
                     Russian avant-garde movements—Suprematism, Constructivism, Rayism, and abstractionism—uniting two
                     Slavic-born traditions of bold human invention.</p>
                 <p lang="ru">Совмещение древней глаголицы с революционной эстетикой русского авангарда: супрематизмом,
                     конструктивизмом, лучизмом и абстракционизмом. Объединение двух славянских творческих традиций.</p>
+
+                <h2 lang="en">Try it</h2>
+                <h2 lang="ru">Попробовать</h2>
+
+                <p lang="en">Type your text below to see it in Avant-Garde Glagolitic font:</p>
+                <p lang="ru">Введите текст ниже, чтобы увидеть его шрифтом Avant-Garde Glagolitic:</p>
+
+                <textarea id="fontTest"
+                    style="width: 100%; min-height: 100px; padding: 0.5rem; font-size: 1rem; margin-bottom: 1rem; box-sizing: border-box; background: var(--color-bg); color: var(--color-text); border: 1px solid var(--color-border); border-radius: 4px;"
+                    placeholder="Type your text here..."></textarea>
+
+                <div id="fontPreview" class="glagolitic"
+                    style="font-size: 2rem; line-height: 1.5; min-height: 60px; padding: 1rem; background: var(--color-bg-alt); border-radius: 4px;">
+                </div>
+
+                <script>
+                    const input = document.getElementById('fontTest');
+                    const preview = document.getElementById('fontPreview');
+                    input.addEventListener('input', () => preview.textContent = input.value);
+                </script>
 
                 <h2 lang="en">Concept & Process</h2>
                 <h2 lang="ru">Концепция и процесс</h2>
@@ -75,17 +95,34 @@
 
                 <h2 lang="en">Results</h2>
                 <h2 lang="ru">Результаты</h2>
-                <p lang="en">This ongoing project has so far produced over 12 characters, each a distinctive fusion of
-                    Glagolitic
-                    heritage and avant-garde innovation. It celebrates the enduring spirit of Slavic creativity while
-                    pushing the boundaries of traditional typography. Though still in progress, I'm considering
-                    compiling the results into a functional font.</p>
-                <p lang="ru">На данный момент этот продолжающийся проект уже включает более 12 символов — каждый из них
+                <p lang="en">This project has produced over 12 characters, each a distinctive fusion of
+                    Glagolitic heritage and avant-garde innovation. It celebrates the enduring spirit of Slavic
+                    creativity while
+                    pushing the boundaries of traditional typography. Version 1.0 of the font is now ready and available
+                    for download.</p>
+                <p lang="ru">Этот проект включает более 12 символов — каждый из них
                     представляет собой уникальное соединение глаголической традиции и авангардного новаторства. Проект
                     одновременно отмечает живучесть славянского творческого духа и раздвигает границы привычной
-                    типографики. И хотя работа всё ещё продолжается, я рассматриваю возможность собрать наработки в
-                    полноценный шрифт.</p>
+                    типографики. Версия 1.0 шрифта готова и доступна для скачивания.</p>
                 <img src="/img/design/a-glagolitic1.png" alt="Avant Garde Glagolitic alphabet">
+
+                <h2 lang="en">Download</h2>
+                <h2 lang="ru">Скачать</h2>
+
+                <p lang="en">
+                    <a href="/files/fonts/avant-garde glagolitic/Avant-Glagolitic-v1.0.otf" download>Download
+                        Avant-Glagolitic-v1.0.otf</a>
+                    <br>
+                    <small><em>For personal use only</em></small>
+                </p>
+                <p lang="ru">
+                    <a href="/files/fonts/avant-garde glagolitic/Avant-Glagolitic-v1.0.otf" download>Скачать
+                        Avant-Glagolitic-v1.0.otf</a>
+                    <br>
+                    <small><em>Только для личного использования</em></small>
+                </p>
+
+            </article>
         </main>
     </div>
 

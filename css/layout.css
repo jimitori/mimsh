@@ -10,6 +10,16 @@
   font-display: swap;
 }
 
+/* Avant-Garde Glagolitic Font */
+@font-face {
+  font-family: 'Avant-Glagolitic';
+  src: url('/files/fonts/avant-garde glagolitic/Avant-Glagolitic.woff2') format('woff2'),
+    url('/files/fonts/avant-garde glagolitic/Avant-Glagolitic-v1.0.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --sidebar: 240px;
   --gutter: 40px;
@@ -641,4 +651,9 @@ img.img-zoom:focus {
 /* --- Krokodeilaki Font Class --- */
 .kroko {
   font-family: 'Krokodeilaki', sans-serif;
+}
+
+/* --- Avant-Garde Glagolitic Font Class --- */
+.glagolitic {
+  font-family: 'Avant-Glagolitic', sans-serif;
 }
