@@ -191,7 +191,8 @@ h6 {
   margin-bottom: 0.75rem;
 }
 
-.nav-group-toggle {
+.nav-group-toggle,
+.nav-group-link {
   font-family: var(--font-sans);
   color: var(--color-text);
 }
@@ -232,22 +233,44 @@ figure blockquote {
 }
 
 /* --- Navigation --- */
-.nav-group-toggle {
+.nav-group-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  width: 100%;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.nav-group-link {
+  display: inline-flex;
+  align-items: center;
+  flex: 1;
   padding: 0.6rem 0;
-  background: none;
-  border: none;
-  cursor: pointer;
+  text-decoration: none;
   font-size: 1.1rem;
   font-weight: 700;
 }
 
-.nav-group-toggle:hover {
+.nav-group-link:hover {
   text-decoration: underline;
   text-decoration-color: var(--color-overlay);
+}
+
+.nav-group-link.is-active {
+  font-style: italic;
+}
+
+.nav-group-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.6rem 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.nav-group-toggle:hover {
+  opacity: 0.7;
 }
 
 
@@ -525,15 +548,9 @@ figure blockquote {
     display: block !important;
   }
 
-  /* Disable clicking headers */
+  /* Hide toggles when groups are forced open */
   body.is-mobile-nav-open .nav-group-toggle {
-    pointer-events: none;
-    text-decoration: none;
-  }
-
-  body.is-mobile-nav-open .nav-group-toggle:hover {
-    text-decoration: none;
-    cursor: default;
+    display: none;
   }
 
   .notes {

@@ -184,15 +184,29 @@ function buildGroup(group, pages, currentPath, getLocalized) {
     .filter(p => (p.groups || []).includes(group.id))
     .sort((a, b) => (a.order || 0) - (b.order || 0));
 
-  if (relatedPages.length === 0) return null;
-
   const groupWrapper = document.createElement('section');
   groupWrapper.className = 'nav-group';
 
-  const button = document.createElement('button');
-  button.type = 'button';
-  button.className = 'nav-group-toggle';
-  button.textContent = getLocalized(group);
+  const header = document.createElement('div');
+  header.className = 'nav-group-header';
+
+  const groupLink = document.createElement('a');
+  groupLink.className = 'nav-group-link';
+  const groupUrl = group.url || `/${group.id}/`;
+  groupLink.href = groupUrl;
+  groupLink.textContent = getLocalized(group);
+
+  // Check if external group link
+  const isExternalGroup = groupUrl.startsWith('http://') || groupUrl.startsWith('https://');
+  if (isExternalGroup) {
+    groupLink.target = '_blank';
+    groupLink.rel = 'noopener noreferrer';
+  }
+
+  const toggle = document.createElement('button');
+  toggle.type = 'button';
+  toggle.className = 'nav-group-toggle';
+  toggle.setAttribute('aria-label', `Toggle ${getLocalized(group)}`);
 
   const list = document.createElement('ul');
   list.className = 'nav-group-list';
@@ -235,17 +249,46 @@ function buildGroup(group, pages, currentPath, getLocalized) {
     list.appendChild(li);
   });
 
+  const hasChildren = relatedPages.length > 0;
+
+  if (!isExternalGroup) {
+    const groupPath = normalisePath(new URL(groupLink.href, window.location.origin).pathname);
+    if (groupPath === currentPath) {
+      groupLink.classList.add('is-active');
+      hasActive = true;
+    }
+  }
+
   // open state
   const isInitiallyOpen = hasActive;
   if (isInitiallyOpen) {
     groupWrapper.classList.add('is-open');
   }
 
-  button.addEventListener('click', () => {
-    groupWrapper.classList.toggle('is-open');
-  });
+  const setToggleState = (isOpen) => {
+    toggle.textContent = isOpen ? '↑' : '↓';
+    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  };
 
-  groupWrapper.appendChild(button);
-  groupWrapper.appendChild(list);
+  if (hasChildren) {
+    setToggleState(isInitiallyOpen);
+
+    toggle.addEventListener('click', () => {
+      const isOpen = groupWrapper.classList.toggle('is-open');
+      setToggleState(isOpen);
+    });
+  } else {
+    toggle.classList.add('is-hidden');
+    toggle.setAttribute('aria-hidden', 'true');
+  }
+
+  header.appendChild(groupLink);
+  if (hasChildren) {
+    header.appendChild(toggle);
+  }
+  groupWrapper.appendChild(header);
+  if (hasChildren) {
+    groupWrapper.appendChild(list);
+  }
   return groupWrapper;
 }
