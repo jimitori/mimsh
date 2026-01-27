@@ -266,7 +266,9 @@ function buildGroup(group, pages, currentPath, getLocalized) {
   }
 
   const setToggleState = (isOpen) => {
-    toggle.innerHTML = isOpen ? '<span class="nav-toggle-icon">˄</span>' : '<span class="nav-toggle-icon">˅</span>';
+    toggle.innerHTML = isOpen
+      ? '<svg class="nav-toggle-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M8 5l5 6H3l5-6z"></path></svg>'
+      : '<svg class="nav-toggle-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M8 11L3 5h10L8 11z"></path></svg>';
     toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
   };
 

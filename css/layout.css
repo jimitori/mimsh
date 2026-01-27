@@ -273,7 +273,10 @@ figure blockquote {
 
 .nav-toggle-icon {
   display: inline-block;
-  transform: translateY(-0.02em);
+  width: 0.95em;
+  height: 0.95em;
+  fill: currentColor;
+  transform: translateY(0.03em);
 }
 
 
