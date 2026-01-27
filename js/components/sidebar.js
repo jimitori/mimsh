@@ -267,8 +267,8 @@ function buildGroup(group, pages, currentPath, getLocalized) {
 
   const setToggleState = (isOpen) => {
     toggle.innerHTML = isOpen
-      ? '<svg class="nav-toggle-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M8 5l5 6H3l5-6z"></path></svg>'
-      : '<svg class="nav-toggle-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M8 11L3 5h10L8 11z"></path></svg>';
+      ? '<svg class="nav-toggle-icon" viewBox="0 0 640 640" aria-hidden="true" focusable="false"><path d="M297.4 169.4C309.9 156.9 330.2 156.9 342.7 169.4L534.7 361.4C547.2 373.9 547.2 394.2 534.7 406.7C522.2 419.2 501.9 419.2 489.4 406.7L320 237.3L150.6 406.6C138.1 419.1 117.8 419.1 105.3 406.6C92.8 394.1 92.8 373.8 105.3 361.3L297.3 169.3z"></path></svg>'
+      : '<svg class="nav-toggle-icon" viewBox="0 0 640 640" aria-hidden="true" focusable="false"><path d="M297.4 470.6C309.9 483.1 330.2 483.1 342.7 470.6L534.7 278.6C547.2 266.1 547.2 245.8 534.7 233.3C522.2 220.8 501.9 220.8 489.4 233.3L320 402.7L150.6 233.4C138.1 220.9 117.8 220.9 105.3 233.4C92.8 245.9 92.8 266.2 105.3 278.7L297.3 470.7z"></path></svg>';
     toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
   };
 
