@@ -266,7 +266,7 @@ function buildGroup(group, pages, currentPath, getLocalized) {
   }
 
   const setToggleState = (isOpen) => {
-    toggle.textContent = isOpen ? '↑' : '↓';
+    toggle.innerHTML = isOpen ? '<span class="nav-toggle-icon">▴</span>' : '<span class="nav-toggle-icon">▾</span>';
     toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
   };
 

@@ -271,6 +271,11 @@ figure blockquote {
   opacity: 0.7;
 }
 
+.nav-toggle-icon {
+  display: inline-block;
+  transform: translateY(-0.02em);
+}
+
 
 
 .nav-item a {
