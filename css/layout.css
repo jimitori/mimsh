@@ -250,7 +250,7 @@ figure blockquote {
 
 .nav-group-link:hover {
   text-decoration: underline;
-  text-decoration-color: var(--color-overlay);
+  text-decoration-color: currentColor;
 }
 
 .nav-group-link.is-active {
@@ -290,7 +290,7 @@ figure blockquote {
 
 .nav-item a:hover {
   text-decoration: underline;
-  text-decoration-color: var(--color-overlay);
+  text-decoration-color: currentColor;
 }
 
 .nav-item a.is-active {
