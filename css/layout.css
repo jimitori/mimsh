@@ -232,6 +232,10 @@ figure blockquote {
   margin-right: 0;
 }
 
+ul {
+  line-height: 1.6;
+}
+
 /* --- Navigation --- */
 .nav-group-header {
   display: inline-flex;
