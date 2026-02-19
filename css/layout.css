@@ -236,6 +236,11 @@ ul {
   line-height: 1.6;
 }
 
+section {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
 /* --- Navigation --- */
 .nav-group-header {
   display: inline-flex;
