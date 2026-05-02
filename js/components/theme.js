@@ -12,7 +12,12 @@ export function initThemeSwitcher() {
     <svg xmlns="http://www.w3.org/2000/svg" class="moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
   `;
   
-  document.body.appendChild(button);
+  const navFooter = document.querySelector('.nav-footer');
+  if (navFooter) {
+    navFooter.appendChild(button);
+  } else {
+    document.body.appendChild(button);
+  }
 
   // 2. Theme Logic
   const getTheme = () => {

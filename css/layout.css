@@ -1,6 +1,57 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Noto+Sans+Mono:wght@400;700&family=Noto+Serif:wght@400;700&family=Noto+Sans:wght@400;700&display=swap');
+/* =============================================================
+   mimsh.com — design system
+   -------------------------------------------------------------
+   This file is organised top-to-bottom in this order:
 
-/* Krokodeilaki Font */
+     1. Fonts                — @font-face + Google Fonts import
+     2. Tokens               — colours, type, spacing, layout
+     3. Reset & base         — small modern reset, body defaults
+     4. Typography           — headings, paragraphs, links, lists
+     5. Page layout          — the 3-column editorial grid
+     6. Sidebar / nav        — left-rail navigation
+     7. Notes (Tufte)        — right-rail sidenotes
+     8. Homepage             — hero + featured project grid
+     9. Portfolio page       — design/portfolio specific styles
+    10. Utilities            — small helpers (.kroko, .glagolitic…)
+    11. Responsive           — tablet & mobile overrides
+
+   Editing rules of thumb:
+   - Change colour, size, or spacing in section 2 (tokens) first.
+   - Layout sizes (sidebar width, content width) live in :root too.
+   - One typographic accent: the yellow underline. Use sparingly.
+   ============================================================= */
+
+
+/* -------------------------------------------------------------
+   1. FONTS
+   ------------------------------------------------------------- */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Noto+Serif:wght@400;700&display=swap');
+
+@font-face {
+  font-family: 'PP Right Grotesk Display';
+  src: url('/fonts/PPRightGrotesk-SpatialBlack.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Right Grotesk';
+  src: url('/fonts/PPRightGrotesk-WideMedium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Right Grotesk';
+  src: url('/fonts/PPRightGrotesk-WideMediumItalic.otf') format('opentype');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
 @font-face {
   font-family: 'Krokodeilaki';
   src: url('/files/fonts/krokodeilaki/Krokodeilaki.woff2') format('woff2'),
@@ -10,7 +61,6 @@
   font-display: swap;
 }
 
-/* Avant-Garde Glagolitic Font */
 @font-face {
   font-family: 'Avant-Glagolitic';
   src: url('/files/fonts/avant-garde%20glagolitic/Avant-Glagolitic.woff2') format('woff2'),
@@ -20,143 +70,293 @@
   font-display: swap;
 }
 
+
+/* -------------------------------------------------------------
+   2. TOKENS
+   Everything that might need tweaking lives here.
+   ------------------------------------------------------------- */
+
 :root {
-  --sidebar: 240px;
-  --gutter: 40px;
-  --content: 620px;
-  --notes: 220px;
-  --max-width: 1440px;
+  /* — Palette ————————————————————————————— */
+  --paper: #faf9f5;
+  /* off-white background          */
+  --ink: #1a1a1a;
+  /* off-black text                */
+  --accent: #ffcd1b;
+  /* the one yellow                */
+  --accent-2: #ff9a02;
+  /* deeper yellow for active nav  */
 
-  --font-main: 'Noto Sans Mono', monospace;
-  --font-heading: 'Noto Sans Mono', monospace;
-  /* --font-heading: 'Montserrat', sans-serif; */
-  --font-serif: 'Noto Serif', serif;
-  --font-sans: 'Noto Sans', sans-serif;
+  /* Semantic — light theme is default */
+  --color-bg: var(--paper);
+  --color-text: var(--ink);
+  --color-muted: rgba(26, 26, 26, 0.62);
+  /* secondary copy   */
+  --color-whisper: rgba(26, 26, 26, 0.40);
+  /* labels, captions */
+  --color-rule: rgba(26, 26, 26, 0.12);
+  /* hairlines        */
+  --color-rule-soft: rgba(26, 26, 26, 0.06);
+  --color-bg-alt: #f1efe7;
+  /* card / hover     */
 
-  /* --- Color Constants --- */
-  --white: #fafafa;
-  --black: #222;
+  /* — Typography ——————————————————————————— */
+  --font-sans: 'IBM Plex Sans', system-ui, sans-serif;
+  --font-serif: 'Noto Serif', Georgia, serif;
+  --font-grotesk: 'PP Right Grotesk', 'IBM Plex Sans', sans-serif;
+  --font-display: 'PP Right Grotesk Display', 'PP Right Grotesk', sans-serif;
 
-  /* --- Semantic Colors - Light Theme (Default) --- */
-  --color-text: var(--black);
-  --color-text-muted: #666;
-  --color-bg: var(--white);
-  --color-bg-alt: #f0f0f0;
-  --color-border: #e6e6e6;
-  --color-overlay: rgba(34, 34, 34, 0.1);
-  --color-lightbox-bg: rgba(250, 250, 250, 0.95);
+  --fs-label: 12px;
+  /* small caps labels        */
+  --fs-meta: 14px;
+  /* nav, captions, footnotes */
+  --fs-body: 16px;
+  /* prose                    */
+  --fs-lead: 20px;
+  /* intro paragraph          */
+  --fs-h3: 24px;
+  --fs-h2: 32px;
+  --fs-h1: 44px;
+  /* sub-page H1              */
+  --fs-hero: 72px;
+  /* homepage display name    */
+
+  --lh-tight: 1.05;
+  --lh-snug: 1.25;
+  --lh-body: 1.55;
+
+  --tracking-label: 0.14em;
+  /* uppercase labels */
+  --tracking-tight: -0.02em;
+  /* big display      */
+
+  /* — Spacing (8px scale) ———————————————————— */
+  --s-1: 8px;
+  --s-2: 16px;
+  --s-3: 24px;
+  --s-4: 32px;
+  --s-5: 48px;
+  --s-6: 64px;
+  --s-7: 96px;
+  --s-8: 128px;
+
+  /* — Layout ——————————————————————————————— */
+  --max-width: 1280px;
+  --sidebar: 220px;
+  --gutter: 64px;
+  --content: 640px;
+  --notes: 200px;
+
+  --duration: 180ms;
+  --ease: cubic-bezier(0.2, 0.6, 0.2, 1);
+
+  /* — Back-compat aliases ——————————————————————
+     A handful of older inline styles and gallery.css still reference the
+     previous variable names. Aliasing keeps them working without edits. */
+  --white: var(--paper);
+  --black: var(--ink);
+  --color-accent: var(--accent);
+  --color-nav-active: var(--accent-2);
+  --color-border: var(--color-rule);
+  --color-text-muted: var(--color-muted);
+  --color-text-tertiary: var(--color-whisper);
+  --color-overlay: rgba(26, 26, 26, 0.10);
+  --color-lightbox-bg: rgba(250, 249, 245, 0.96);
+  --font-main: var(--font-sans);
+  --font-heading: var(--font-grotesk);
 }
 
-/* Manual Dark Theme Override */
+/* — Dark theme (manual or system) ————————————— */
 [data-theme="dark"] {
-  --color-text: var(--white);
-  --color-text-muted: #999;
-  --color-bg: var(--black);
-  --color-bg-alt: #2a2a2a;
-  --color-border: #444;
-  --color-overlay: rgba(250, 250, 250, 0.2);
-  --color-lightbox-bg: rgba(0, 0, 0, 0.95);
+  --color-bg: #141414;
+  --color-text: #f2f1ea;
+  --color-muted: rgba(242, 241, 234, 0.65);
+  --color-whisper: rgba(242, 241, 234, 0.40);
+  --color-rule: rgba(242, 241, 234, 0.14);
+  --color-rule-soft: rgba(242, 241, 234, 0.06);
+  --color-bg-alt: #1f1f1f;
 }
 
-/* Respect System Preference if no manual choice is made */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --color-text: var(--white);
-    --color-text-muted: #999;
-    --color-bg: var(--black);
-    --color-bg-alt: #2a2a2a;
-    --color-border: #444;
-    --color-overlay: rgba(250, 250, 250, 0.2);
-    --color-lightbox-bg: rgba(0, 0, 0, 0.95);
+    --color-bg: #141414;
+    --color-text: #f2f1ea;
+    --color-muted: rgba(242, 241, 234, 0.65);
+    --color-whisper: rgba(242, 241, 234, 0.40);
+    --color-rule: rgba(242, 241, 234, 0.14);
+    --color-rule-soft: rgba(242, 241, 234, 0.06);
+    --color-bg-alt: #1f1f1f;
   }
 }
 
-/* --- Language Switching Logic --- */
-/* Hide content with a specific lang attribute if it doesn't match the document lang */
+
+/* -------------------------------------------------------------
+   3. RESET & BASE
+   ------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  font-feature-settings: "kern", "liga", "calt";
+}
+
+img,
+svg,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Bilingual: hide the language that isn't currently selected. */
 html[lang="en"] [lang]:not([lang="en"]),
 html[lang="ru"] [lang]:not([lang="ru"]) {
   display: none !important;
 }
 
-/* Language Switcher Styles */
-.lang-switcher {
-  margin-top: 1rem;
-  margin-bottom: 2rem;
-  display: flex;
-  gap: 0.5rem;
-}
 
-.lang-btn {
-  background: none;
-  border: none;
-  color: inherit;
-  font-family: var(--font-main);
-  font-size: 0.9rem;
-  cursor: pointer;
-  padding: 0;
-  opacity: 0.5;
-  text-decoration: none;
-}
+/* -------------------------------------------------------------
+   4. TYPOGRAPHY
+   The single accent rule: links carry a yellow underline.
+   ------------------------------------------------------------- */
 
-.lang-btn.is-active {
-  opacity: 1;
-  font-weight: bold;
-  text-decoration: underline;
-}
-
-.lang-btn:hover {
-  opacity: 1;
-}
-
-
-
-body {
-  background-color: var(--color-bg);
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-grotesk);
   color: var(--color-text);
-  margin: 0;
+  margin: var(--s-5) 0 var(--s-2);
+  line-height: var(--lh-snug);
+  font-weight: 500;
 }
 
-/* --- Typography & Elements --- */
-a {
-  color: inherit;
-  text-decoration: underline;
+h1 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: var(--fs-h1);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tracking-tight);
+  margin-top: 0;
+  margin-bottom: var(--s-3);
 }
 
-a:hover {
-  text-decoration: none;
+h2 {
+  font-size: var(--fs-h2);
+  font-weight: 700;
+}
+
+h3 {
+  font-size: var(--fs-h3);
+  font-weight: 700;
+}
+
+h4 {
+  font-size: var(--fs-body);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
 }
 
 p {
-  margin-bottom: 1rem;
-  line-height: 1.6;
+  margin: 0 0 var(--s-2);
+  line-height: var(--lh-body);
 }
 
-/* Utilities */
-.hidden {
-  display: none;
+p+p {
+  margin-top: 0;
 }
 
-/* --- General Styles --- */
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  transition: text-decoration-color var(--duration) var(--ease),
+    color var(--duration) var(--ease);
+}
+
+a:hover {
+  text-decoration-color: var(--color-text);
+}
+
+ul,
+ol {
+  margin: 0 0 var(--s-3);
+  padding-left: 1.25em;
+  line-height: var(--lh-body);
+}
+
+li {
+  margin-bottom: var(--s-1);
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--color-rule);
+  margin: var(--s-5) 0;
+}
+
+blockquote {
+  margin: var(--s-3) 0;
+  padding-left: var(--s-3);
+  border-left: 2px solid var(--accent);
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--color-muted);
+}
+
+figure {
+  margin: var(--s-4) 0;
+}
+
+figcaption {
+  margin-top: var(--s-1);
+  font-size: var(--fs-meta);
+  color: var(--color-whisper);
+  line-height: 1.5;
+}
+
+.serif {
+  font-family: var(--font-serif);
+}
+
+
+/* -------------------------------------------------------------
+   5. PAGE LAYOUT
+   A simple 3-column editorial grid:
+   [sidebar] [gutter] [content] [gutter] [notes]
+   ------------------------------------------------------------- */
+
 .page {
   max-width: var(--max-width);
   margin: 0 auto;
-  font-family: var(--font-main);
+  padding: var(--s-6) var(--s-5) var(--s-7);
   display: grid;
-  grid-template-columns: var(--sidebar) var(--gutter) var(--content) var(--gutter) var(--notes) 1fr;
+  grid-template-columns:
+    var(--sidebar) var(--gutter) minmax(0, var(--content)) var(--gutter) var(--notes) 1fr;
   grid-template-areas: "sidebar . content . notes extra";
-  padding-top: 40px;
-  padding-bottom: 60px;
-}
-
-.nav-icon {
-  display: block;
-  margin-bottom: 2rem;
-  height: 124px;
-}
-
-.nav-icon img {
-  height: 100%;
-  object-fit: contain;
+  gap: 0;
 }
 
 .sidebar {
@@ -165,6 +365,7 @@ p {
 
 .content {
   grid-area: content;
+  min-width: 0;
 }
 
 .notes {
@@ -175,469 +376,223 @@ p {
   grid-area: extra;
 }
 
-img {
-  max-width: 100%;
+/* Sub-page article container — keeps prose to a comfortable measure. */
+.content-article {
+  max-width: var(--content);
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-sans);
+
+/* -------------------------------------------------------------
+   6. SIDEBAR / NAV
+   The DOM is built by /js/components/sidebar.js from nav.json.
+   We just style what it produces.
+   ------------------------------------------------------------- */
+
+.sidebar {
+  position: sticky;
+  top: var(--s-5);
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - var(--s-7));
+}
+
+#main-nav {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+/* Logo block at top of sidebar */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  text-decoration: none;
   color: var(--color-text);
-  margin-top: 1.5rem;
-  margin-bottom: 0.75rem;
+  margin-bottom: var(--s-5);
 }
 
-.nav-group-toggle,
-.nav-group-link {
-  font-family: var(--font-sans);
+.nav-logo-icon {
+  height: 44px;
+  width: auto;
+  flex-shrink: 0;
+}
+
+.nav-logo-text {
+  font-family: var(--font-grotesk);
+  font-style: italic;
+  font-weight: 500;
+  font-size: var(--fs-meta);
+  line-height: 1.2;
   color: var(--color-text);
 }
 
-h1 {
-  margin-top: 0;
-  font-weight: 700;
-  font-size: 3rem;
+/* Scrollable nav body */
+.nav-groups-container {
+  flex: 1;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  padding-right: var(--s-1);
 }
 
-h2 {
-  font-weight: 700;
-  font-size: 2rem;
+.nav-group {
+  margin-bottom: var(--s-1);
 }
 
-h3 {
-  font-weight: 700;
-  font-size: 1.5rem;
-}
-
-h4 {
-  font-weight: 400;
-  font-size: 1.2rem;
-}
-
-.serif {
-  font-family: var(--font-serif);
-}
-
-figcaption {
-  font-size: 0.8rem;
-  margin-bottom: 2rem;
-}
-
-figure blockquote {
-  margin-left: 0;
-  margin-right: 0;
-}
-
-ul {
-  line-height: 1.6;
-}
-
-section {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
-/* --- Navigation --- */
 .nav-group-header {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 6px;
   width: 100%;
 }
 
 .nav-group-link {
-  display: inline;
-  padding: 0.2rem 0;
+  font-family: var(--font-sans);
+  font-size: var(--fs-label);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  color: var(--color-whisper);
   text-decoration: none;
-  font-size: 1.1rem;
-  font-weight: 700;
+  padding: 4px 0;
 }
 
 .nav-group-link:hover {
-  text-decoration: underline;
-  text-decoration-color: currentColor;
+  color: var(--color-text);
+}
+
+.nav-group.is-open .nav-group-link {
+  color: var(--color-text);
+  font-style: normal;
 }
 
 .nav-group-link.is-active {
-  font-style: italic;
+  color: var(--accent-2);
 }
 
 .nav-group-toggle {
   background: none;
-  border: none;
+  border: 0;
+  padding: 0;
   cursor: pointer;
-  padding: 0.2rem 0 0.2rem 0.15rem;
-  font-size: 1.1rem;
-  font-weight: 700;
-  line-height: 1;
+  color: var(--color-whisper);
+  line-height: 0;
 }
 
 .nav-group-toggle:hover {
-  opacity: 0.7;
+  color: var(--color-text);
 }
 
 .nav-toggle-icon {
-  display: inline-block;
-  width: 0.95em;
-  height: 0.95em;
+  width: 0.9em;
+  height: 0.9em;
   fill: currentColor;
-  transform: translateY(0.03em);
-}
-
-
-
-.nav-item a {
-  color: var(--color-text);
-  text-decoration: none;
-  padding: 0.2rem 0;
-  display: inline-block;
-}
-
-.nav-item a:hover {
-  text-decoration: underline;
-  text-decoration-color: currentColor;
-}
-
-.nav-item a.is-active {
-  font-style: italic;
-  /* font-weight: 700; */
+  transition: transform var(--duration) var(--ease);
 }
 
 .nav-group-list {
   display: none;
   list-style: none;
-  padding-left: 0;
-  margin-top: 0;
-}
-
-.nav-item {
-  padding-left: 10px;
+  padding: 0;
+  margin: var(--s-1) 0 0;
 }
 
 .nav-group.is-open .nav-group-list {
   display: block;
 }
 
-.telegram-icon {
-  display: inline-block;
-  width: 0.85em;
-  height: 0.85em;
-  vertical-align: baseline;
-  opacity: 0.7;
-}
-
-/* Icon List - displays favicons instead of bullets */
-.icon-list {
-  list-style: none;
-  padding-left: 0;
-}
-
-.icon-list li {
-  padding-left: 1.5em;
-  margin-bottom: 0.5rem;
-  position: relative;
-}
-
-.icon-list li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0.2em;
-  width: 1em;
-  height: 1em;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-/* Favicon for each domain */
-.icon-list li:has(a[href*="patreon.com"])::before {
-  background-image: url('https://www.patreon.com/favicon.ico');
-}
-
-.icon-list li:has(a[href*="boosty.to"])::before {
-  background-image: url('https://boosty.to/favicon.ico');
-}
-
-.icon-list li:has(a[href*="instagram.com"])::before {
-  background-image: url('https://upload.wikimedia.org/wikipedia/commons/9/95/Instagram_logo_2022.svg');
-}
-
-.icon-list li:has(a[href*="spotify.com"])::before {
-  background-image: url('https://open.spotify.com/favicon.ico');
-}
-
-/* Platform Specific Icons */
-.icon-list li.icon-apple::before {
-  content: '';
-  top: 0.1em;
-  /* Slight adjustment for character alignment */
-}
-
-.icon-list li.icon-windows::before {
-  background-image: url('https://upload.wikimedia.org/wikipedia/commons/7/7e/Font_Awesome_5_brands_windows.svg');
-}
-
-
-/* --- Notes (Tufte Style) --- */
-.notes-list {
-  /* Kept for backward compatibility if needed, but mostly empty now */
-  position: relative;
-  list-style: none;
-  padding: 0;
-}
-
-.note-wrapper {
-  position: relative;
-}
-
-.note-ref {
-  vertical-align: super;
-  font-size: 0.7em;
-  font-weight: bold;
-  color: var(--color-text-muted);
-  margin-left: 0.1em;
-}
-
-.note {
-  /* Hidden by default until JS places it */
-  display: none;
-}
-
-.note.is-placed {
-  /* Mobile First styles */
-  display: block;
-  margin-top: 0.5rem;
-  margin-bottom: 2rem;
-  padding-left: 2rem;
-  position: relative;
-
-  font-size: 0.85rem;
-  line-height: 1.5;
-  color: var(--color-text-muted);
-}
-
-.note.is-placed p {
-  margin-top: 0;
-  margin-bottom: 0.5rem;
-}
-
-/* Desktop positioning */
-@media (min-width: 900px) {
-  .note.is-placed {
-    position: absolute;
-    top: 0;
-    /* 
-       Left position: 100% of the content width + gutter.
-       The wrapper is inside .content, so 100% = width of paragraph.
-    */
-    left: calc(100% + var(--gutter));
-    width: var(--notes);
-
-    margin-top: 0;
-    margin-bottom: 0;
-    padding-left: 0;
-  }
-}
-
-/* --- Blog --- */
-.blog-posts {
-  margin-top: 3rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--color-border);
-}
-
-.post-date {
-  margin-top: 0.4rem;
-  margin-bottom: 1.5rem;
-  font-size: 0.9rem;
-  color: var(--color-text-muted);
-}
-
-.post-list {
-  list-style: none;
+.nav-item {
   padding-left: 0;
   margin: 0;
 }
 
-.post-list li {
-  margin-bottom: 0.5rem;
-}
-
-.post-list a.is-active {
-  font-weight: 700;
-  text-decoration: none;
-}
-
-/* --- Mobile Version --- */
-/* --- Mobile Version --- */
-@media (max-width: 1200px) {
-  :root {
-    --notes: 180px;
-    --gutter: 20px;
-  }
-}
-
-/* Mobile Toggle Button */
-.mobile-nav-toggle {
-  display: none;
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 10001;
-  background: none;
-  border: none;
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-  flex-direction: column;
-  justify-content: space-around;
-  padding: 0;
-}
-
-.mobile-nav-toggle .bar {
-  width: 100%;
-  height: 3px;
-  background-color: var(--color-text);
-  transition: all 0.3s;
-  transform-origin: 1px;
-}
-
-/* Hamburger to X animation */
-.mobile-nav-toggle.is-active .bar:nth-child(1) {
-  transform: rotate(45deg);
-}
-
-.mobile-nav-toggle.is-active .bar:nth-child(2) {
-  opacity: 0;
-}
-
-.mobile-nav-toggle.is-active .bar:nth-child(3) {
-  transform: rotate(-45deg);
-}
-
-@media (max-width: 900px) {
-  .page {
-    display: block;
-    padding: 20px 20px 60px;
-  }
-
-  .mobile-nav-toggle {
-    display: flex;
-    /* Show only on mobile */
-  }
-
-  /* Sidebar gets repurposed as the overlay */
-  .sidebar {
-    display: none;
-    /* Hidden by default */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100dvh;
-    box-sizing: border-box;
-    background: var(--color-bg);
-    z-index: 10000;
-    overflow-y: auto;
-    padding: 80px 40px 150px;
-    /* Space for X button and bottom safe area */
-  }
-
-  /* When open */
-  body.is-mobile-nav-open {
-    overflow: hidden;
-    /* Prevent background scroll */
-  }
-
-  body.is-mobile-nav-open .sidebar {
-    display: block;
-  }
-
-  /* Force groups open in mobile menu */
-  body.is-mobile-nav-open .nav-group-list {
-    display: block !important;
-  }
-
-  /* Hide toggles when groups are forced open */
-  body.is-mobile-nav-open .nav-group-toggle {
-    display: none;
-  }
-
-  .notes {
-    margin-top: 4rem;
-    padding: 20px;
-  }
-
-  .notes-list li {
-    margin-bottom: 2rem;
-  }
-}
-
-
-/* My custom classes */
-
-.pad-up {
-  margin-top: 1rem;
-}
-
-/* --- Zoomable Images --- */
-img.img-zoom {
-  cursor: pointer;
-  transition: opacity 0.2s, transform 0.2s;
-}
-
-img.img-zoom:hover {
-  opacity: 0.85;
-  transform: scale(1.01);
-}
-
-img.img-zoom:focus {
-  outline: 2px solid var(--color-text-muted);
-  outline-offset: 2px;
-}
-
-/* --- Inline Icons --- */
-.inline-icon {
+.nav-item a {
   display: inline-block;
-  height: 1em;
-  width: auto;
-  vertical-align: -0.15em;
-  /* Optically align with text baseline */
-  margin-right: 0.25em;
-  /* Spacing between icon and text */
+  padding: 3px 0;
+  font-size: var(--fs-meta);
+  font-weight: 400;
+  color: var(--color-text);
+  text-decoration: none;
+  line-height: 1.4;
 }
 
-/* --- Theme Switcher --- */
-.theme-toggle {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 10002;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 5px;
+.nav-item a:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 3px;
+}
+
+.nav-item a.is-active {
+  color: var(--accent-2);
+  font-weight: 500;
+}
+
+.telegram-icon {
+  width: 0.85em;
+  height: 0.85em;
+  display: inline-block;
+  vertical-align: -0.05em;
+  opacity: 0.6;
+}
+
+/* Sidebar footer — language switcher + theme toggle */
+.nav-footer {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: var(--s-3);
+  border-top: 1px solid var(--color-rule);
+}
+
+.lang-switcher {
+  display: flex;
+  gap: var(--s-1);
+}
+
+.lang-btn {
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: var(--fs-meta);
+  font-weight: 500;
+  color: var(--color-whisper);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+}
+
+.lang-btn:hover {
   color: var(--color-text);
-  opacity: 0.6;
-  transition: opacity 0.2s, transform 0.2s;
+}
+
+.lang-btn.is-active {
+  color: var(--color-text);
+  font-weight: 700;
+}
+
+.theme-toggle {
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-whisper);
+  transition: color var(--duration) var(--ease);
 }
 
 .theme-toggle:hover {
-  opacity: 1;
-  transform: scale(1.1);
+  color: var(--color-text);
 }
 
 .theme-toggle svg {
-  width: 24px;
-  height: 24px;
+  width: 16px;
+  height: 16px;
   fill: none;
   stroke: currentColor;
   stroke-width: 2;
@@ -645,7 +600,6 @@ img.img-zoom:focus {
   stroke-linejoin: round;
 }
 
-/* Hide moon in dark theme, hide sun in light theme */
 .theme-toggle .moon {
   display: block;
 }
@@ -662,7 +616,6 @@ img.img-zoom:focus {
   display: block;
 }
 
-/* Handle system preference visibility */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .theme-toggle .moon {
     display: none;
@@ -673,19 +626,568 @@ img.img-zoom:focus {
   }
 }
 
-@media (max-width: 900px) {
-  .theme-toggle {
-    right: 70px;
-    /* Leave space for hamburger menu */
+
+/* -------------------------------------------------------------
+   7. NOTES (right-rail sidenotes, Tufte-style)
+   Markup: <span class="note-wrapper"> with <sup class="note-ref">
+           and <span class="note">…</span>. JS places .note absolutely
+           on desktop; on mobile the note renders inline below.
+   ------------------------------------------------------------- */
+
+.note-ref {
+  vertical-align: super;
+  font-size: 0.7em;
+  font-weight: 600;
+  color: var(--accent-2);
+  margin-left: 0.1em;
+}
+
+.note {
+  display: none;
+}
+
+.note.is-placed {
+  display: block;
+  margin-top: var(--s-1);
+  margin-bottom: var(--s-3);
+  padding-left: var(--s-3);
+  border-left: 2px solid var(--accent);
+  font-size: var(--fs-meta);
+  line-height: 1.5;
+  color: var(--color-muted);
+}
+
+.note.is-placed p {
+  margin: 0 0 var(--s-1);
+}
+
+@media (min-width: 1100px) {
+  .note.is-placed {
+    position: absolute;
+    top: 0;
+    left: calc(100% + var(--gutter));
+    width: var(--notes);
+    margin: 0;
+    padding-left: 0;
+    border-left: 0;
+    border-top: 2px solid var(--accent);
+    padding-top: var(--s-1);
   }
 }
 
-/* --- Krokodeilaki Font Class --- */
+.note-wrapper {
+  position: relative;
+}
+
+
+/* -------------------------------------------------------------
+   8. HOMEPAGE
+   Hero block + featured project grid.
+   ------------------------------------------------------------- */
+
+.home {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-7);
+}
+
+/* — Hero ——————————————————————————————————— */
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+
+.hero-eyebrow {
+  font-size: var(--fs-label);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  color: var(--color-whisper);
+  margin: 0;
+}
+
+.hero-name {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(48px, 7vw, var(--fs-hero));
+  line-height: 0.95;
+  letter-spacing: var(--tracking-tight);
+  margin: 0;
+}
+
+.hero-lead {
+  font-family: var(--font-serif);
+  font-size: var(--fs-lead);
+  line-height: 1.45;
+  color: var(--color-text);
+  max-width: 36em;
+  margin: var(--s-2) 0 0;
+}
+
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2) var(--s-4);
+  margin-top: var(--s-2);
+  font-size: var(--fs-meta);
+  color: var(--color-muted);
+}
+
+.hero-meta strong {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+/* The yellow highlight you can wrap around any inline word */
+.mark {
+  background: linear-gradient(180deg, transparent 60%, var(--accent) 60%);
+  padding: 0 0.05em;
+}
+
+
+/* — Featured project grid ———————————————————— */
+
+.featured-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  border-top: 1px solid var(--color-text);
+  padding-top: var(--s-2);
+  margin-bottom: var(--s-4);
+}
+
+.featured-label {
+  font-size: var(--fs-label);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  margin: 0;
+  color: var(--color-text);
+}
+
+.featured-count {
+  font-size: var(--fs-meta);
+  color: var(--color-whisper);
+  font-variant-numeric: tabular-nums;
+}
+
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--s-5) var(--s-4);
+}
+
+/* — Card ———————————————————————————————————— */
+.project-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  text-decoration: none;
+  color: inherit;
+  transition: transform var(--duration) var(--ease);
+}
+
+.project-card:hover {
+  transform: translateY(-2px);
+}
+
+.project-card.is-lead {
+  grid-column: 1 / -1;
+}
+
+.project-cover {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--color-bg-alt);
+}
+
+.project-card.is-lead .project-cover {
+  aspect-ratio: 21 / 9;
+}
+
+.project-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 600ms var(--ease);
+}
+
+.project-card:hover .project-cover img {
+  transform: scale(1.02);
+}
+
+/* Number/category line above title */
+.project-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: var(--fs-label);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  color: var(--color-whisper);
+  margin: 0;
+  padding-top: var(--s-1);
+  border-top: 1px solid var(--color-rule);
+}
+
+.project-num {
+  font-variant-numeric: tabular-nums;
+}
+
+.project-title {
+  font-family: var(--font-grotesk);
+  font-weight: 500;
+  font-size: var(--fs-h3);
+  line-height: 1.2;
+  margin: 0;
+  text-decoration: none;
+}
+
+.project-card:hover .project-title {
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.project-desc {
+  font-size: var(--fs-meta);
+  color: var(--color-muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Variant: text-only card (for items without a cover image, e.g. TEDx). */
+.project-card.is-text .project-cover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-text);
+  color: var(--color-bg);
+  padding: var(--s-4);
+}
+
+.project-card.is-text .project-cover-quote {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(28px, 3vw, 44px);
+  line-height: 1.05;
+  letter-spacing: var(--tracking-tight);
+  text-align: left;
+  width: 100%;
+}
+
+.project-card.is-text .project-cover-quote .mark {
+  background: linear-gradient(180deg, transparent 60%, var(--accent) 60%);
+  color: var(--ink);
+}
+
+
+/* -------------------------------------------------------------
+   9. PORTFOLIO PAGE  (/design/portfolio/)
+   Kept compatible with existing markup classes.
+   ------------------------------------------------------------- */
+
+.portfolio-top {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  margin-bottom: var(--s-6);
+}
+
+.portfolio-tagline {
+  font-size: var(--fs-meta);
+  color: var(--color-muted);
+  margin: 0;
+}
+
+.portfolio-name {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(44px, 6vw, 64px);
+  line-height: 0.95;
+  letter-spacing: var(--tracking-tight);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.portfolio-lead {
+  font-size: var(--fs-lead);
+  font-family: var(--font-serif);
+  line-height: 1.45;
+  margin: 0;
+}
+
+.portfolio-works {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+  margin-bottom: var(--s-6);
+}
+
+.works-headline {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-top: 1px solid var(--color-text);
+  padding-top: var(--s-2);
+  font-size: var(--fs-label);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  color: var(--color-text);
+}
+
+.works-years {
+  color: var(--color-whisper);
+  font-weight: 400;
+}
+
+.portfolio-contact {
+  border-top: 1px solid var(--color-rule);
+  padding-top: var(--s-3);
+  margin-top: var(--s-4);
+}
+
+.highlight {
+  background: linear-gradient(180deg, transparent 60%, var(--accent) 60%);
+  padding: 0 0.05em;
+}
+
+
+/* -------------------------------------------------------------
+   10. UTILITIES
+   ------------------------------------------------------------- */
+
 .kroko {
   font-family: 'Krokodeilaki', sans-serif;
 }
 
-/* --- Avant-Garde Glagolitic Font Class --- */
 .glagolitic {
   font-family: 'Avant-Glagolitic', sans-serif;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.pad-up {
+  margin-top: var(--s-2);
+}
+
+/* Inline icons sized to the line */
+.inline-icon {
+  display: inline-block;
+  height: 1em;
+  width: auto;
+  vertical-align: -0.15em;
+  margin-right: 0.25em;
+}
+
+/* Zoomable images (gallery.js attaches behaviour) */
+img.img-zoom {
+  cursor: zoom-in;
+  transition: opacity var(--duration), transform var(--duration);
+}
+
+img.img-zoom:hover {
+  opacity: 0.9;
+  transform: scale(1.005);
+}
+
+img.img-zoom:focus {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 2px;
+}
+
+/* Icon-list (favicons before items) — kept for back-compat */
+.icon-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.icon-list li {
+  padding-left: 1.5em;
+  margin-bottom: var(--s-1);
+  position: relative;
+}
+
+.icon-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.2em;
+  width: 1em;
+  height: 1em;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.icon-list li:has(a[href*="patreon.com"])::before {
+  background-image: url('https://www.patreon.com/favicon.ico');
+}
+
+.icon-list li:has(a[href*="boosty.to"])::before {
+  background-image: url('https://boosty.to/favicon.ico');
+}
+
+.icon-list li:has(a[href*="instagram.com"])::before {
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/9/95/Instagram_logo_2022.svg');
+}
+
+.icon-list li:has(a[href*="spotify.com"])::before {
+  background-image: url('https://open.spotify.com/favicon.ico');
+}
+
+/* Blog list */
+.blog-posts {
+  margin-top: var(--s-5);
+  padding-top: var(--s-3);
+  border-top: 1px solid var(--color-rule);
+}
+
+.post-date {
+  margin-top: var(--s-1);
+  margin-bottom: var(--s-3);
+  font-size: var(--fs-meta);
+  color: var(--color-muted);
+}
+
+.post-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.post-list li {
+  margin-bottom: var(--s-1);
+}
+
+.post-list a.is-active {
+  font-weight: 700;
+  text-decoration: none;
+}
+
+
+/* -------------------------------------------------------------
+   11. RESPONSIVE
+   Three breakpoints: ≤1100px (drop sidenotes), ≤900px (mobile).
+   ------------------------------------------------------------- */
+
+/* Tablet — drop sidenotes column */
+@media (max-width: 1100px) {
+  :root {
+    --gutter: 40px;
+  }
+
+  .page {
+    grid-template-columns: var(--sidebar) var(--gutter) minmax(0, 1fr);
+    grid-template-areas: "sidebar . content";
+  }
+
+  .notes,
+  .extra {
+    display: none;
+  }
+}
+
+/* Mobile menu toggle (hidden on desktop) */
+.mobile-nav-toggle {
+  display: none;
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 100;
+  width: 36px;
+  height: 36px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-rule);
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.mobile-nav-toggle .bar {
+  width: 16px;
+  height: 1.5px;
+  background: var(--color-text);
+  transition: transform var(--duration), opacity var(--duration);
+  transform-origin: center;
+}
+
+.mobile-nav-toggle.is-active .bar:nth-child(1) {
+  transform: translateY(5.5px) rotate(45deg);
+}
+
+.mobile-nav-toggle.is-active .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-nav-toggle.is-active .bar:nth-child(3) {
+  transform: translateY(-5.5px) rotate(-45deg);
+}
+
+/* Mobile — single column, sidebar becomes slide-over panel */
+@media (max-width: 900px) {
+  .page {
+    display: block;
+    padding: var(--s-3) var(--s-3) var(--s-7);
+  }
+
+  .mobile-nav-toggle {
+    display: flex;
+  }
+
+  .sidebar {
+    display: none;
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100dvh;
+    background: var(--color-bg);
+    z-index: 99;
+    overflow-y: auto;
+    padding: var(--s-7) var(--s-4) var(--s-7);
+    max-height: none;
+  }
+
+  body.is-mobile-nav-open {
+    overflow: hidden;
+  }
+
+  body.is-mobile-nav-open .sidebar {
+    display: block;
+  }
+
+  /* Force all groups open in the mobile drawer */
+  body.is-mobile-nav-open .nav-group-list {
+    display: block !important;
+  }
+
+  body.is-mobile-nav-open .nav-group-toggle {
+    display: none;
+  }
+
+  .featured-grid {
+    grid-template-columns: 1fr;
+    gap: var(--s-4);
+  }
+
+  .project-card.is-lead .project-cover {
+    aspect-ratio: 4 / 3;
+  }
+
+  :root {
+    --fs-h1: 36px;
+    --fs-h2: 26px;
+    --fs-h3: 20px;
+    --fs-lead: 18px;
+  }
 }

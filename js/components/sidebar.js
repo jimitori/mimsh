@@ -107,56 +107,38 @@ export async function initSidebar(root) {
       langSwitcher.appendChild(btn);
     });
 
-    // Check/Create Icon first if missing
-    if (!navEl.querySelector('.nav-icon')) {
-      const iconLink = document.createElement('a');
-      iconLink.href = '/';
-      iconLink.className = 'nav-icon';
-      const iconImg = document.createElement('img');
-      iconImg.src = '/img/icon.png';
-      iconImg.alt = 'Home';
-      iconLink.appendChild(iconImg);
-      navEl.prepend(iconLink);
+    // Create logo (icon + name)
+    if (!navEl.querySelector('.nav-logo')) {
+      const logoLink = document.createElement('a');
+      logoLink.href = '/';
+      logoLink.className = 'nav-logo';
+      const logoIcon = document.createElement('img');
+      logoIcon.src = '/img/icon.png';
+      logoIcon.alt = 'mimsh';
+      logoIcon.className = 'nav-logo-icon';
+      const logoText = document.createElement('span');
+      logoText.className = 'nav-logo-text';
+      logoText.innerHTML = 'mitia<br>morovov<br>sheiner';
+      logoLink.appendChild(logoIcon);
+      logoLink.appendChild(logoText);
+      navEl.prepend(logoLink);
     }
 
-    // Random Icon Hover Effect
-    const randomIcons = [
-      '/img/icon-random/img - 0.svg',
-      '/img/icon-random/img - 1.svg',
-      '/img/icon-random/img - 2.svg',
-      '/img/icon-random/img - 3.svg',
-      '/img/icon-random/img - 4.svg',
-      '/img/icon-random/img - 5.png',
-      '/img/icon-random/img - 6.png',
-      '/img/icon-random/img - 7.png',
-      '/img/icon-random/img - 8.png'
-    ];
+    // Nav footer: lang switcher (theme toggle appended by theme.js)
+    const navFooter = document.createElement('div');
+    navFooter.className = 'nav-footer';
+    navFooter.appendChild(langSwitcher);
 
-    const iconImg = navEl.querySelector('.nav-icon img');
-    if (iconImg) {
-      const originalSrc = iconImg.src;
+    // Initial Render
+    renderNav();
+    updatePageTitle();
 
-      iconImg.addEventListener('mouseenter', () => {
-        const randomIndex = Math.floor(Math.random() * randomIcons.length);
-        iconImg.src = randomIcons[randomIndex];
-      });
-
-      iconImg.addEventListener('mouseleave', () => {
-        iconImg.src = originalSrc;
-      });
-    }
-
-    const icon = navEl.querySelector('.nav-icon');
-    if (icon) {
-      icon.after(langSwitcher);
-    } else {
-      navEl.prepend(langSwitcher);
-    }
+    navEl.appendChild(navFooter);
+  } else {
+    // Initial Render (no lang switcher path)
+    renderNav();
+    updatePageTitle();
   }
-
-  // Initial Render
-  renderNav();
-  updatePageTitle();
 
   // Mobile Menu Logic
   if (!document.querySelector('.mobile-nav-toggle')) {

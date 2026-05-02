@@ -1,9 +1,8 @@
 <!doctype html>
-
 <!--
-              .........    
-           ..............  
-         ................. 
+              .........
+           ..............
+         .................
         ...................
       .....................
      ......................
@@ -13,77 +12,184 @@
   .........................
  .......+@@:...............
 .......=@@:.........:......
-.......@@*.......-@@@@.... 
-.......@@%...+@@@@@=.....  
-.......:%@@@@@@*:........  
-........................   
-.......................    
-......................     
-.....................      
-...................        
- .................         
-  ..............           
-    .........              
-    
+.......@@*.......-@@@@....
+.......@@%...+@@@@@=.....
+.......:%@@@@@@*:........
+........................
+.......................
+......................
+.....................
+...................
+ .................
+  ..............
+    .........
 Hi there!
 -->
 
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title lang="en">Mitia Morovov-Sheiner</title>
   <title lang="ru">Митя Моровов-Шейнер</title>
+  <meta name="description" lang="en" content="Multidisciplinary designer, linguist, educator, and artist.">
+  <meta name="description" lang="ru" content="Дизайнер, лингвист и преподаватель.">
   <link rel="icon" type="image/x-icon" href="img/favicon.ico">
   <link rel="stylesheet" href="css/layout.css">
-
 </head>
 
 <body>
   <div class="page">
+
+    <!-- Left rail: logo, grouped nav, lang switcher, theme toggle.
+         Built dynamically from /data/nav.json by /js/components/sidebar.js -->
     <aside class="sidebar" data-component="sidebar">
       <nav id="main-nav" class="main-nav"></nav>
     </aside>
 
-    <main class="content" data-component="content">
-      <article class="content-article">
-        <h1 lang="en">Mitia Morovov-Sheiner</h1>
-        <h1 lang="ru">Митя Моровов-Шейнер</h1>
-        <p lang="en">I am a multidisciplinary designer, linguist, educator, and artist with a lifelong curiosity for how
-          people communicate, create meaning, and shape culture.</p>
-        <!-- p lang="en">I hold a PhD in linguistics and my interests range from writing systems and constructed languages
-          to accessibility, visual storytelling, and contemporary culture. I value clarity, honesty, and thoughtful
-          design, and I enjoy building projects that connect creativity, knowledge, and human experience.</p -->
-        <p lang="ru">Я — мультидисциплинарный дизайнер, лингвист и преподаватель. Создаю цифровые продукты и визуальные
-          системы, занимаюсь языками и письменностями, разрабатываю конланги, делюсь знаниями и строю проекты на стыке
-          творчества, исследований и образования.</p>
-        <!-- p lang="ru">Мне важно, чтобы дизайн был человечным, а язык — живым и доступным. Я верю, что и дизайн, и
-          лингвистика — это про заботу: про то, как сделать мир понятнее, разнообразнее и чуть красивее.</p -->
-        <p lang="ru">Занимаюсь дизайном мультиагентных систем в Smartcat.</p>
-        <p lang="en">I am currently designing multi-agent systems at Smartcat.</p>
-        <h2 lang="en">Featured</h2>
-        <h2 lang="ru">Избранное</h2>
-        <ul lang="en">
-          <li><a href="design/avant-garde-glagolitic/">Avant-garde Glagolitic</a></li>
-          <li><a href="design/krokodeilaki/">Krokodeilaki doodle font</a></li>
-          <li><a href="art/world-alphabet/">World Alphabet Project</a></li>
-          <li><a href="https://www.ted.com/talks/mitya_morovov_3_things_you_need_to_hear_about_sign_language">TEDx Talk:
-              3 things you need to hear about sign language</a></li>
-          <li><a href="conlangs/ophidian/">Ophidian — constructed language of snakes</a></li>
-        </ul>
-        <ul lang="ru">
-          <li><a href="design/avant-garde-glagolitic/">Авангардная глаголица</a></li>
-          <li><a href="design/krokodeilaki/">Шрифт-дудл Krokodeilaki</a></li>
-          <li><a href="art/world-alphabet/">Проект «Мировой алфавит»</a></li>
-          <li><a href="https://www.ted.com/talks/mitya_morovov_3_things_you_need_to_hear_about_sign_language">TEDx Talk:
-              3 things you need to hear about sign language</a></li>
-          <li><a href="conlangs/ophidian/">Офидиан — язык змей</a></li>
-        </ul>
-      </article>
+    <!-- Main content -->
+    <main class="content home" data-component="content">
+
+      <!-- HERO ----------------------------------------------------- -->
+      <section class="hero">
+        <p class="hero-eyebrow" lang="en">Designer · Linguist · Educator · Artist</p>
+        <p class="hero-eyebrow" lang="ru">Дизайнер · Лингвист · Преподаватель · Художник</p>
+
+        <h1 class="hero-name" lang="en">Mitia<br>Morovov-<wbr>Sheiner</h1>
+        <h1 class="hero-name" lang="ru">Митя<br>Моровов-<wbr>Шейнер</h1>
+
+        <p class="hero-lead" lang="en">
+          A multidisciplinary practice at the intersection of <span class="mark">design</span>, language, and culture &mdash;
+          a lifelong curiosity for how people communicate, create meaning, and shape the world they share.
+        </p>
+        <p class="hero-lead" lang="ru">
+          Мультидисциплинарная практика на пересечении <span class="mark">дизайна</span>, языка и культуры &mdash;
+          о том, как люди общаются, создают смыслы и формируют общий мир.
+        </p>
+
+        <div class="hero-meta" lang="en">
+          <span><strong>Now</strong>&nbsp; Designing multi-agent systems at Smartcat</span>
+          <span><strong>Based</strong>&nbsp; Belgrade</span>
+        </div>
+        <div class="hero-meta" lang="ru">
+          <span><strong>Сейчас</strong>&nbsp; Дизайн мультиагентных систем в Smartcat</span>
+          <span><strong>Город</strong>&nbsp; Белград</span>
+        </div>
+      </section>
+
+
+      <!-- FEATURED ------------------------------------------------- -->
+      <section class="featured">
+        <header class="featured-header">
+          <h2 class="featured-label" lang="en">Featured Work</h2>
+          <h2 class="featured-label" lang="ru">Избранное</h2>
+          <span class="featured-count" lang="en">Five projects · 2018&ndash;2025</span>
+          <span class="featured-count" lang="ru">Пять проектов · 2018&ndash;2025</span>
+        </header>
+
+        <div class="featured-grid">
+
+          <!-- 01 — Lead project (full-width) -->
+          <a class="project-card is-lead" href="design/avant-garde-glagolitic/">
+            <div class="project-cover">
+              <img src="img/design/avant-garde-glagolica.jpg"
+                   alt="Avant-Garde Glagolitic — geometric reinterpretation of the Glagolitic alphabet">
+            </div>
+            <div class="project-meta">
+              <span class="project-num">01 / Type design</span>
+              <span lang="en">2024</span>
+              <span lang="ru">2024</span>
+            </div>
+            <h3 class="project-title" lang="en">Avant-Garde Glagolitic</h3>
+            <h3 class="project-title" lang="ru">Авангардная глаголица</h3>
+            <p class="project-desc" lang="en">
+              A geometric typeface that reimagines the oldest Slavic script through a Bauhaus lens &mdash;
+              ancient letterforms drawn with circle, square, and triangle.
+            </p>
+            <p class="project-desc" lang="ru">
+              Геометрический шрифт, который переосмысляет древнейшую славянскую азбуку через язык Баухауса &mdash;
+              круг, квадрат и треугольник как основа букв.
+            </p>
+          </a>
+
+          <!-- 02 — Krokodeilaki -->
+          <a class="project-card" href="design/krokodeilaki/">
+            <div class="project-cover">
+              <img src="img/design/krokodeilaki/poster-kroko-2.png"
+                   alt="Krokodeilaki — a doodle font of friendly creatures">
+            </div>
+            <div class="project-meta">
+              <span class="project-num">02 / Type design</span>
+              <span>2025</span>
+            </div>
+            <h3 class="project-title" lang="en">Krokodeilaki</h3>
+            <h3 class="project-title" lang="ru">Krokodeilaki</h3>
+            <p class="project-desc" lang="en">A doodle font of small playful creatures, drawn one letter at a time.</p>
+            <p class="project-desc" lang="ru">Шрифт-дудл из маленьких дружелюбных существ, нарисованных от руки.</p>
+          </a>
+
+          <!-- 03 — World Alphabet -->
+          <a class="project-card" href="art/world-alphabet/">
+            <div class="project-cover">
+              <img src="img/art/world-alphabet/new-world@2x.png"
+                   alt="World Alphabet — a single visual system for every writing system on Earth">
+            </div>
+            <div class="project-meta">
+              <span class="project-num">03 / Art project</span>
+              <span>2023&ndash;</span>
+            </div>
+            <h3 class="project-title" lang="en">World Alphabet</h3>
+            <h3 class="project-title" lang="ru">Мировой алфавит</h3>
+            <p class="project-desc" lang="en">
+              A long-form attempt to draw every writing system in a single, coherent visual language.
+            </p>
+            <p class="project-desc" lang="ru">
+              Долгосрочный проект: каждое письмо мира — в единой визуальной системе.
+            </p>
+          </a>
+
+          <!-- 04 — TEDx (text-only card, no local image) -->
+          <a class="project-card is-text" href="https://www.ted.com/talks/mitya_morovov_3_things_you_need_to_hear_about_sign_language" target="_blank" rel="noopener">
+            <div class="project-cover">
+              <span class="project-cover-quote" lang="en">
+                Three things you need to <span class="mark">hear</span> about sign&nbsp;language.
+              </span>
+              <span class="project-cover-quote" lang="ru">
+                Три вещи, которые надо <span class="mark">услышать</span> о жестовых языках.
+              </span>
+            </div>
+            <div class="project-meta">
+              <span class="project-num">04 / TEDx talk</span>
+              <span>2018</span>
+            </div>
+            <h3 class="project-title" lang="en">3 Things About Sign Language ↗</h3>
+            <h3 class="project-title" lang="ru">3 вещи о жестовых языках ↗</h3>
+            <p class="project-desc" lang="en">A TEDx talk on what hearing people miss when they think about deaf culture.</p>
+            <p class="project-desc" lang="ru">Лекция TEDx о том, чего не замечают слышащие люди, думая о культуре глухих.</p>
+          </a>
+
+          <!-- 05 — Ophidian -->
+          <a class="project-card" href="languages/ophidian/">
+            <div class="project-cover">
+              <img src="img/languages/ophidian/ophidius-and-basil.png"
+                   alt="Ophidian — a constructed language inspired by the speech of snakes">
+            </div>
+            <div class="project-meta">
+              <span class="project-num">05 / Conlang</span>
+              <span>2022</span>
+            </div>
+            <h3 class="project-title" lang="en">Ophidian</h3>
+            <h3 class="project-title" lang="ru">Офидиан</h3>
+            <p class="project-desc" lang="en">A constructed language for snakes &mdash; phonology, grammar, and lore.</p>
+            <p class="project-desc" lang="ru">Конланг для змей — фонология, грамматика, мифология.</p>
+          </a>
+
+        </div>
+      </section>
     </main>
+
   </div>
 
   <script type="module" src="js/main.js"></script>
 </body>
-
 </html>
