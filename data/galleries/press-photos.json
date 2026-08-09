@@ -1,38 +1,51 @@
 [
-    {
-        "full": "/img/press-photos/mitia-arsenal-1.jpg",
-        "preview": "/img/press-photos/previews/mitia-arsenal-1.jpg",
-        "alt": "Museum tour for the deaf community, 2019",
-        "caption": "Museum tour for the deaf community, 2019"
-    },
-    {
-        "full": "/img/press-photos/mitia-mc-2.jpg",
-        "preview": "/img/press-photos/previews/mitia-mc-2.jpg",
-        "alt": "Portfolio workshop, 2020",
-        "caption": "Portfolio workshop, 2020"
-    },
-    {
-        "full": "/img/press-photos/mitia-photo-1.jpg",
-        "preview": "/img/press-photos/previews/mitia-photo-1.jpg",
-        "alt": "Personal photo, 2020",
-        "caption": "Personal photo, 2020"
-    },
-    {
-        "full": "/img/press-photos/mitia-photo-2.jpg",
-        "preview": "/img/press-photos/previews/mitia-photo-2.jpg",
-        "alt": "Personal photo, 2021",
-        "caption": "Personal photo, 2021"
-    },
-    {
-        "full": "/img/press-photos/mitia-sl-1.jpg",
-        "preview": "/img/press-photos/previews/mitia-sl-1.jpg",
-        "alt": "Sign language master-class, 2021",
-        "caption": "Sign language master-class, 2021"
-    },
-    {
-        "full": "/img/press-photos/mitia-tedx-1.jpg",
-        "preview": "/img/press-photos/previews/mitia-tedx-1.jpg",
-        "alt": "TEDx talk, 2017",
-        "caption": "TEDx talk, 2017"
-    }
+  {
+    "source": "/img/press-photos/mitia-arsenal-1.jpg",
+    "full": "/img/derived/press-photos/mitia-arsenal-1.large.webp",
+    "preview": "/img/derived/press-photos/mitia-arsenal-1.thumb.webp",
+    "alt": "Museum tour for the deaf community, 2019",
+    "caption": "Museum tour for the deaf community, 2019"
+  },
+  {
+    "source": "/img/press-photos/mitia-mc-2.jpg",
+    "full": "/img/derived/press-photos/mitia-mc-2.large.webp",
+    "preview": "/img/derived/press-photos/mitia-mc-2.thumb.webp",
+    "alt": "Portfolio workshop, 2020",
+    "caption": "Portfolio workshop, 2020"
+  },
+  {
+    "source": "/img/press-photos/mitia-photo-1.jpg",
+    "full": "/img/derived/press-photos/mitia-photo-1.large.webp",
+    "preview": "/img/derived/press-photos/mitia-photo-1.thumb.webp",
+    "alt": "Personal photo, 2020",
+    "caption": "Personal photo, 2020"
+  },
+  {
+    "source": "/img/press-photos/mitia-photo-2.jpg",
+    "full": "/img/derived/press-photos/mitia-photo-2.large.webp",
+    "preview": "/img/derived/press-photos/mitia-photo-2.thumb.webp",
+    "alt": "Personal photo, 2021",
+    "caption": "Personal photo, 2021"
+  },
+  {
+    "source": "/img/press-photos/mitia-sl-1.jpg",
+    "full": "/img/derived/press-photos/mitia-sl-1.large.webp",
+    "preview": "/img/derived/press-photos/mitia-sl-1.thumb.webp",
+    "alt": "Sign language master-class, 2021",
+    "caption": "Sign language master-class, 2021"
+  },
+  {
+    "source": "/img/press-photos/mitia-tedx-1.jpg",
+    "full": "/img/derived/press-photos/mitia-tedx-1.large.webp",
+    "preview": "/img/derived/press-photos/mitia-tedx-1.thumb.webp",
+    "alt": "TEDx talk, 2017",
+    "caption": "TEDx talk, 2017"
+  },
+  {
+    "source": "/img/press-photos/mitia-theatre.JPG",
+    "full": "/img/derived/press-photos/mitia-theatre.large.webp",
+    "preview": "/img/derived/press-photos/mitia-theatre.thumb.webp",
+    "alt": "",
+    "caption": ""
+  }
 ]
