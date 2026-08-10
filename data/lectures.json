@@ -46,8 +46,8 @@
   {
     "date": "2024",
     "title": {
-      "ru": "Лекция «Жестовые языки» — Добарабар, Белград",
-      "en": "Lecture ‘Sign languages’ - Dobarabar Belgrade"
+      "ru": "Лекция «Жестовые языки» — Добар Дабар, Белград",
+      "en": "Lecture ‘Sign languages’ - Dobar Dabar Belgrade"
     }
   },
   {
@@ -65,10 +65,26 @@
     }
   },
   {
+    "date": "2024",
+    "title": {
+      "ru": "Лекция «Искусственные языки» — Добар Дабар, Белград",
+      "en": "Lecture ‘Constructed languages’ - Dobar Dabar Belgrade"
+    }
+  },
+  {
     "date": "2023",
     "title": {
       "ru": "Выставка «0_0_zero-zero» — Галерея «Kafedra», Херцег Нови, Черногория",
       "en": "Exhibition ‘0_0_zero-zero’ - Kafedra Gallery, Herceg Novi, MN"
+    },
+    "type": "exhibition",
+    "venue": {
+      "ru": "Галерея «Kafedra», Херцег-Нови, Черногория",
+      "en": "Kafedra Gallery, Herceg Novi, Montenegro"
+    },
+    "name": {
+      "ru": "0_0_zero-zero",
+      "en": "0_0_zero-zero"
     }
   },
   {
@@ -97,6 +113,17 @@
     "title": {
       "ru": "Персональная выставка «Я — Яблоко» — Галерея Терминал, Нижний Новгород",
       "en": "Personal Exhibition ‘A — Apple’ - Terminal Gallery, Nizhnij Novgorod"
+    },
+    "type": "exhibition",
+    "venue": {
+      "ru": "Галерея «Терминал», Нижний Новгород",
+      "en": "Terminal Gallery, Nizhny Novgorod"
+    },
+    "url": "/art/world-alphabet/",
+    "image": "/img/derived/art/world-alphabet/a-apple.thumb.webp",
+    "name": {
+      "ru": "Я — Яблоко",
+      "en": "A — Apple"
     }
   },
   {

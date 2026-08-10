@@ -18,13 +18,16 @@
             <article class="content-article">
                 <h1 lang="en">Exhibitions</h1>
                 <h1 lang="ru">Выставки</h1>
-                <p lang="en">Content coming soon.</p>
-                <p lang="ru">Контент скоро появится.</p>
+
+                <!-- Собирается из /data/lectures.json — теми записями, у которых "type": "exhibition".
+                     Тот же файл питает страницу расписания, так что выставка описана один раз. -->
+                <div id="exhibitions"></div>
             </article>
         </main>
     </div>
 
     <script type="module" src="../../js/main.js"></script>
+    <script type="module" src="../../js/exhibitions.js"></script>
 </body>
 
 </html>
