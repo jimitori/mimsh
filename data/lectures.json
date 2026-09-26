@@ -22,6 +22,23 @@
     }
   },
   {
+    "date": "2026-02-16",
+    "url": "https://arhivvojvodine.org.rs/otvorena-izlozba-preko-veka-kroz-stolece/",
+    "title": {
+      "ru": "Групповая выставка «Преко века / Кроз столеће» — Архив Воеводины, Нови-Сад",
+      "en": "Group exhibition ‘Preko veka / Kroz stoleće’ - Archives of Vojvodina, Novi Sad"
+    },
+    "type": "exhibition",
+    "venue": {
+      "ru": "Архив Воеводины, Нови-Сад, Сербия",
+      "en": "Archives of Vojvodina, Novi Sad, Serbia"
+    },
+    "name": {
+      "ru": "Преко века / Кроз столеће",
+      "en": "Preko veka / Kroz stoleće"
+    }
+  },
+  {
     "date": "2025",
     "url": "https://www.youtube.com/watch?v=8QVNFKohAHk",
     "title": {
@@ -170,6 +187,38 @@
     "title": {
       "ru": "Презентации: смысл → структура → дизайн. Лекторий Tele2",
       "en": "Presentations: meaning → structure → design. Tele2 Lectorium"
+    }
+  },
+  {
+    "date": "2019",
+    "title": {
+      "ru": "Серия перформансов «Я очень рад, ведь я наконец возвращаюсь домой» — Нижний Новгород",
+      "en": "Series of performances ‘I Am Very Glad, as I Am Finally Returning Home’ - Nizhny Novgorod"
+    },
+    "type": "exhibition",
+    "venue": {
+      "ru": "Нижний Новгород",
+      "en": "Nizhny Novgorod"
+    },
+    "name": {
+      "ru": "Я очень рад, ведь я наконец возвращаюсь домой",
+      "en": "I Am Very Glad, as I Am Finally Returning Home"
+    }
+  },
+  {
+    "date": "2018",
+    "title": {
+      "ru": "Групповая выставка «MOLODOE» — Галерея FUTURO, Нижний Новгород",
+      "en": "Group exhibition ‘MOLODOE’ - FUTURO Gallery, Nizhny Novgorod"
+    },
+    "type": "exhibition",
+    "venue": {
+      "ru": "Галерея FUTURO, Нижний Новгород",
+      "en": "FUTURO Gallery, Nizhny Novgorod"
+    },
+    "name": {
+      "ru": "MOLODOE",
+      "en": "MOLODOE"
     }
   }
 ]
