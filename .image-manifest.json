@@ -46,6 +46,7 @@
     "img/design/cv/kostia.jpg": "356997e82df67304e7d36b63833fbeb18c26044d9817c1656b8532b53800c559",
     "img/design/krokodeilaki/poster-fomo.jpg": "994435acd3e12a55ec632c953e38e14659ce624742519cf6aab886de47e5aea8",
     "img/design/krokodeilaki/poster-kroko-2.png": "be22c701201a30b1b1a6641cd78bf1927f24d45fa961b1b3d06d7c2a32dc413a",
+    "img/design/old-church-slavonic/oldcyr-layout.png": "a1b651ca46f0f306825fba782cffa37628cfe5dd551250b2383eb4a1244f6a99",
     "img/design/portfolio/brainbox.png": "c09a19077b28af83725997fb333134639650075fb8b8f6ccfbf303ca02c3a868",
     "img/design/portfolio/content-writer.png": "dbc90df2eb150321da1cda18b33648e548cea9e709f36c987a6bce32c52acf60",
     "img/design/portfolio/eagle.png": "b2103211792c3fa1115da4deda81705c1f3ef92882753708d3a2664d270a6e88",
@@ -179,8 +180,11 @@
     "img/press-photos/mitia-sl-1.jpg": "e474b397bcbc6cb6bece9cd6f7a4d575763e9158ab9b82a878bd402b858e8553",
     "img/press-photos/mitia-tedx-1.jpg": "dfde1dfc8ff5627f0fc318cda8f226a6a84efd9e7ecfd7fb0c185a1fe1d767f4",
     "img/press-photos/mitia-theatre.JPG": "3fa8fe3f4dd7d108bad4b88cea6c152d7688db522f617d8e8cb748a2960a6d4e",
+    "img/projects/belgrade-tram-map/11.08.png": "1d46a3a41e31f5ecd35b668c1841538d6f0e45c4362386ba69d80dadedbdd1c3",
     "img/projects/belgrade-tram-map/17.12.png": "d5578b4829aeb774dbd30bb5b8a539463053623a0266ff79e938b581f627e836",
     "img/projects/belgrade-tram-map/28.12.png": "f751aefcdba1065b01d90b31c5611be066dea669ff06d15b9f55a5dd91e7395a",
-    "img/projects/belgrade-tram-map/29.12.png": "9fc6303e66317a2a596877bd19d718763c5157179d9fc216b636e2ca20906d17"
+    "img/projects/belgrade-tram-map/29.12.png": "9fc6303e66317a2a596877bd19d718763c5157179d9fc216b636e2ca20906d17",
+    "img/projects/central-market/preview.png": "7f6e6078a693114e8e096209841e80ca09ed4fdea2815a82981eb717f2487df2",
+    "img/projects/viossa-murmuration/hanu-viossa.jpg": "a650362ea0e8331e2bb5a4bc6dc764f1901953395fcd2b6022a033472f3173f6"
   }
 }

@@ -141,6 +141,18 @@
       "order": 50
     },
     {
+      "id": "belgrade-tram-map",
+      "title": {
+        "en": "Belgrade Tram Map",
+        "ru": "Карта трамваев Белграда"
+      },
+      "url": "/projects/belgrade-tram-map/",
+      "groups": [
+        "projects"
+      ],
+      "order": 60
+    },
+    {
       "id": "poster-every-day",
       "title": {
         "en": "Poster Every Day",
