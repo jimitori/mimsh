@@ -129,6 +129,18 @@
       "order": 40
     },
     {
+      "id": "viossa-murmuration",
+      "title": {
+        "en": "Viossa · Murmuration",
+        "ru": "Viossa · мурмурация"
+      },
+      "url": "/projects/viossa-murmuration/",
+      "groups": [
+        "projects"
+      ],
+      "order": 50
+    },
+    {
       "id": "poster-every-day",
       "title": {
         "en": "Poster Every Day",
