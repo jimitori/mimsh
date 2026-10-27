@@ -346,39 +346,70 @@ function rng(seed) { let a = seed >>> 0;
 
 // ─── Текст → фонемы ──────────────────────────────────────────────────────
 const VOW = 'aeiou';
+// Буквы, которые пишутся иначе, но значат знакомый звук, — до снятия диакритики, иначе от ŝ
+// останется s, а от dž — dz. Латиница — по слайдам viossa72 (sources/viossa72-spelling.md).
+const SPELL = [
+  ['dž', 'dj'], ['dẑ', 'dj'], ['ẓ', 'dj'], ['ŝ', 'sh'], ['š', 'sh'], ['ç', 'ch'], ['ʦ', 'ch'], ['ʃ', 'sh'], ['ŋ', 'ng'],
+  ['æ', 'ai'], ['ĩ', 'in'], ['ã', 'an'], ['õ', 'on'], ['ũ', 'un'],
+  ['дж', 'dj'],
+];
+// Кириллица — обычной транслитерацией. ж — dj: отдельного «ж» в алфавите нет, а dj — ближайший
+// звонкий звук того же места. ц — ts, а ts в Viossa и так читается как ch. Плюс украинские и сербские буквы.
+const CYR = {
+  а: 'a', б: 'b', в: 'v', г: 'g', д: 'd', е: 'e', ё: 'o', ж: 'dj', з: 'z', и: 'i', й: 'j', к: 'k', л: 'l', м: 'm',
+  н: 'n', о: 'o', п: 'p', р: 'r', с: 's', т: 't', у: 'u', ф: 'f', х: 'h', ц: 'ts', ч: 'ch', ш: 'sh', щ: 'sh',
+  ъ: '', ы: 'i', ь: '', э: 'e', ю: 'u', я: 'a',
+  і: 'i', ї: 'ji', є: 'je', ґ: 'g', ў: 'w', ј: 'j', љ: 'lj', њ: 'nj', ћ: 'ch', ђ: 'dj', џ: 'dj',
+};
+// е, ё, ю, я после согласной только смягчают её, а в начале слова, после гласной, ъ и ь — это j + гласная
+const IOTA = 'еёюя', CYR_CONS = 'бвгджзйклмнпрстфхцчшщ';
+// Текст → строка из латинских букв, которую разбирает tokenize, и для каждой её буквы — откуда она
+// взялась в исходном тексте. По этому субтитры показывают написанное, а не транслитерацию.
+function normalize(text) {
+  const t = text.normalize('NFC');  // регистр сохраняется в from, сравнивается всё строчными
+  let s = '';
+  const from = [];
+  const emit = (out, orig) => {
+    if (!out) { if (from.length) from[from.length - 1] += orig; return; }  // ъ, ь, знак ударения — к соседу
+    for (let k = 0; k < out.length; k++) { s += out[k]; from.push(k ? '' : orig); }
+  };
+  for (let j = 0; j < t.length;) {
+    const rule = SPELL.find(([a]) => t.slice(j, j + a.length).toLowerCase() === a);
+    if (rule) { emit(rule[1], t.slice(j, j + rule[0].length)); j += rule[0].length; continue; }
+    const ch = t[j].toLowerCase();
+    if (ch in CYR) emit((IOTA.includes(ch) && !(j && CYR_CONS.includes(t[j - 1].toLowerCase())) ? 'j' : '') + CYR[ch], t[j]);
+    else emit(ch.normalize('NFD').replace(/[̀-ͯ]/g, ''), t[j]);  // ударения и долгота (á, ā, ï) снимаются
+    j++;
+  }
+  return { s, from };
+}
 function tokenize(text) {
-  // Буквы с диакритикой, которые на слайдах viossa72 значат другую букву, — до снятия диакритики,
-  // иначе от ŝ останется s, а от dž — dz. NFC — чтобы «s + отдельная галочка» тоже узнавалась.
-  // Остальная диакритика (ударения, долгота: á, ā, ï) просто снимается.
-  const s = text.toLowerCase().normalize('NFC')
-    .replace(/d[žẑ]/g, 'dj').replace(/ẓ/g, 'dj').replace(/[ŝš]/g, 'sh').replace(/[çʦ]/g, 'ch')
-    .replace(/æ/g, 'ai').replace(/ĩ/g, 'in').replace(/ã/g, 'an').replace(/õ/g, 'on').replace(/ũ/g, 'un')
-    .normalize('NFD').replace(/[̀-ͯ]/g, '')
-    .replace(/ʃ/g, 'sh').replace(/ŋ/g, 'ng');
+  const { s, from } = normalize(text);
   const out = [], bad = [];
   let i = 0;
-  const push = (id, mult = 1, src = id) => out.push({ id, mult, src });
+  // src — кусок исходного текста, из которого вышел знак: из него собираются субтитры
+  const push = (id, mult, a, b) => out.push({ id, mult, src: from.slice(a, b).join('') });
   while (i < s.length) {
     const c = s[i], rest = s.slice(i);
-    if (/^\s/.test(c)) { while (/\s/.test(s[i] || '')) i++; if (out.length && out.at(-1).id !== '_') push('_', 1, ' '); continue; }
-    if (/[,;:—–-]/.test(c)) { push(',', 1, c); i++; continue; }
-    if (/[.!?…]/.test(c)) { push('.', 1, c); i++; continue; }
+    if (/^\s/.test(c)) { while (/\s/.test(s[i] || '')) i++; if (out.length && out.at(-1).id !== '_') out.push({ id: '_', mult: 1, src: ' ' }); continue; }
+    if (/[,;:—–-]/.test(c)) { push(',', 1, i, ++i); continue; }
+    if (/[.!?…]/.test(c)) { push('.', 1, i, ++i); continue; }
     const own = CUSTOM.map(c => c.id).sort((a, b) => b.length - a.length).find(id => rest.startsWith(id));
-    if (own) { push(own, 1, own); i += own.length; continue; }
+    if (own) { push(own, 1, i, i += own.length); continue; }
     let m;
     // соответствия со слайдов viossa72 (sources/viossa72-spelling.md):
     // dj = dzh = dž = dzj, ch = ts, c = k — и c удваивается вместе с k: akk = acc
-    if ((m = rest.match(/^(dzh|dzj|dj)/))) { push('dj', 1, m[0]); i += m[0].length; continue; }
-    if ((m = rest.match(/^(tsh|tch|ch|ts)/))) { push('ch', 1, m[0]); i += m[0].length; continue; }
-    if (c === 'c') { let n = 1; while ('ck'.includes(s[i + n] || '_')) n++; push('k', n > 1 ? 1.4 : 1, s.slice(i, i + n)); i += n; continue; }
-    if ((m = rest.match(/^(sch|sh)/))) { push('sh', 1, m[0]); i += m[0].length; continue; }
-    if (rest.startsWith('ng') && !VOW.includes(s[i + 2] || '')) { push('ng', 1, 'ng'); i += 2; continue; }
-    if (c === 'y') { if (VOW.includes(s[i + 1] || '')) push('j', 1, 'y'); else push('i', 1, 'y'); i++; continue; }
-    if (c === 'x') { push('k', 1, 'x'); push('s', 1, ''); i++; continue; }
-    if (c === 'q') { push('k', 1, 'q'); i++; continue; }
+    if ((m = rest.match(/^(dzh|dzj|dj)/))) { push('dj', 1, i, i += m[0].length); continue; }
+    if ((m = rest.match(/^(tsh|tch|ch|ts)/))) { push('ch', 1, i, i += m[0].length); continue; }
+    if (c === 'c') { let n = 1; while ('ck'.includes(s[i + n] || '_')) n++; push('k', n > 1 ? 1.4 : 1, i, i += n); continue; }
+    if ((m = rest.match(/^(sch|sh)/))) { push('sh', 1, i, i += m[0].length); continue; }
+    if (rest.startsWith('ng') && !VOW.includes(s[i + 2] || '')) { push('ng', 1, i, i += 2); continue; }
+    if (c === 'y') { push(VOW.includes(s[i + 1] || '') ? 'j' : 'i', 1, i, ++i); continue; }
+    if (c === 'x') { push('k', 1, i, ++i); out.push({ id: 's', mult: 1, src: '' }); continue; }
+    if (c === 'q') { push('k', 1, i, ++i); continue; }
     if (ALPHA[c] && c !== '_') {
       let n = 1; while (s[i + n] === c) n++;
-      push(c, n > 1 ? (VOW.includes(c) ? 1.7 : 1.4) : 1, c.repeat(n)); i += n; continue;
+      push(c, n > 1 ? (VOW.includes(c) ? 1.7 : 1.4) : 1, i, i += n); continue;
     }
     bad.push(c); i++;
   }
