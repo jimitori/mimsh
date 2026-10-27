@@ -56,7 +56,11 @@
   .corner.top { top: var(--top); bottom: auto; left: var(--gut); }
   /* «←» — обратно на сайт; на локальном файле её нет, и «alphabet» встаёт в угол */
   #back-btn { text-decoration: none; }
-  #export-btn { position: fixed; right: var(--gut); top: var(--top); }
+  .corner.topright { top: var(--top); bottom: auto; right: var(--gut); }
+  #about-menu { right: var(--gut); top: calc(var(--top) + 44px); width: min(360px, calc(100vw - 2 * var(--gut)));
+                font: 16px/1.4 var(--ui); gap: 10px; }
+  #about-menu p { margin: 0; }
+  #about-menu a { color: inherit; text-underline-offset: 3px; text-decoration-thickness: 1px; }
   .corner { position: fixed; bottom: var(--bottom); display: flex; gap: 8px; }
   .corner.left { left: var(--gut); }
   .corner.right { right: var(--gut); gap: 5px; }
@@ -148,7 +152,11 @@
   <button class="glass" id="alphabet-btn" aria-haspopup="true" aria-expanded="false"></button>
 </div>
 <div class="menu" id="alphabet-menu" hidden></div>
-<button class="glass" id="export-btn" aria-haspopup="true" aria-expanded="false"></button>
+<div class="corner topright">
+  <button class="glass square" id="about-btn" aria-haspopup="true" aria-expanded="false">?</button>
+  <button class="glass" id="export-btn" aria-haspopup="true" aria-expanded="false"></button>
+</div>
+<div class="menu" id="about-menu" hidden></div>
 <div class="menu" id="export-menu" hidden></div>
 <div class="corner left">
   <button class="glass" id="settings-btn" aria-haspopup="true" aria-expanded="false"></button>
@@ -803,9 +811,10 @@ function frame(now) {
 }
 requestAnimationFrame(frame);
 
-// ─── Язык интерфейса: русский → английский → Viossa ─────────────────────
-// На Viossa переведено только то, что было на макете; остальное показывается по-английски.
-const LANGS = { ru: 'русский', en: 'english', vi: 'viossa' };
+// ─── Язык интерфейса: русский ↔ английский ──────────────────────────────
+// Viossa пока выключена — полного перевода нет. Подписи с макета (vi в T и у параметров) лежат
+// наготове: чтобы включить, добавь сюда vi: 'viossa'.
+const LANGS = { ru: 'русский', en: 'english' };
 const T = {
   ru: { settings: 'настройки', alphabet: 'алфавит', export: 'экспорт', png: 'сохранить png', video: 'сохранить mp4',
         stopRec: 'остановить запись', placeholder: 'введи текст', yes: 'да', no: 'нет', language: 'язык',
@@ -813,18 +822,19 @@ const T = {
         resetAlpha: 'вернуть алфавит', play: 'Произнести', stop: 'Остановить', zoomIn: 'Приблизить', zoomOut: 'Отдалить',
         background: 'Фон', same: 'совпадает с', noRec: 'Этот браузер не умеет записывать видео с холста.',
         notSettings: 'Это не файл настроек: ', confirmReset: 'Вернуть исходные настройки и алфавит?',
-        save: 'сохранить', load: 'загрузить', back: 'На сайт', badAlphabet: 'В алфавите файла у двух букв один знак: ' },
+        save: 'сохранить', load: 'загрузить', back: 'На сайт', about: 'Что это', badAlphabet: 'В алфавите файла у двух букв один знак: ' },
   en: { settings: 'settings', alphabet: 'alphabet', export: 'export', png: 'save png', video: 'save mp4',
         stopRec: 'stop recording', placeholder: 'enter your text', yes: 'yes', no: 'no', language: 'language',
         main: 'main', file: 'file', saveFile: 'save to file', loadFile: 'load from file', resetAll: 'reset everything',
         resetAlpha: 'reset alphabet', play: 'Play', stop: 'Stop', zoomIn: 'Zoom in', zoomOut: 'Zoom out',
         background: 'Background', same: 'same as', noRec: 'This browser cannot record video from a canvas.',
         notSettings: 'Not a settings file: ', confirmReset: 'Reset all settings and the alphabet?',
-        save: 'save', load: 'load', back: 'Back to the site', badAlphabet: 'The file’s alphabet gives one sign to two letters: ' },
+        save: 'save', load: 'load', back: 'Back to the site', about: 'What is this', badAlphabet: 'The file’s alphabet gives one sign to two letters: ' },
   vi: { png: 'save riso', yes: 'akk', no: 'naj', language: 'glossa' },
 };
 const UNITS = { s: { ru: ' с', en: 's', vi: 'š' }, Hz: { ru: ' Гц', en: ' Hz', vi: ' Hz' } };
-let lang = store.get('lang') || ((navigator.language || '').startsWith('ru') ? 'ru' : 'en');
+let lang = store.get('lang');
+if (!(lang in LANGS)) lang = (navigator.language || '').startsWith('ru') ? 'ru' : 'en';
 const t = k => T[lang][k] ?? T.en[k];
 const labelOf = c => lang === 'ru' ? c.label : lang === 'vi' ? (c.vi || c.en) : c.en;
 const titleOf = g => lang === 'ru' ? g.title : g.en;
@@ -838,6 +848,7 @@ function setLang(l) {
   $('#alphabet-btn').textContent = t('alphabet');
   $('#back-btn').title = t('back'); $('#back-btn').setAttribute('aria-label', t('back'));
   $('#export-btn').textContent = t('export');
+  $('#about-btn').title = t('about'); $('#about-btn').setAttribute('aria-label', t('about'));
   textEl.placeholder = t('placeholder'); textEl.setAttribute('aria-label', t('placeholder'));
   $('#zoom-in').title = t('zoomIn'); $('#zoom-in').setAttribute('aria-label', t('zoomIn'));
   $('#zoom-out').title = t('zoomOut'); $('#zoom-out').setAttribute('aria-label', t('zoomOut'));
@@ -845,13 +856,33 @@ function setLang(l) {
   applyTheme(); renderMenu(); layoutText();
 }
 
+// «?» — что это такое, коротко.
+const ABOUT = {
+  ru: `<p><b>Viossa</b> — язык, который с 2014 года складывают люди с разными родными языками: без перевода,
+    только жестами, картинками и общими словами. Правило одно: если тебя поняли — это Viossa.
+    <a href="https://viossa.net/en" target="_blank" rel="noopener">viossa.net</a></p>
+    <p><b>Мурмурация</b> — письмо для Viossa. Каждый звук — четыре параллельные линии разной толщины.
+    Знаки сливаются в одну ленту, а рисует её стая скворцов.</p>
+    <p>Впиши текст, и стая его напишет. ▶ произносит его по словам. В «алфавите» знак можно отдать другой
+    букве, в «настройках» — поменять ленту и стаю, в «экспорте» — сохранить картинку или видео.</p>
+    <p>Сделал <a href="https://morovovsheiner.pro" target="_blank" rel="noopener">Митя Моровов-Шейнер</a>.</p>`,
+  en: `<p><b>Viossa</b> is a language built since 2014 by people with different native languages: no
+    translation, only gestures, pictures and shared words. There is one rule: if you are understood, it is
+    Viossa. <a href="https://viossa.net/en" target="_blank" rel="noopener">viossa.net</a></p>
+    <p><b>Murmuration</b> is a script for Viossa. Every sound is four parallel lines of different weight.
+    The signs flow into one ribbon, and a flock of starlings draws it.</p>
+    <p>Type a text and the flock writes it. ▶ says it word by word. In “alphabet” you can give a sign to
+    another letter, in “settings” change the ribbon and the flock, in “export” save a picture or a video.</p>
+    <p>Made by <a href="https://morovovsheiner.pro" target="_blank" rel="noopener">Mitia Morovov-Sheiner</a>.</p>`,
+};
+
 // ─── Меню ────────────────────────────────────────────────────────────────
 // Строка — подпись и значение. Выделенная строка подчёркнута. Tab и Shift+Tab ходят по строкам,
 // стрелки меняют значение (с Shift — крупнее), щелчок по числу открывает его для ввода,
 // щелчок по «да/нет» или языку переключает. Всё применяется сразу и сохраняется.
 // Щелчок мимо меню его закрывает.
-const MENUS = { settings: '#settings-menu', export: '#export-menu', alphabet: '#alphabet-menu' };
-const BUTTONS = { settings: '#settings-btn', export: '#export-btn', alphabet: '#alphabet-btn' };
+const MENUS = { settings: '#settings-menu', export: '#export-menu', alphabet: '#alphabet-menu', about: '#about-menu' };
+const BUTTONS = { settings: '#settings-btn', export: '#export-btn', alphabet: '#alphabet-btn', about: '#about-btn' };
 let openMenu = null, page = store.get('page') || 0, ACT = {}, editing = false;
 
 function setMenu(name, focus = true) {
@@ -881,7 +912,8 @@ function renderMenu() {
   const el = $(MENUS[openMenu]);
   ACT = {};
   const tmp = document.createElement('div');
-  tmp.innerHTML = openMenu === 'settings' ? settingsRows() : openMenu === 'export' ? exportRows() : alphabetRows();
+  tmp.innerHTML = openMenu === 'settings' ? settingsRows() : openMenu === 'export' ? exportRows()
+    : openMenu === 'about' ? (ABOUT[lang] || ABOUT.en) : alphabetRows();
   const fresh = [...tmp.children], keys = r => r.map(x => x.dataset.k).join('\n');
   if (keys(fresh) === keys([...el.children])) {
     fresh.forEach((r, i) => {
