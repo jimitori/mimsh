@@ -104,7 +104,6 @@
   .glyph { display: grid; grid-template-rows: repeat(4, 7px); width: 28px; }
   .glyph i { display: flex; align-items: center; }
   .glyph b { display: block; width: 100%; background: currentColor; }
-  body.admin .glyph { cursor: pointer; }
   #alphabet-menu .row { cursor: text; }
   #alphabet-menu .row:focus .val { text-decoration: none; }
   /* подпись и поле ввода буквы — одного размера, чтобы при щелчке ничего не прыгало */
@@ -169,8 +168,9 @@
       <linearGradient id="g-fill" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".8"/><stop offset="1" stop-color="#fff" stop-opacity=".4"/></linearGradient>
       <linearGradient id="g-edge" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".8"/><stop offset="1" stop-color="#fff" stop-opacity=".1"/></linearGradient>
     </defs>
-    <path class="i-play" d="M12.5 8.9Q12.5 5 15.9 7L55.4 29.6Q58.8 32.5 55.4 35.4L15.9 58Q12.5 60 12.5 56.1Z" fill="url(#g-fill)" stroke="url(#g-edge)"/>
-    <g class="i-pause" fill="url(#g-fill)" stroke="url(#g-edge)"><rect x="16.5" y="6" width="14" height="53" rx="3"/><rect x="34.5" y="6" width="14" height="53" rx="3"/></g>
+    <!-- геометрия — из компонента «play» в Figma: треугольник со скруглением 3, палочки 14×53 на x = 15 и 37 -->
+    <path class="i-play" d="M60.5 29.9C62.5 31.06 62.5 33.94 60.5 35.1L20.75 58.05C18.75 59.2 16.25 57.76 16.25 55.45L16.25 9.55C16.25 7.24 18.75 5.8 20.75 6.95Z" fill="url(#g-fill)" stroke="url(#g-edge)"/>
+    <g class="i-pause" fill="url(#g-fill)" stroke="url(#g-edge)"><rect x="15.5" y="6.5" width="13" height="52" rx="2.5"/><rect x="37.5" y="6.5" width="13" height="52" rx="2.5"/></g>
   </svg>
 </button>
 <div class="corner right">
@@ -912,6 +912,9 @@ const ABOUT = {
     Знаки сливаются в одну ленту, а рисует её стая скворцов.</p>
     <p>Впиши текст, и стая его напишет. ▶ произносит его по словам. В «алфавите» знак можно отдать другой
     букве, в «настройках» — поменять ленту и стаю, в «экспорте» — сохранить картинку или видео.</p>
+    <p>Внизу «настроек» — <b>сохранить · загрузить</b>: файл с алфавитом и настройками. В нём у каждой буквы
+    четыре цифры — толщины линий сверху вниз, 0 тонкая, 1 средняя, 2 толстая. Поменяй их, загрузи файл
+    обратно — и стая будет писать твоими знаками. Файлом можно поделиться.</p>
     <p>Сделал <a href="https://morovovsheiner.pro" target="_blank" rel="noopener">Митя Моровов-Шейнер</a>.</p>`,
   en: `<p><b>Viossa</b> is a language built since 2014 by people with different native languages: no
     translation, only gestures, pictures and shared words. There is one rule: if you are understood, it is
@@ -920,6 +923,9 @@ const ABOUT = {
     The signs flow into one ribbon, and a flock of starlings draws it.</p>
     <p>Type a text and the flock writes it. ▶ says it word by word. In “alphabet” you can give a sign to
     another letter, in “settings” change the ribbon and the flock, in “export” save a picture or a video.</p>
+    <p>At the bottom of “settings” is <b>save · load</b>: a file with the alphabet and the settings. Each
+    letter there has four digits — the weights of its lines from top to bottom, 0 thin, 1 medium, 2 thick.
+    Change them, load the file back, and the flock writes with your signs. You can share the file.</p>
     <p>Made by <a href="https://morovovsheiner.pro" target="_blank" rel="noopener">Mitia Morovov-Sheiner</a>.</p>`,
 };
 
@@ -1094,8 +1100,8 @@ function exportRows() {
 // Алфавит: у каждой буквы — её знак из четырёх линий. Выдели букву и впиши другую — знак
 // перейдёт к ней. Совпавшие буквы (и то, что буквой алфавита не является) подсвечены красным;
 // пока меню открыто, это можно исправить, а если при закрытии совпадения остались, алфавит
-// возвращается к виду на момент открытия. Сами знаки меняются только в расширенном режиме:
-// щелчок по линии — её толщина (тонкая → средняя → толстая), стрелки — все 81 код.
+// возвращается к виду на момент открытия. Сами знаки здесь не меняются — только через файл
+// настроек (save · load): там у каждой буквы код из четырёх цифр, толщины линий сверху вниз.
 const codeOf = g => g.lines.map(l => l.t).join('');
 const SIGNS = PHONEMES.filter(p => !'_,.'.includes(p.id));
 const isSign = id => SIGNS.some(p => p.id === id);
@@ -1130,17 +1136,15 @@ function alphabetRows() {
   // две колонки, порядок — сверху вниз
   for (let i = 0; i < half; i++) for (const j of [i, i + half]) {
     const r = alphaRows[j]; if (!r) continue;
-    const code = codeOf(r.glyph), twins = admin ? codes[code].filter(x => x !== r.label) : [];
-    const k = 'ph:' + j, a = ACT[k] = { click: el => editSign(j, el), type: (el, ch) => editSign(j, el, ch), any: true };
-    if (admin) {
-      a.step = d => setCode(j, ((parseInt(code, 3) + d + 81) % 81).toString(3).padStart(4, '0'));
-      a.line = l => setCode(j, code.slice(0, l) + (+code[l] + 1) % 3 + code.slice(l + 1));
-    }
+    const code = codeOf(r.glyph), twins = codes[code].filter(x => x !== r.label);
+    const k = 'ph:' + j;
+    ACT[k] = { click: el => editSign(j, el), type: (el, ch) => editSign(j, el, ch), any: true };
     const ipa = (SIGNS.find(p => p.id === r.label) || {}).ipa;
-    const glyph = `<span class="glyph">${r.glyph.lines.map((ln, l) => `<i data-l="${l}"><b style="height:${[1, 3, 6][ln.t]}px"></b></i>`).join('')}</span>`;
+    const glyph = `<span class="glyph">${r.glyph.lines.map((ln, l) => `<i><b style="height:${[1, 3, 6][ln.t]}px"></b></i>`).join('')}</span>`;
     h += row(k, esc(r.label) || '·', glyph, {
       labCls: clash(r) || twins.length ? 'dup' : '',
-      title: (ipa ? `/${ipa}/` : '') + (admin ? ` · ${code}` : '') + (twins.length ? ` · ${t('same')}: ${twins.join(', ')}` : ''),
+      // код виден всем — его и правят в файле настроек
+      title: (ipa ? `/${ipa}/ · ` : '') + code + (twins.length ? ` · ${t('same')}: ${twins.join(', ')}` : ''),
     });
   }
   ACT.resetAlpha = { click: () => {
@@ -1148,10 +1152,6 @@ function alphabetRows() {
     const snap = alphaSnap; openAlphabet(); alphaSnap = snap; renderMenu();
   } };
   return h + row('resetAlpha', t('resetAlpha'), '', { cls: 'action wide' });
-}
-function setCode(j, code) {
-  alphaRows[j].glyph.lines = [...code].map(c => ({ t: +c }));
-  applyAlphabet(); renderMenu();
 }
 // Буква вписывается на месте подписи; можно и просто начать печатать на выделенной строке.
 function editSign(j, r, initial) {
@@ -1184,10 +1184,9 @@ for (const sel of Object.values(MENUS)) {
   const el = $(sel);
   el.addEventListener('click', e => {
     const r = e.target.closest('.row'), a = r && ACT[r.dataset.k]; if (!a) return;
-    const dir = e.target.closest('[data-dir]'), line = e.target.closest('[data-l]'), io = e.target.closest('[data-io]');
+    const dir = e.target.closest('[data-dir]'), io = e.target.closest('[data-io]');
     if (io && a.pick) a.pick(+io.dataset.io);
     else if (dir && a.step) a.step(+dir.dataset.dir);
-    else if (line && a.line) a.line(+line.dataset.l);
     else if (a.click && (a.any || r.classList.contains('action') || e.target.closest('.val'))) a.click(r);
   });
   el.addEventListener('keydown', e => {
@@ -1322,16 +1321,20 @@ function saveFile() {
 }
 // Своя система посетителя: алфавит, видимые настройки и язык. Скрытые параметры в файл не идут
 // и из файла не берутся — даже из полного файла расширенного режима.
+// Алфавит пишется коротко — «a»: «0200», толщины четырёх линий сверху вниз, чтобы его было легко править.
 function saveOwn() {
   const params = Object.fromEntries(VISITOR_KEYS.map(k => [k, P[k]]));
-  download('viossa-settings.json', new Blob([JSON.stringify({ alphabet: ALPHA, params, lang }, null, 1)], { type: 'application/json' }));
+  const alphabet = Object.fromEntries(SIGNS.map(p => [p.id, codeOf(ALPHA[p.id])]));
+  download('viossa-settings.json', new Blob([JSON.stringify({ alphabet, params, lang }, null, 1)], { type: 'application/json' }));
 }
 function loadOwn(j) {
   if (!j.alphabet && !j.params) throw new Error('alphabet, params');
   if (j.alphabet) {
     const next = clone(ALPHA);
     for (const p of SIGNS) {
-      const g = j.alphabet[p.id];
+      let g = j.alphabet[p.id];
+      // короткая запись «0200» или полная, как в файле расширенного режима
+      if (typeof g === 'string' && /^[012]{4}$/.test(g.trim())) g = { lines: [...g.trim()].map(c => ({ t: +c })) };
       if (g && Array.isArray(g.lines) && g.lines.length === 4 && g.lines.every(l => [0, 1, 2].includes(l.t)))
         next[p.id] = { ...next[p.id], lines: g.lines.map(l => ({ t: l.t })) };
     }
