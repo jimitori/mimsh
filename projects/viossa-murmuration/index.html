@@ -134,10 +134,7 @@
     #play { bottom: calc(var(--bottom) + 48px); }
     /* субтитр — под верхними кнопками, иначе длинное слово наезжает на «?» и «export» */
     #caption { top: 64px; }
-    /* поле стоит прямо на стае — под ним прозрачный размытый тёмный овал, чтобы белый текст читался */
-    #compose::before { content: ''; position: absolute; inset: -28px -20px; z-index: -1; pointer-events: none;
-                       background: radial-gradient(closest-side, rgb(0 0 0 / .45), rgb(0 0 0 / .28) 55%, transparent);
-                       filter: blur(12px); }
+    /* поле стоит прямо на стае — мягкая тень отделяет белые буквы от птиц */
     #text { text-shadow: 0 0 10px rgb(0 0 0 / .45); }
   }
 </style>
@@ -851,7 +848,7 @@ const textEl = $('#text'), canvas = $('#main-canvas'), ctx = canvas.getContext('
 let scene = null, dirty = true;
 // Пока поле пустое, стая пишет это — и «▶» произносит это же.
 const DEFAULT_TEXT = 'hanu viossa';
-const HINTS = ['viossa', 'kotobara', 'fshto', 'afto punkt'];
+const HINTS = ['ka slucha', 'un kaku', 'afto punkt'];
 textEl.value = store.get('text') ?? '';
 const currentText = () => textEl.value.trim() ? textEl.value : DEFAULT_TEXT;
 // Лента переносится там же, где текст в поле: слова раскладываются в зеркале поля, и слова с одной
