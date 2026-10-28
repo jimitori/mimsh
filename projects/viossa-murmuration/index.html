@@ -271,7 +271,18 @@ const GROUPS = [
     BOOL('sky', 'небо-градиент', 'sky gradient', false),
     COLOR('bg2', 'фон снизу', 'background bottom', '#111111', { when: p => p.sky }),
   ] },
+  // На узком экране надпись ужимается, а птицы остаются того же размера — облака чернеют.
+  // Эти множители действуют только на экране уже 640 px.
+  { title: 'Телефон', en: 'phone', list: [
+    R('mDensity', 'плотность ×', 'density ×', 0.05, 1, 0.05, 1),
+    R('mAlpha', 'прозрачность ×', 'opacity ×', 0.1, 1, 0.05, 1),
+    R('mWing', 'размах ×', 'bird span ×', 0.3, 1.5, 0.05, 1),
+  ] },
 ];
+// Параметры, какими их видит экран: на телефоне — с множителями раздела «Телефон».
+const PHONE_W = 640;
+const viewP = () => innerWidth >= PHONE_W ? P
+  : { ...P, density: P.density * P.mDensity, alpha: Math.min(1, P.alpha * P.mAlpha), wing: P.wing * P.mWing };
 const PARAM = {};
 for (const g of GROUPS) for (const c of g.list) PARAM[c.key] = c;
 // Меню посетителя — то, что на макете, плюс плотность; всё остальное берётся из START.
@@ -297,6 +308,7 @@ const START = {
   density: 1.5, scatter: 10, dot: 2, alpha: 0.55, wing: 1.6, stray: 0.4, core: 0.15, soft: 1.5, swell: 0, seed: 9, flap: 1,
   roam: 0, speed: 0.3, spine: 'murmur', bend: 0.22, wavelength: 690, radius: 20, grow: 0, warp: 0, warpScale: 0.0195,
   waveAmp: 0.4, waveLen: 320, waveSpeed: 60, twist: 0, twistLen: 800,
+  mDensity: 0.35, mAlpha: 0.8, mWing: 0.8,
   wordHold: 5, transDur: 5, swirl: 0.05, caption: true, loop: true,
   theme: 'sunset', fg: '#141018', bg: '#8f8fb8', sky: true, bg2: '#f2b98a', zoom: 1.125,
 };
@@ -668,7 +680,7 @@ function startPlay(once = false) {
   const words = splitWords();
   if (!words.length) return;
   // общая плотность для всех слов, чтобы суммарно было не больше PLAY_CAP точек на слово
-  const Q = { ...P, mode: 'murmur' };
+  const Q = { ...viewP(), mode: 'murmur' };
   const scenes = words.map(w => makeScene(w.glyphs, Q));
   const maxN = Math.max(...scenes.map(s => s.pts.length / 6));
   if (maxN > PLAY_CAP) { Q.density *= PLAY_CAP / maxN; for (let i = 0; i < words.length; i++) scenes[i] = makeScene(words[i].glyphs, Q); }
@@ -703,6 +715,7 @@ function newArc(r) { const a = r() * 6.2831853; return { x: Math.cos(a), y: Math
 function stopPlay() { play = null; setPlaying(false); dirty = true; if (rec) stopVideo(); }
 
 function drawPlay(now) {
+  const P = viewP();  // на телефоне — с множителями раздела «Телефон»
   const W = canvas.width, H = canvas.height, dpr = devicePixelRatio || 1;
   const pl = play, el = (now - pl.t0) / 1000;
   // Рой сразу стоит в первом слове. Дальше: пауза на слове → перелёт к следующему.
@@ -812,11 +825,14 @@ function glyphsFromText() {
 let needRebuild = false, lastInput = -1e9, wasBusy = false;
 function rebuild() { needRebuild = true; }
 // Эти параметры применяются при отрисовке — точки пересобирать не нужно.
-const DRAW_ONLY = new Set(['wing', 'flap', 'roam', 'twist', 'twistLen', 'waveAmp', 'waveLen', 'waveSpeed', 'stray', 'sky', 'bg2', 'wordHold', 'transDur', 'swirl', 'caption', 'loop', 'scatter', 'swell', 'dot', 'alpha', 'warp', 'warpScale', 'speed', 'zoom', 'fg', 'bg', 'theme']);
+const DRAW_ONLY = new Set(['wing', 'flap', 'roam', 'twist', 'twistLen', 'waveAmp', 'waveLen', 'waveSpeed', 'stray', 'sky', 'bg2', 'wordHold', 'transDur', 'swirl', 'caption', 'loop', 'scatter', 'swell', 'dot', 'alpha', 'warp', 'warpScale', 'speed', 'zoom', 'fg', 'bg', 'theme', 'mAlpha', 'mWing']);
 
+let wasPhone = innerWidth < PHONE_W;
 function resize() {
   const dpr = devicePixelRatio || 1, r = canvas.getBoundingClientRect();
   canvas.width = Math.max(1, r.width * dpr); canvas.height = Math.max(1, r.height * dpr); dirty = true;
+  // плотность на телефоне другая — точки надо пересобрать
+  if ((innerWidth < PHONE_W) !== wasPhone) { wasPhone = !wasPhone; rebuild(); }
 }
 new ResizeObserver(resize).observe(canvas);
 
@@ -831,12 +847,12 @@ function frame(now) {
     // пока значение меняют, собираем не больше ~60 тыс. точек, полную стаю — после
     const full = scene && scene.pts ? scene.pts.length / 6 / scene.f : 0;
     const f = busy && full > 60000 ? 60000 / full : 1;
-    scene = makeScene(glyphsFromText(), { ...P, density: P.density * f }); scene.f = f;
+    const V = viewP(); scene = makeScene(glyphsFromText(), { ...V, density: V.density * f }); scene.f = f;
     needRebuild = false; dirty = true;
   }
   if (play) { time += dt * P.speed; drawPlay(now); }
   else if (dirty && scene) {
-    drawScene(ctx, canvas.width, canvas.height, scene, P, time, devicePixelRatio || 1, { preview: busy }); dirty = false;
+    drawScene(ctx, canvas.width, canvas.height, scene, viewP(), time, devicePixelRatio || 1, { preview: busy }); dirty = false;
   }
   requestAnimationFrame(frame);
 }
@@ -1270,10 +1286,10 @@ $('#play').onclick = () => { if (play) stopPlay(); else startPlay(); };
 function download(name, blob) { const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000); }
 const fileBase = () => `viossa-${currentText().trim().replace(/[^\p{L}\p{N}]+/gu, '-').slice(0, 40) || 'murmur'}`;
 function savePng() {
-  if (needRebuild || !scene || scene.f < 1) { scene = makeScene(glyphsFromText(), P); scene.f = 1; needRebuild = false; }
+  if (needRebuild || !scene || scene.f < 1) { scene = makeScene(glyphsFromText(), viewP()); scene.f = 1; needRebuild = false; }
   const c = document.createElement('canvas'), k = 3, r = canvas.getBoundingClientRect();
   c.width = r.width * k; c.height = r.height * k;
-  drawScene(c.getContext('2d'), c.width, c.height, scene, P, time, k);
+  drawScene(c.getContext('2d'), c.width, c.height, scene, viewP(), time, k);
   c.toBlob(b => download(`${fileBase()}.png`, b));
 }
 
