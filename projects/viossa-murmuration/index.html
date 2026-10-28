@@ -621,11 +621,14 @@ function drawBird(ctx, A, x, y, roll, size, phase) {
   const r = Math.max(0, Math.min(ROLLS.length - 1, Math.round(roll / 0.2) + 2)), D = A.S * size;
   ctx.drawImage(A.img, f * A.S, r * A.S, A.S, A.S, x - D / 2, y - D / 2, D, D);
 }
+// opts.sc, opts.tx, opts.ty — масштаб и сдвиг снаружи (несколько строк ленты на одном экране);
+// opts.noBg — не закрашивать фон (строка рисуется поверх уже нарисованных).
 function drawScene(ctx, W, H, scene, P, time, dpr = 1, opts = {}) {
   const { model, spine, pts, bbox } = scene;
-  paintBg(ctx, W, H, P);
+  if (!opts.noBg) paintBg(ctx, W, H, P);
   const bw = bbox[2] - bbox[0], bh = bbox[3] - bbox[1];
-  const sc = Math.min(W / bw, H / bh) * P.zoom, cx = (bbox[0] + bbox[2]) / 2, cy = (bbox[1] + bbox[3]) / 2;
+  const sc = opts.sc ?? Math.min(W / bw, H / bh) * P.zoom;
+  const tx = opts.tx ?? W / 2 - (bbox[0] + bbox[2]) / 2 * sc, ty = opts.ty ?? H / 2 - (bbox[1] + bbox[3]) / 2 * sc;
   const tz = time * 0.15, ws = P.warpScale, wa = opts.still ? 0 : P.warp, sw = opts.still ? 0 : P.swell;
   const twOn = !opts.still && P.twist > 0;
   const N = model.N;
@@ -639,7 +642,7 @@ function drawScene(ctx, W, H, scene, P, time, dpr = 1, opts = {}) {
     let X = spine.x[k] + (u - k) * spine.ny[k] + v * spine.nx[k] + ox;
     let Y = spine.y[k] - (u - k) * spine.nx[k] + v * spine.ny[k] + oy;
     if (wa) { X += wa * noise3(X * ws, Y * ws, t); Y += wa * noise3(X * ws + 31.4, Y * ws + 17.7, t + 9); }
-    mx = (X - cx) * sc + W / 2; my = (Y - cy) * sc + H / 2;
+    mx = X * sc + tx; my = Y * sc + ty;
   };
   ctx.fillStyle = P.fg; ctx.strokeStyle = P.fg;
   if (P.mode === 'clean' || !pts) {
@@ -851,8 +854,42 @@ const DEFAULT_TEXT = 'hanu viossa';
 const HINTS = ['viossa', 'kotobara', 'fshto', 'afto punkt'];
 textEl.value = store.get('text') ?? '';
 const currentText = () => textEl.value.trim() ? textEl.value : DEFAULT_TEXT;
-function glyphsFromText() {
-  return tokenize(currentText()).tokens.map(t => ({ ...glyphOf(t.id), mult: t.mult }));
+// Лента переносится там же, где текст в поле: слова раскладываются в зеркале поля, и слова с одной
+// высотой — одна строка. Явный перенос (Enter) тоже даёт новую строку.
+function textLines() {
+  if (!textEl.value.trim()) return [DEFAULT_TEXT];
+  const parts = textEl.value.split(/(\s+)/);
+  mirror.textContent = '';
+  const spans = parts.map(p => { const sp = document.createElement('span'); sp.textContent = p; mirror.append(sp); return sp; });
+  const lines = [];
+  let top = null;
+  parts.forEach((p, i) => {
+    if (!p.trim()) return;
+    const y = spans[i].offsetTop;
+    if (y !== top) { lines.push(p); top = y; } else lines[lines.length - 1] += ' ' + p;
+  });
+  return lines.length ? lines : [DEFAULT_TEXT];
+}
+// Стопка лент: по одной сцене на строку текста.
+function makeStack(P) {
+  const scenes = textLines().map(l => makeScene(tokenize(l).tokens.map(t => ({ ...glyphOf(t.id), mult: t.mult })), P));
+  return { scenes };
+}
+const stackPoints = st => st.scenes.reduce((a, sc) => a + (sc.pts ? sc.pts.length / 6 : 0), 0);
+// Строки ленты — друг под другом, каждая по центру, как текст в поле; всё вместе вписано в экран.
+const LINE_PITCH = 0.8;  // шаг строк в долях высоты самой высокой ленты
+function drawStack(ctx, W, H, st, P, time, dpr = 1, opts = {}) {
+  const n = st.scenes.length;
+  if (n === 1) return drawScene(ctx, W, H, st.scenes[0], P, time, dpr, opts);
+  const hs = st.scenes.map(sc => sc.bbox[3] - sc.bbox[1]), hMax = Math.max(...hs);
+  const pitch = hMax * LINE_PITCH, totalH = pitch * (n - 1) + hMax;
+  const totalW = Math.max(...st.scenes.map(sc => sc.bbox[2] - sc.bbox[0]));
+  const k = Math.min(W / totalW, H / totalH) * P.zoom;
+  st.scenes.forEach((sc, i) => {
+    const cx = (sc.bbox[0] + sc.bbox[2]) / 2, cy = (sc.bbox[1] + sc.bbox[3]) / 2;
+    drawScene(ctx, W, H, sc, P, time, dpr, { ...opts, sc: k, tx: W / 2 - cx * k,
+      ty: H / 2 + (i - (n - 1) / 2) * pitch * k - cy * k, noBg: i > 0 });
+  });
 }
 
 // Пересборка точек — не чаще раза за кадр, иначе значение «залипает» на тяжёлых настройках.
@@ -879,14 +916,14 @@ function frame(now) {
   wasBusy = busy;
   if (needRebuild) {
     // пока значение меняют, собираем не больше ~60 тыс. точек, полную стаю — после
-    const full = scene && scene.pts ? scene.pts.length / 6 / scene.f : 0;
+    const full = scene ? stackPoints(scene) / scene.f : 0;
     const f = busy && full > 60000 ? 60000 / full : 1;
-    const V = viewP(); scene = makeScene(glyphsFromText(), { ...V, density: V.density * f }); scene.f = f;
+    const V = viewP(); scene = makeStack({ ...V, density: V.density * f }); scene.f = f;
     needRebuild = false; dirty = true;
   }
   if (play) { time += dt * P.speed; drawPlay(now); }
   else if (dirty && scene) {
-    drawScene(ctx, canvas.width, canvas.height, scene, viewP(), time, devicePixelRatio || 1, { preview: busy }); dirty = false;
+    drawStack(ctx, canvas.width, canvas.height, scene, viewP(), time, devicePixelRatio || 1, { preview: busy }); dirty = false;
   }
   requestAnimationFrame(frame);
 }
@@ -1243,7 +1280,11 @@ function layoutText() {
   const full = top + n * lh > maxBottom;
   if (full) textEl.style.height = maxBottom + 'px';
   compose.style.top = (full ? 0 : top) + 'px';
+  // переносы в поле сдвинулись (окно стало уже или шире) — лента переносится вместе с ними
+  const key = textLines().join('\n');
+  if (key !== linesKey) { linesKey = key; rebuild(); }
 }
+let linesKey = '';
 textEl.addEventListener('input', () => {
   layoutText(); store.set('text', textEl.value); rebuild();
   if (play) stopPlay();
@@ -1278,10 +1319,10 @@ $('#play').onclick = () => { if (play) stopPlay(); else startPlay(); };
 function download(name, blob) { const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000); }
 const fileBase = () => `viossa-${currentText().trim().replace(/[^\p{L}\p{N}]+/gu, '-').slice(0, 40) || 'murmur'}`;
 function savePng() {
-  if (needRebuild || !scene || scene.f < 1) { scene = makeScene(glyphsFromText(), viewP()); scene.f = 1; needRebuild = false; }
+  if (needRebuild || !scene || scene.f < 1) { scene = makeStack(viewP()); scene.f = 1; needRebuild = false; }
   const c = document.createElement('canvas'), k = 3, r = canvas.getBoundingClientRect();
   c.width = r.width * k; c.height = r.height * k;
-  drawScene(c.getContext('2d'), c.width, c.height, scene, viewP(), time, k);
+  drawStack(c.getContext('2d'), c.width, c.height, scene, viewP(), time, k);
   c.toBlob(b => download(`${fileBase()}.png`, b));
 }
 
