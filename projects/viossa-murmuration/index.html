@@ -54,6 +54,7 @@
   .glass:focus-visible, #play:focus-visible { outline: 1px solid var(--ink); outline-offset: 3px; }
   .glass.small { height: 22px; padding: 0 8px; font-size: 12px; }
   .swatch { width: 36px; padding: 0; background: var(--sw); }
+  .glass.lang { min-width: 40px; padding: 0 10px; }
   .swatch:hover, .swatch:active { background: var(--sw); filter: brightness(1.06); }
   .square { width: 38px; padding: 0; }
 
@@ -166,6 +167,7 @@
 <div class="menu" id="export-menu" hidden></div>
 <div class="corner left">
   <button class="glass" id="settings-btn" aria-haspopup="true" aria-expanded="false"></button>
+  <button class="glass lang" id="lang-btn"></button>
   <button class="glass swatch" id="theme-btn"></button>
 </div>
 <div class="menu" id="settings-menu" hidden></div>
@@ -968,6 +970,7 @@ function setLang(l) {
   lang = l; store.set('lang', l);
   document.documentElement.lang = l === 'vi' ? 'art' : l;
   $('#settings-btn').textContent = t('settings');
+  $('#lang-btn').textContent = lang; $('#lang-btn').title = `${t('language')}: ${LANGS[lang]}`; $('#lang-btn').setAttribute('aria-label', $('#lang-btn').title);
   $('#alphabet-btn').textContent = t('alphabet');
   $('#back-btn').title = t('back'); $('#back-btn').setAttribute('aria-label', t('back'));
   $('#export-btn').textContent = t('export');
@@ -1071,10 +1074,6 @@ function settingsRows() {
   }
   if (pg === 'main') {
     for (const k of PUBLIC) h += paramRow(PARAM[k]);
-    const ls = Object.keys(LANGS);
-    ACT.lang = { step: d => setLang(ls[(ls.indexOf(lang) + d + ls.length) % ls.length]) };
-    ACT.lang.click = () => ACT.lang.step(1);
-    h += row('lang', t('language'), LANGS[lang]);
     // «save · load · reset» — своя система: алфавит и видимые настройки. Каждое слово — своя остановка Tab;
     // ←/→ тоже переходят между ними, Enter срабатывает. Не помещается — слово переносится целиком.
     const io = [saveOwn, () => openFile('own'), resetOwn], word = () => document.activeElement.closest?.('[data-io]');
@@ -1239,6 +1238,11 @@ function applyTheme() {
   b.style.setProperty('--sw', `linear-gradient(160deg, ${th.bg}, ${th.bg2})`);
   b.title = `${t('background')}: ${th[lang === 'ru' ? 'ru' : 'en']}`; b.setAttribute('aria-label', b.title);
 }
+// Язык — пилюля рядом с «настройками», перебирает по кругу, как кнопка фона.
+$('#lang-btn').addEventListener('click', () => {
+  const ls = Object.keys(LANGS);
+  setLang(ls[(ls.indexOf(lang) + 1) % ls.length]);
+});
 $('#theme-btn').addEventListener('click', () => {
   const ks = Object.keys(THEMES), n = ks[(ks.indexOf(P.theme) + 1) % ks.length];
   P.theme = n; for (const k of THEME_KEYS) P[k] = THEMES[n][k];
