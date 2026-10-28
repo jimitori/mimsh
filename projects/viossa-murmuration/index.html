@@ -944,7 +944,8 @@ const T = {
         background: 'Фон', noRec: 'Этот браузер не умеет записывать видео с холста.',
         notSettings: 'Это не файл настроек: ', confirmReset: 'Вернуть исходные настройки и алфавит?',
         save: 'сохранить', load: 'загрузить', reset: 'сбросить', confirmResetOwn: 'Вернуть настройки, фон и алфавит по умолчанию?', back: 'На сайт', about: 'Что это', adjust: 'Щёлкни и меняй стрелками',
-        ownHow: 'Свои знаки — через файл: «настройки» → сохранить. В файле у каждой буквы четыре цифры — толщины линий сверху вниз: 0 тонкая, 1 средняя, 2 толстая. Поменяй их или добавь свои буквы, например «q»: «1022», и загрузи файл обратно. Тогда текст читается только по буквам алфавита, без встроенных замен.',
+        ownHow: 'Добавь свои знаки через «настройки» → сохранить. В файле у каждой буквы четыре цифры — толщины её линий сверху вниз: 0 тонкая, 1 средняя, 2 толстая. Поменяй их или добавь свои буквы, например «q»: «1022», и загрузи файл обратно.',
+
         ownOn: 'своя система · вернуть встроенную' },
   en: { settings: 'settings', alphabet: 'alphabet', export: 'export', png: 'save png', video: 'save mp4',
         stopRec: 'stop recording', placeholder: 'enter your words', yes: 'yes', no: 'no', language: 'language',
@@ -953,7 +954,8 @@ const T = {
         background: 'Background', noRec: 'This browser cannot record video from a canvas.',
         notSettings: 'Not a settings file: ', confirmReset: 'Reset all settings and the alphabet?',
         save: 'save', load: 'load', reset: 'reset', confirmResetOwn: 'Reset the settings, background and alphabet to defaults?', back: 'Back to the site', about: 'What is this', adjust: 'Click and use arrows to adjust',
-        ownHow: 'Your own signs go through a file: “settings” → save. Each letter there has four digits — the weights of its lines from top to bottom: 0 thin, 1 medium, 2 thick. Change them or add letters of your own, e.g. “q”: “1022”, and load the file back. Then the text is read only by the letters of the alphabet, without the built-in replacements.',
+        ownHow: 'Add your signs through ‘settings’ → save. Each letter there has four digits: the weights of its lines from top to bottom: 0 thin, 1 medium, 2 thick. Change them or add letters of your own, e.g. “q”: “1022”, and load the file back.',
+
         ownOn: 'own system · back to the built-in one' },
   vi: { png: 'save riso', yes: 'akk', no: 'naj', language: 'glossa' },
 };
@@ -984,25 +986,19 @@ function setLang(l) {
 
 // «?» — что это такое, коротко.
 const ABOUT = {
-  ru: `<p><b>Viossa</b> — язык, который с 2014 года складывают люди с разными родными языками: без перевода,
-    только жестами, картинками и общими словами. Правило одно: если тебя поняли — это Viossa.
+  ru: `<p><b>Viossa</b> — пиджин, который складывают с 2014 года. Правило одно: если тебя поняли — это Viossa.
     <a href="https://viossa.net/en" target="_blank" rel="noopener">viossa.net</a></p>
-    <p><b>Мурмурация</b> — письмо для Viossa. Каждый звук — четыре параллельные линии разной толщины.
-    Знаки сливаются в одну ленту, а рисует её стая скворцов.</p>
-    <p>Впиши текст, и стая его напишет. ▶ произносит его по словам. В «алфавите» знак можно отдать другой
-    букве, в «настройках» — поменять ленту и стаю, в «экспорте» — сохранить картинку или видео.</p>
-    <p>Свои знаки можно поставить через файл настроек — как, написано внизу «алфавита». Файлом можно
-    поделиться.</p>
+    <p><b>Мурмурация</b> — письмо для Viossa. Каждый знак складывается из четырёх параллельных линий разной
+    толщины. Знаки сливаются в одну ленту, а рисует её стая скворцов. Впиши несколько слов и нажми ▶.</p>
+    <p>В «настройках» можно поиграть с формой стаи и параметрами видео. А ещё — загрузить свою версию знаков:
+    нажми «сохранить» в настройках и поправь файл под свой алфавит.</p>
     <p>Сделал <a href="https://morovovsheiner.pro" target="_blank" rel="noopener">Митя Моровов-Шейнер</a>.</p>`,
-  en: `<p><b>Viossa</b> is a language built since 2014 by people with different native languages: no
-    translation, only gestures, pictures and shared words. There is one rule: if you are understood, it is
+  en: `<p><b>Viossa</b> is a pidgin language built since 2014. There is one rule: if you are understood, it is
     Viossa. <a href="https://viossa.net/en" target="_blank" rel="noopener">viossa.net</a></p>
-    <p><b>Murmuration</b> is a script for Viossa. Every sound is four parallel lines of different weight.
-    The signs flow into one ribbon, and a flock of starlings draws it.</p>
-    <p>Type a text and the flock writes it. ▶ says it word by word. In “alphabet” you can give a sign to
-    another letter, in “settings” change the ribbon and the flock, in “export” save a picture or a video.</p>
-    <p>You can set your own signs through the settings file — how is written at the bottom of “alphabet”.
-    You can share the file.</p>
+    <p><b>Murmuration</b> is a script for Viossa. Every symbol comes from four parallel lines of different
+    weight. The signs flow into one ribbon, and a flock of starlings draws it. Type a few words and hit play ▶.</p>
+    <p>Use settings to play with the form of the flock and video parameters. You can also upload your own
+    version of symbols. Press ‘save’ in settings and adapt the file to your alphabet.</p>
     <p>Made by <a href="https://morovovsheiner.pro" target="_blank" rel="noopener">Mitia Morovov-Sheiner</a>.</p>`,
 };
 
