@@ -60,6 +60,7 @@
   #about-menu { right: var(--gut); top: calc(var(--top) + 44px); width: min(360px, calc(100vw - 2 * var(--gut)));
                 font: 16px/1.4 var(--ui); gap: 10px; }
   #about-menu p { margin: 0; }
+  #settings-menu .hint { font: 14px/1.3 var(--ui); opacity: .6; white-space: normal; }
   #about-menu a { color: inherit; text-underline-offset: 3px; text-decoration-thickness: 1px; }
   .corner { position: fixed; bottom: var(--bottom); display: flex; gap: 8px; }
   .corner.left { left: var(--gut); }
@@ -86,7 +87,10 @@
   .row.action:focus .lab { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
   .row.action:focus .val { text-decoration: none; }
   .row.pager .lab { font-weight: 600; }
-  .row.io { margin-top: 6px; }
+  /* ширину меню задают настройки, а не эта строка: не помещается — переносится */
+  .row.io { margin-top: 6px; height: auto; white-space: normal; line-height: 1.4; width: 0; min-width: 100%; }
+  .row.io [data-io] { white-space: nowrap; }
+  .row.io .val { display: none; }  /* у строки нет значения — отступ под него не нужен */
   .row.io [data-io] { cursor: pointer; }
   .row.io [data-io] { outline: none; }
   .row.io [data-io]:hover, .row.io [data-io]:focus { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
@@ -128,6 +132,13 @@
     .corner.right .square { width: 34px; }
     /* на телефоне нижний ряд кнопок занимает всю ширину — ▶ встаёт над ним */
     #play { bottom: calc(var(--bottom) + 48px); }
+    /* субтитр — под верхними кнопками, иначе длинное слово наезжает на «?» и «export» */
+    #caption { top: 64px; }
+    /* поле стоит прямо на стае — под ним прозрачный размытый тёмный овал, чтобы белый текст читался */
+    #compose::before { content: ''; position: absolute; inset: -28px -20px; z-index: -1; pointer-events: none;
+                       background: radial-gradient(closest-side, rgb(0 0 0 / .45), rgb(0 0 0 / .28) 55%, transparent);
+                       filter: blur(12px); }
+    #text { text-shadow: 0 0 10px rgb(0 0 0 / .45); }
   }
 </style>
 </head>
@@ -296,11 +307,11 @@ const THEMES = {
 const THEME_KEYS = ['fg', 'bg', 'bg2', 'sky', 'alpha'];
 
 // Значения по умолчанию — сохранённый файл Мити viossa-settings.json, 27 октября 2026.
-// Поверх файла: взмахи 1 Гц (в файле было 0).
+// Поверх файла: взмахи 1 Гц (в файле было 0), отстающие 1 (было 0,4).
 const START = {
   ...DEF_P,
   mode: 'murmur', spacing: 54, thin: 2, mid: 13, thick: 40, glyphW: 86, hold: 0.35, lead: 125,
-  density: 1.5, scatter: 10, dot: 2, alpha: 0.55, wing: 1.6, stray: 0.4, core: 0.15, soft: 1.5, swell: 0, seed: 9, flap: 1,
+  density: 1.5, scatter: 10, dot: 2, alpha: 0.55, wing: 1.6, stray: 1, core: 0.15, soft: 1.5, swell: 0, seed: 9, flap: 1,
   roam: 0, speed: 0.3, spine: 'murmur', bend: 0.22, wavelength: 690, radius: 20, grow: 0, warp: 0, warpScale: 0.0195,
   waveAmp: 0.4, waveLen: 320, waveSpeed: 60, twist: 0, twistLen: 800,
   mDensity: 0.35, mAlpha: 0.8, mWing: 0.8,
@@ -892,7 +903,7 @@ const T = {
         resetAlpha: 'вернуть встроенный алфавит', play: 'Произнести', stop: 'Остановить', zoomIn: 'Приблизить', zoomOut: 'Отдалить',
         background: 'Фон', noRec: 'Этот браузер не умеет записывать видео с холста.',
         notSettings: 'Это не файл настроек: ', confirmReset: 'Вернуть исходные настройки и алфавит?',
-        save: 'сохранить', load: 'загрузить', back: 'На сайт', about: 'Что это',
+        save: 'сохранить', load: 'загрузить', reset: 'сбросить', confirmResetOwn: 'Вернуть настройки, фон и алфавит по умолчанию?', back: 'На сайт', about: 'Что это', adjust: 'Щёлкни и меняй стрелками',
         ownHow: 'Свои знаки — через файл: «настройки» → сохранить. В файле у каждой буквы четыре цифры — толщины линий сверху вниз: 0 тонкая, 1 средняя, 2 толстая. Поменяй их или добавь свои буквы, например «q»: «1022», и загрузи файл обратно. Тогда текст читается только по буквам алфавита, без встроенных замен.',
         ownOn: 'своя система · вернуть встроенную' },
   en: { settings: 'settings', alphabet: 'alphabet', export: 'export', png: 'save png', video: 'save mp4',
@@ -901,7 +912,7 @@ const T = {
         resetAlpha: 'back to the built-in alphabet', play: 'Play', stop: 'Stop', zoomIn: 'Zoom in', zoomOut: 'Zoom out',
         background: 'Background', noRec: 'This browser cannot record video from a canvas.',
         notSettings: 'Not a settings file: ', confirmReset: 'Reset all settings and the alphabet?',
-        save: 'save', load: 'load', back: 'Back to the site', about: 'What is this',
+        save: 'save', load: 'load', reset: 'reset', confirmResetOwn: 'Reset the settings, background and alphabet to defaults?', back: 'Back to the site', about: 'What is this', adjust: 'Click and use arrows to adjust',
         ownHow: 'Your own signs go through a file: “settings” → save. Each letter there has four digits — the weights of its lines from top to bottom: 0 thin, 1 medium, 2 thick. Change them or add letters of your own, e.g. “q”: “1022”, and load the file back. Then the text is read only by the letters of the alphabet, without the built-in replacements.',
         ownOn: 'own system · back to the built-in one' },
   vi: { png: 'save riso', yes: 'akk', no: 'naj', language: 'glossa' },
@@ -1013,7 +1024,8 @@ function settingsRows() {
   const pages = settingsPages();
   page = Math.max(0, Math.min(page, pages.length - 1));
   const pg = pages[page];
-  let h = '';
+  // подсказка сверху: как менять значения
+  let h = `<div class="hint" data-k="hint">${t('adjust')}</div>`;
   if (admin) {
     const title = pg === 'main' ? t('main') : pg === 'file' ? t('file') : titleOf(pg);
     ACT.pager = { step: d => { page = (page + d + pages.length) % pages.length; store.set('page', page); renderMenu(); } };
@@ -1025,15 +1037,16 @@ function settingsRows() {
     ACT.lang = { step: d => setLang(ls[(ls.indexOf(lang) + d + ls.length) % ls.length]) };
     ACT.lang.click = () => ACT.lang.step(1);
     h += row('lang', t('language'), LANGS[lang]);
-    // «save · load» — своя система: алфавит и видимые настройки. Каждое слово — своя остановка Tab;
-    // ←/→ тоже переходят между ними, Enter срабатывает.
-    const io = [saveOwn, () => openFile('own')], word = () => document.activeElement.closest?.('[data-io]');
+    // «save · load · reset» — своя система: алфавит и видимые настройки. Каждое слово — своя остановка Tab;
+    // ←/→ тоже переходят между ними, Enter срабатывает. Не помещается — слово переносится целиком.
+    const io = [saveOwn, () => openFile('own'), resetOwn], word = () => document.activeElement.closest?.('[data-io]');
     ACT.io = {
-      step: d => $(`#settings-menu [data-io="${d > 0 ? 1 : 0}"]`).focus(),
+      step: d => { const w = word(), i = w ? +w.dataset.io : 0; $(`#settings-menu [data-io="${(i + d + io.length) % io.length}"]`).focus(); },
       pick: i => io[i](),
       click: () => { const w = word(); if (w) io[+w.dataset.io](); },
     };
-    h += row('io', `<span data-io="0" tabindex="0">${t('save')}</span> · <span data-io="1" tabindex="0">${t('load')}</span>`, '', { cls: 'io', noTab: true });
+    // точка приклеена к слову перед ней, чтобы строка не начиналась с «·»
+    h += row('io', ['save', 'load', 'reset'].map((k, i) => `<span data-io="${i}" tabindex="0">${t(k)}</span>`).join('&nbsp;· '), '', { cls: 'io', noTab: true });
   } else if (pg === 'file') {
     h += actionRow('save', t('saveFile'), '', saveFile);
     h += actionRow('load', t('loadFile'), '', () => openFile('full'));
@@ -1209,20 +1222,27 @@ hintsEl.addEventListener('click', e => {
 function textMetrics() { const fs = parseFloat(getComputedStyle(textEl).fontSize); return { fs, lh: fs * 1.4, k: fs / 70 }; }
 function layoutText() {
   const { lh, k } = textMetrics();
-  // как на макете — по 165 px с боков, чтобы две строки не заходили под верхние кнопки; на узком экране шире
-  const maxW = Math.min(1000, Math.max(innerWidth - 330, innerWidth * 0.6));
+  // как на макете — по 165 px с боков, чтобы две строки не заходили под верхние кнопки; на узком экране шире.
+  // На телефоне поле стоит посередине, верхние кнопки ему не мешают — почти во всю ширину.
+  const phone = innerWidth < PHONE_W;
+  const maxW = phone ? innerWidth - 32 : Math.min(1000, Math.max(innerWidth - 330, innerWidth * 0.6));
   mirror.style.maxWidth = maxW + 'px';
   mirror.textContent = (textEl.value || textEl.placeholder) + '\u200b';
   const n = Math.max(1, Math.round(mirror.offsetHeight / lh));
   const w = n > 1 ? maxW : Math.min(maxW, Math.ceil(mirror.offsetWidth) + 4);
   textEl.style.width = w + 'px'; textEl.style.height = n * lh + 'px';
+  hintsEl.hidden = textEl.value !== '';
   const minTop = 2 * k, anchor = 100 * k + lh;
-  const top = n <= 2 ? Math.max(minTop, anchor - n * lh) : minTop;
+  let top;
+  if (phone) {
+    // на телефоне — посередине экрана, поверх стаи; субтитры при показе всё равно наверху
+    const hintsH = hintsEl.hidden ? 0 : 16 + hintsEl.offsetHeight;
+    top = Math.max(minTop, (innerHeight - n * lh - hintsH) / 2);
+  } else top = n <= 2 ? Math.max(minTop, anchor - n * lh) : minTop;
   const maxBottom = $('#play').getBoundingClientRect().top - 30;
   const full = top + n * lh > maxBottom;
   if (full) textEl.style.height = maxBottom + 'px';
   compose.style.top = (full ? 0 : top) + 'px';
-  hintsEl.hidden = textEl.value !== '';
 }
 textEl.addEventListener('input', () => {
   layoutText(); store.set('text', textEl.value); rebuild();
@@ -1242,7 +1262,8 @@ function setCaption(s, op = 1) {
 function drawCaption(c, W, dpr, s, op) {
   const { fs, lh } = textMetrics();
   c.font = `${fs * dpr}px Lithium, Georgia, serif`; c.fillStyle = '#fff'; c.textAlign = 'center'; c.textBaseline = 'middle';
-  c.globalAlpha = op; c.fillText(s, W / 2, (fs * 50 / 70 + lh / 2) * dpr); c.globalAlpha = 1;
+  const top = innerWidth < PHONE_W ? 64 : fs * 50 / 70;  // там же, где субтитр на экране
+  c.globalAlpha = op; c.fillText(s, W / 2, (top + lh / 2) * dpr); c.globalAlpha = 1;
 }
 
 // ─── Показ ───────────────────────────────────────────────────────────────
@@ -1294,6 +1315,14 @@ function saveFile() {
 // Своя система посетителя: алфавит, видимые настройки и язык. Скрытые параметры в файл не идут
 // и из файла не берутся — даже из полного файла расширенного режима.
 // Алфавит пишется коротко — «a»: «0200», толщины четырёх линий сверху вниз, чтобы его было легко править.
+// Сброс у посетителя: видимые настройки, фон и алфавит (и своя система из файла) — по умолчанию; язык остаётся.
+function resetOwn() {
+  if (!confirm(t('confirmResetOwn'))) return;
+  for (const k of VISITOR_KEYS) P[k] = START[k];
+  OWN = null; ALPHA = clone(DEFAULTS);
+  saveParams(); store.set('own', null); store.set('alphabet', ALPHA);
+  applyTheme(); rebuild(); dirty = true; renderMenu();
+}
 function saveOwn() {
   const params = Object.fromEntries(VISITOR_KEYS.map(k => [k, P[k]]));
   const alphabet = Object.fromEntries([...SIGNS.map(p => p.id), ...ownExtra()].map(id => [id, codeOf(glyphOf(id))]));
