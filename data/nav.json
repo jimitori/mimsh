@@ -126,7 +126,7 @@
       "groups": [
         "projects"
       ],
-      "order": 40
+      "order": 50
     },
     {
       "id": "viossa-murmuration",
@@ -138,7 +138,7 @@
       "groups": [
         "projects"
       ],
-      "order": 50
+      "order": 40
     },
     {
       "id": "belgrade-tram-map",
@@ -150,7 +150,7 @@
       "groups": [
         "projects"
       ],
-      "order": 60
+      "order": 10
     },
     {
       "id": "poster-every-day",
